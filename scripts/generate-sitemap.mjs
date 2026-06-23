@@ -8,7 +8,7 @@ for (const c of characters) {
   pages.push({ loc: `/team/${c.slug}/`, priority: "0.7" });
 }
 
-const site = "https://genshin-builds.example.com";
+const site = "https://gameup.lol";
 const urls = pages.map(
   (p) => `  <url>
     <loc>${site}${p.loc}</loc>
