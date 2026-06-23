@@ -1,0 +1,4 @@
+﻿name = "genshin-builds"
+pages_build_output_dir = "dist"
+pages_build_command_disabled = true
+compatibility_date = "2026-06-23"
