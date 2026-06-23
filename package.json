@@ -1,0 +1,15 @@
+{
+  "name": "genshin-builds",
+  "version": "1.0.0",
+  "description": "Genshin Impact build guides - MVP",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/generate-sitemap.mjs",
+    "preview": "astro preview",
+    "generate": "node scripts/generate-sitemap.mjs"
+  },
+  "devDependencies": {
+    "astro": "^2.0.0"
+  }
+}
