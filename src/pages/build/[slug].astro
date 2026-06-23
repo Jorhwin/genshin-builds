@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { characters } from "../../data/characters";
+
+export function getStaticPaths() {
+  return characters.map((c) => ({
+    params: { slug: c.slug },
+    props: { character: c },
+  }));
+}
+
+const { character: c } = Astro.props;
+const title = `${c.name} Best Build Guide 2026 — Weapons & Artifacts`;
+const description = `Best ${c.name} build guide. Best weapon: ${c.bestWeapon}. F2P option: ${c.f2pWeapon}. Best artifact set: ${c.bestArtifacts}. Stats priority and rotation included.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <p>
+    <span class="tag tag-{c.tier}">Tier {c.tier}</span>
+    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role}</span>
+  </p>
+
+  <h1>{c.name} Best Build Guide</h1>
+
+  <div class="insight-box">
+    <h3>⚡ Why This Build</h3>
+    <p>{c.bestWeapon} synergizes with {c.name}'s kit because it provides the stats they need most. Combined with {c.bestArtifacts}, this build achieves the best balance of damage output and energy efficiency in the current meta.</p>
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x</div>
+
+  <h2>Best Weapon</h2>
+  <p><strong>{c.bestWeapon}</strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics.</p>
+
+  <h3>F2P Weapon Option</h3>
+  <p>{c.f2pWeapon} is a strong alternative that performs well without spending primogems on the weapon banner. It provides competitive damage especially at refinement 5.</p>
+
+  <h2>Best Artifact Set</h2>
+  <p>{c.bestArtifacts} is the recommended set. This set provides the best balance of damage and utility for {c.name} in most team compositions.</p>
+
+  <h2>Stats Priority</h2>
+  <ul>
+    <li><strong>Substats:</strong> {c.subStats}</li>
+    <li><strong>Main Stats:</strong> {c.mainStats}</li>
+  </ul>
+
+  <h2>Rotation Guide</h2>
+  <p>{c.rotation}</p>
+
+  <div class="internal-links">
+    <h3>📂 More {c.name} Guides</h3>
+    <a href={`/character/${c.slug}/`}>📋 {c.name} Overview →</a>
+    <a href={`/team/${c.slug}/`}>👥 {c.name} Best Team Guide →</a>
+  </div>
+</BaseLayout>

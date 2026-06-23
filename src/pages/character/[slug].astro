@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { characters } from "../../data/characters";
+
+export function getStaticPaths() {
+  return characters.map((c) => ({
+    params: { slug: c.slug },
+    props: { character: c },
+  }));
+}
+
+const { character: c } = Astro.props;
+const title = `${c.name} Build Guide — Best Weapons & Artifacts 2026`;
+const description = `Complete ${c.name} build guide. Best weapon: ${c.bestWeapon}. Best artifacts: ${c.bestArtifacts}. Top teams and rotation. Updated for latest Genshin Impact version.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <p>
+    <span class="tag tag-{c.tier}">Tier {c.tier}</span>
+    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role} · {c.weapon}</span>
+  </p>
+
+  <h1>{c.name} Build Guide</h1>
+
+  <p>{c.description}</p>
+
+  <p><strong>Rating:</strong> <span class="rating-big">{c.rating}</span></p>
+
+  <div class="insight-box">
+    <h3>⚡ Why This Build Works</h3>
+    <p>{c.name} excels as a {c.role} because {c.teamRole}. The combination of {c.bestArtifacts} with {c.bestWeapon} maximizes their damage output, while the recommended substats ({c.subStats}) ensure optimal stat distribution for the current meta.</p>
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x</div>
+
+  <h2>Best Build Overview</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Best Weapon</div>
+      <div class="stat-value">{c.bestWeapon}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">F2P Weapon</div>
+      <div class="stat-value">{c.f2pWeapon}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Best Artifacts</div>
+      <div class="stat-value">{c.bestArtifacts}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Main Stats</div>
+      <div class="stat-value">{c.mainStats}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Sub Stats Priority</div>
+      <div class="stat-value">{c.subStats}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Talent Priority</div>
+      <div class="stat-value">{c.talentPriority}</div>
+    </div>
+  </div>
+
+  <h2>Team Role</h2>
+  <p>{c.teamRole}</p>
+
+  <h2>Rotation Guide</h2>
+  <p>{c.rotation}</p>
+
+  <h2>Best Team</h2>
+  <p>{c.strongTeam}</p>
+
+  <h2>F2P Team</h2>
+  <p>{c.f2pTeam}</p>
+
+  <div class="internal-links">
+    <h3>📂 More {c.name} Guides</h3>
+    <a href={`/build/${c.slug}/`}>🛠️ {c.name} Best Build Guide →</a>
+    <a href={`/team/${c.slug}/`}>👥 {c.name} Best Team Guide →</a>
+  </div>
+</BaseLayout>

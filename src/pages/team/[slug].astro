@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { characters } from "../../data/characters";
+
+export function getStaticPaths() {
+  return characters.map((c) => ({
+    params: { slug: c.slug },
+    props: { character: c },
+  }));
+}
+
+const { character: c } = Astro.props;
+const title = `${c.name} Best Team Guide 2026 — Team Compositions`;
+const description = `Best teams for ${c.name}. Strongest team and F2P team. Team role and rotation guide.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <p>
+    <span class="tag tag-{c.tier}">Tier {c.tier}</span>
+    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role}</span>
+  </p>
+
+  <h1>{c.name} Best Team Guide</h1>
+
+  <p>{c.teamRole}</p>
+
+  <div class="insight-box">
+    <h3>⚡ Team Synergy Insight</h3>
+    <p>{c.name} functions best as a {c.role}. The recommended team compositions maximize their contribution by providing the right elemental reactions, energy support, and buffs that {c.name} needs to perform at their peak in the current abyss cycle.</p>
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x</div>
+
+  <h2>Strongest Team</h2>
+  <p>{c.strongTeam}</p>
+  <p>This composition maximizes {c.name}'s damage potential and provides the best synergy with their kit.</p>
+
+  <h2>F2P Team</h2>
+  <p>{c.f2pTeam}</p>
+  <p>A budget-friendly alternative that uses mostly 4-star characters while maintaining strong team performance.</p>
+
+  <h2>Rotation Guide</h2>
+  <p>{c.rotation}</p>
+
+  <div class="internal-links">
+    <h3>📂 More {c.name} Guides</h3>
+    <a href={`/character/${c.slug}/`}>📋 {c.name} Overview →</a>
+    <a href={`/build/${c.slug}/`}>🛠️ {c.name} Best Build Guide →</a>
+  </div>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { characters } from "../data/characters";
+
+const sTier = characters.filter(c => c.tier === "S");
+const aTier = characters.filter(c => c.tier === "A");
+const metaTitle = "Genshin Impact Best Build Guides 2026 — All Characters";
+const metaDescription = "Complete Genshin Impact build guides for every character. Best weapons, artifacts, teams, and rotations. Updated for the latest version.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Genshin Impact Build Guides</h1>
+  <p class="subtitle">Complete build guides for every character. Best weapons, artifact sets, team compositions, and rotations — updated for the current meta.</p>
+
+  <h2>All Characters</h2>
+  <ul class="character-list">
+    {characters.map((c) => (
+      <li>
+        <a href={`/character/${c.slug}/`}>
+          <span class="tag tag-{c.tier}">{c.tier}</span>
+          <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+          {c.name}
+          <span class="desc">{c.description.slice(0, 55)}...</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Popular Build Guides</h2>
+  <div class="mini-grid">
+    {sTier.map((c) => (
+      <a href={`/build/${c.slug}/`}>{c.name} — Best Build</a>
+    ))}
+  </div>
+
+  <h2>Popular Team Guides</h2>
+  <div class="mini-grid">
+    {sTier.map((c) => (
+      <a href={`/team/${c.slug}/`}>{c.name} — Best Team</a>
+    ))}
+  </div>
+
+  <div class="insight-box" style="margin-top: 36px;">
+    <h3>📈 Meta Note</h3>
+    <p>Current meta (Version 5.x) favors Dendro reaction teams and Furina-centric compositions. Neuvillette, Raiden Shogun, and Nahida remain top-tier picks across multiple abyss cycles. Sucrose remains the best 4-star Anemo option for EM-focused teams.</p>
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x</div>
+</BaseLayout>
