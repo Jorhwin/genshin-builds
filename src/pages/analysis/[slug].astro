@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { analyses } from "../../data/analyses";
+
+export function getStaticPaths() {
+  return analyses.map((a) => ({
+    params: { slug: a.slug },
+    props: { analysis: a },
+  }));
+}
+
+const { analysis: a } = Astro.props;
+const title = a.title;
+const desc = a.seoDesc;
+---
+
+<BaseLayout title={title} description={desc}>
+  <p><span class="tag tag-S" style="background:#6080ff33;color:#6080ff;">Build Analysis</span></p>
+  <h1>{a.title}</h1>
+  <p class="subtitle">{a.summary}</p>
+
+  {a.sections ? (
+    a.sections.map((s) => (
+      <>
+        <h2>{s.title}</h2>
+        <p>{s.content}</p>
+      </>
+    ))
+  ) : (
+    <>
+      <h2>{a.buildA.name} vs {a.buildB.name}</h2>
+      <div class="card">
+        <h3>{a.buildA.name}</h3>
+        <p><b>Team:</b> {a.buildA.chars}</p>
+        <p>{a.buildA.playstyle}</p>
+        <p><b>Pros:</b></p>
+        <ul>{a.buildA.pros.map((p) => <li>{p}</li>)}</ul>
+        <p><b>Cons:</b></p>
+        <ul>{a.buildA.cons.map((c) => <li>{c}</li>)}</ul>
+        <p><b>Rotation:</b> {a.buildA.rotation}</p>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3>{a.buildB.name}</h3>
+        <p><b>Team:</b> {a.buildB.chars}</p>
+        <p>{a.buildB.playstyle}</p>
+        <p><b>Pros:</b></p>
+        <ul>{a.buildB.pros.map((p) => <li>{p}</li>)}</ul>
+        <p><b>Cons:</b></p>
+        <ul>{a.buildB.cons.map((c) => <li>{c}</li>)}</ul>
+        <p><b>Rotation:</b> {a.buildB.rotation}</p>
+      </div>
+    </>
+  )}
+
+  <div class="insight-box" style="margin-top:28px">
+    <h3>Verdict</h3>
+    <p>{a.verdict}</p>
+  </div>
+</BaseLayout>

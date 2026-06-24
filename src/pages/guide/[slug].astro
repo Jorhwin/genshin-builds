@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { guides } from "../../data/guides";
+
+export function getStaticPaths() {
+  return guides.map((g) => ({
+    params: { slug: g.slug },
+    props: { guide: g },
+  }));
+}
+
+const { guide: g } = Astro.props;
+const title = g.title;
+const desc = g.seoDesc;
+---
+
+<BaseLayout title={title} description={desc}>
+  <p><span class="tag tag-S" style="background:#40a06033;color:#40c060;">Game Mechanic Guide</span></p>
+  <h1>{g.title}</h1>
+  <p class="subtitle">{g.summary}</p>
+
+  {g.categories.map((cat) => (
+    <>
+      <h2>{cat.title}</h2>
+      <p>{cat.content}</p>
+    </>
+  ))}
+</BaseLayout>
