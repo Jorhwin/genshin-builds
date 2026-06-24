@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { comparisons } from "../../data/comparisons";
+
+export function getStaticPaths() {
+  return comparisons.map((c) => ({
+    params: { slug: c.slug },
+    props: { comp: c },
+  }));
+}
+
+const { comp: c } = Astro.props;
+const title = c.seoTitle;
+const description = c.seoDesc;
+---
+
+<BaseLayout title={title} description={description}>
+  <p>
+    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span style="color: var(--text-muted); font-size: 0.9rem;">Character Comparison</span>
+  </p>
+
+  <h1>{c.nameA} vs {c.nameB}</h1>
+  <p class="subtitle">{c.summary}</p>
+
+  <div class="comparison-header">
+    <div class="comp-card comp-a">
+      <div class="comp-label">VS</div>
+      <div class="comp-name">{c.nameA}</div>
+    </div>
+    <div class="comp-card comp-b">
+      <div class="comp-label">VS</div>
+      <div class="comp-name">{c.nameB}</div>
+    </div>
+  </div>
+
+  {c.categories.map((cat) => (
+    <div>
+      <h2>{cat.name}</h2>
+      <div class="comp-table">
+        <div class="comp-row header-row">
+          <div class="comp-cell">{c.nameA}</div>
+          <div class="comp-cell winner-col"></div>
+          <div class="comp-cell">{c.nameB}</div>
+        </div>
+        {cat.items.map((item) => (
+          <div class="comp-row">
+            <div class={`comp-cell ${item.winner === "A" ? "winner" : ""}`}>{item.a}</div>
+            <div class="comp-cell winner-badge-cell">
+              {item.winner === "A" ? <span class="winner-badge" style="background: #6080ff33; color: #6080ff;">✓ {c.nameA.split(" ")[0]}</span> : item.winner === "B" ? <span class="winner-badge" style="background: #ff602033; color: #ff6020;">✓ {c.nameB.split(" ")[0]}</span> : <span class="winner-badge" style="background: #60608033; color: #8080a0;">— Even</span>}
+            </div>
+            <div class={`comp-cell ${item.winner === "B" ? "winner" : ""}`}>{item.b}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <div class="insight-box" style="margin-top: 28px;">
+    <h3>🎯 Verdict</h3>
+    <p>{c.verdict}</p>
+  </div>
+
+  <div class="internal-links">
+    <h3>📂 Related Character Guides</h3>
+    <a href={`/character/${c.nameA.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "")}/`}>📋 {c.nameA} Guide →</a>
+    <a href={`/character/${c.nameB.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "")}/`}>📋 {c.nameB} Guide →</a>
+    <a href="/">🏠 All Characters</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .comparison-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .comp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+  .comp-a { border-color: rgba(96, 128, 255, 0.3); }
+  .comp-b { border-color: rgba(255, 96, 32, 0.3); }
+  .comp-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .comp-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .comp-table {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin: 12px 0;
+  }
+  .comp-row {
+    display: grid;
+    grid-template-columns: 1.8fr 0.6fr 1.8fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-row.header-row {
+    background: var(--bg-secondary);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .comp-cell {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-right: 1px solid var(--border);
+  }
+  .comp-cell:last-child { border-right: none; }
+  .comp-cell.winner { color: var(--text-primary); font-weight: 500; }
+  .winner-badge-cell { display: flex; align-items: center; justify-content: center; }
+  .winner-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .comp-row { grid-template-columns: 1fr 0.5fr 1fr; }
+    .comp-cell { font-size: 0.78rem; padding: 8px 6px; }
+  }
+</style>
