@@ -35,6 +35,20 @@ const description = "Complete " + c.name + " build guide. Best weapon: " + c.bes
     </div>
   )}
 
+  {coreInsights[c.slug] && coreInsights[c.slug].weakness && (
+    <div class="card" style="border-color:rgba(255,96,32,0.2);">
+      <h3 style="color:#ff6020;">When NOT to use this character</h3>
+      <p>{coreInsights[c.slug].weakness}</p>
+    </div>
+  )}
+
+  {coreInsights[c.slug] && coreInsights[c.slug].controversy && (
+    <div class="card" style="border-color:rgba(255,215,0,0.2);">
+      <h3 style="color:#ffd700;">Community Controversy</h3>
+      <p>{coreInsights[c.slug].controversy}</p>
+    </div>
+  )}
+
   <div class="version-badge">Updated for Version 5.x</div>
   <h2>Best Build Overview</h2>
   <div class="stat-grid">
