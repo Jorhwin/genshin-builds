@@ -35,6 +35,34 @@ const description = "Complete " + c.name + " build guide. Best weapon: " + c.bes
     </div>
   )}
 
+  <h2>Gameplay Strategy</h2>
+  <div class="card">
+    <p>{c.name} functions best as a {c.role}. The key to mastering this character is understanding how their kit interacts with the current abyss meta. Below are the critical gameplay patterns you need to know.</p>
+    <h3>Rotation Tips</h3>
+    <p>{c.rotation}</p>
+    <h3>Team Synergy</h3>
+    <p>{c.teamRole} In practice, this means pairing them with characters that complement their strengths and cover their weaknesses.</p>
+  </div>
+
+  <h2>Build Comparison: Entry vs Endgame</h2>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Entry Level Build</div>
+      <div class="stat-value">{c.f2pWeapon}</div>
+      <p style="margin-top: 4px;">Focus on main stat correctness. Set bonuses matter less than having correct main stats.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Endgame Build</div>
+      <div class="stat-value">{c.bestWeapon}</div>
+      <p style="margin-top: 4px;">Optimize substats for perfect ratio. Sacrifice HP/DEF for more offensive stats.</p>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top: 20px;">
+    <h3>Summary: Is {c.name} Worth Building?</h3>
+    <p>{c.description} With the right investment, {c.name} performs at a <strong>{c.rating}</strong> level in current content.</p>
+  </div>
+
   {coreInsights[c.slug] && coreInsights[c.slug].weakness && (
     <div class="card" style="border-color:rgba(255,96,32,0.2);">
       <h3 style="color:#ff6020;">When NOT to use this character</h3>
