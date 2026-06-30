@@ -1,5 +1,0 @@
-const https=require("https"),fs=require("fs"),path=require("path"),D=process.argv[2],m={};
-(function w(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())w(p);else m[path.relative(D,p).replace(/\\/g,"/")]=fs.readFileSync(p).toString("base64");}})(D);
-const b=JSON.stringify({manifest:m,branch:"master"});
-const r=https.request({hostname:"api.cloudflare.com",path:"/client/v4/accounts/efff71d5677d2cc3f917621aa7c661d3/pages/projects/genshin-builds/deployments",method:"POST",headers:{"Authorization":"Bearer cfat_cbKtyLMRXsZ5gBY1lWQKO76MBmF01t1IoLMfWIKr3617158e","Content-Type":"application/json"}},res=>{let d="";res.on("data",c=>d+=c);res.on("end",()=>{const j=JSON.parse(d);console.log("Deploy: "+j.success+" id:"+j.result.short_id+" url:"+j.result.url);});});
-r.write(b);r.end();
