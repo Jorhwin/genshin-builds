@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { coreInsights } from "../../data/insights";
+import { extendedGuides } from "../../data/extended-guides";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -74,6 +75,13 @@ const description = "Complete " + c.name + " build guide. Best weapon: " + c.bes
     <div class="card" style="border-color:rgba(255,215,0,0.2);">
       <h3 style="color:#ffd700;">Community Controversy</h3>
       <p>{coreInsights[c.slug].controversy}</p>
+    </div>
+  )}
+
+  {extendedGuides[c.slug] && (
+    <div class="card" style="margin: 20px 0; border-color: rgba(96,128,255,0.15);">
+      <h3 style="color: var(--accent);">In-Depth Guide</h3>
+      <div style="white-space: pre-line; line-height: 1.8;">{extendedGuides[c.slug].guide}</div>
     </div>
   )}
 
