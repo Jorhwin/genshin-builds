@@ -1,0 +1,18 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { changelog } from "../../data/changelog";
+const title = "Site Update History - Genshin Builds Changelog";
+const description = "View all updates and changes to Genshin Builds. Latest character additions, meta updates, and site improvements.";
+---
+<BaseLayout title={title} description={description}>
+  <h1>Site Update History</h1>
+  <p class="subtitle">Track all updates, character additions, and improvements to Genshin Builds.</p>
+  {changelog.map((entry) => (
+    <div class="card" style="margin: 16px 0;">
+      <p style="color: var(--accent); font-size: 0.85rem; font-weight: 600;">{entry.date}</p>
+      <h2 style="margin: 4px 0;">{entry.title}</h2>
+      <p style="color: var(--text-secondary);">{entry.desc}</p>
+    </div>
+  ))}
+  <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.85rem;">Last updated: 2026-07-27</p>
+</BaseLayout>

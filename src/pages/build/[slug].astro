@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
+import { buildExtendedGuides } from "../../data/extended-guides-build";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -27,6 +28,13 @@ const description = `Best ${c.name} build guide. Best weapon: ${c.bestWeapon}. F
     <h3>⚡ Why This Build</h3>
     <p>{c.bestWeapon} synergizes with {c.name}'s kit because it provides the stats they need most. Combined with {c.bestArtifacts}, this build achieves the best balance of damage output and energy efficiency in the current meta.</p>
   </div>
+
+  {buildExtendedGuides[c.slug] && (
+    <div class="card" style="margin:20px 0;border-color:rgba(96,128,255,0.15);">
+      <h3>Build Tips & Optimization</h3>
+      <div style="white-space:pre-line;line-height:1.8;">{buildExtendedGuides[c.slug]}</div>
+    </div>
+  )}
 
   <div class="version-badge">Updated for Version 5.x</div>
 

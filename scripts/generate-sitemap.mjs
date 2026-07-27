@@ -2,6 +2,7 @@ import { characters } from "../src/data/characters.js";
 import { comparisons } from "../src/data/comparisons.js";
 import { analyses } from "../src/data/analyses.js";
 import { guides } from "../src/data/guides.js";
+import { changelog } from "../src/data/changelog.js";
 import { writeFileSync } from "fs";
 
 const pages = [{ loc: "/", priority: "1.0" }];
@@ -18,6 +19,9 @@ for (const a of analyses) {
 }
 for (const g of guides) {
   pages.push({ loc: `/guide/${g.slug}/`, priority: "0.7" });
+}
+for (const e of changelog) {
+  pages.push({ loc: "/changelog/", priority: "0.6" });
 }
 
 const site = "https://gameup.lol";

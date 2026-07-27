@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
+import { teamExtendedGuides } from "../../data/extended-guides-team";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -29,6 +30,13 @@ const description = `Best teams for ${c.name}. Strongest team and F2P team. Team
     <h3>⚡ Team Synergy Insight</h3>
     <p>{c.name} functions best as a {c.role}. The recommended team compositions maximize their contribution by providing the right elemental reactions, energy support, and buffs that {c.name} needs to perform at their peak in the current abyss cycle.</p>
   </div>
+
+  {teamExtendedGuides[c.slug] && (
+    <div class="card" style="margin:20px 0;border-color:rgba(96,128,255,0.15);">
+      <h3>Team Strategy Notes</h3>
+      <div style="white-space:pre-line;line-height:1.8;">{teamExtendedGuides[c.slug]}</div>
+    </div>
+  )}
 
   <div class="version-badge">Updated for Version 5.x</div>
 

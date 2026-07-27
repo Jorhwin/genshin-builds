@@ -1,0 +1,10 @@
+const fs=require("fs");
+const base="D:/GAME/Game web 1000plus AI/genshin-builds";
+const data=[
+{date:"2026-06-23",title:"Site Launch",desc:"Initial launch with 15 characters covering builds, teams, and rotations for core Genshin Impact meta characters."},
+{date:"2026-06-25",title:"Phase 2 Expansion",desc:"Expanded to 25 characters. Added 10 comparison guides comparing top DPS and support units."},
+{date:"2026-06-30",title:"Content Enhancement",desc:"Expanded to 35 characters. Added insight data with community controversy and weakness sections to core character pages."},
+{date:"2026-07-17",title:"Major Scale Up",desc:"Expanded to 62 characters (205 total pages). Added in-depth guides with extended content for 8 core characters."},
+{date:"2026-07-22",title:"Build & Team Enhancements",desc:"Added build-specific and team-specific extended guides for all core characters. Added 5 new comparison pages. Added site changelog."}];
+fs.writeFileSync(base+"/src/data/changelog.js","export const changelog = "+JSON.stringify(data,null,2)+";\n","utf-8");
+console.log("Changelog data written");

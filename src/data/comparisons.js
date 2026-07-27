@@ -343,4 +343,77 @@ export const comparisons = [
       },
     ],
   },
+,
+  {
+    slug: "ayaka-vs-ganyu",
+    nameA: "Ayaka",
+    nameB: "Ganyu",
+    element: "Cryo",
+    seoTitle: "Ayaka vs Ganyu: Best Cryo DPS Comparison 2026",
+    seoDesc: "Compare Ayaka and Ganyu for Cryo DPS. Which is better for Freeze teams? Single-target damage, AoE burst, and team synergy compared.",
+    summary: "Ayaka excels in single-target burst damage with her elemental skill and charging mechanic, while Ganyu dominates AoE scenarios with charged attacks and sustained Cryo application.",
+    verdict: "Choose Ayaka for burst-focused freeze teams, and Ganyu for consistent AoE Cryo damage.",
+    categories: [
+      {
+        name: "Damage Comparison",
+        items: [
+          { a: "Burst: Single-target nuke", b: "CA: AoE sustained", winner: "Situational" },
+          { a: "Higher burst ceiling", b: "Better sustained uptime", winner: "Situational" }
+        ]
+      },
+      {
+        name: "Team Flexibility",
+        items: [
+          { a: "Best in Freeze teams", b: "Works in Freeze, Melt, Mono-Cryo", winner: "B" },
+          { a: "Requires specific supports", b: "More team options", winner: "B" }
+        ]
+      }
+    ]
+  },
+  {
+    slug: "itto-vs-noelle",
+    nameA: "Arataki Itto",
+    nameB: "Noelle",
+    element: "Geo",
+    seoTitle: "Arataki Itto vs Noelle: Geo DPS Comparison 2026",
+    seoDesc: "Compare Itto and Noelle as Geo DPS options. Damage, F2P friendliness, and team requirements.",
+    summary: "Itto has higher damage ceiling and better team fit with Gorou. Noelle offers shield and healing at C6, but lower damage.",
+    verdict: "Pull Itto if you want the best Geo DPS. Build Noelle if you need a budget option that heals and shields.",
+    categories: [
+      {name:"Damage",items:[{a:"Higher DPS with proper supports",b:"Lower but consistent damage",winner:"A"},{a:"Requires Gorou",b:"Works solo",winner:"B"}]}
+    ]
+  },
+  {
+    slug: "eula-vs-physical",
+    nameA: "Eula",
+    nameB: "Razor",
+    element: "Cryo/Electro",
+    seoTitle: "Eula vs Razor: Physical DPS Comparison 2026",
+    seoDesc: "Compare Eula and Razor for Physical damage teams. Damage output, Constellations, and F2P viability.",
+    summary: "Eula has the highest physical burst damage in the game. Razor is a budget option with consistent damage.",
+    verdict: "Eula is the best physical DPS by a large margin. Razor is fine for early game but falls off at endgame.",
+    categories: [{name:"Damage",items:[{a:"Nuke burst up to 1M+",b:"Sustained physical",winner:"A"}]}]
+  },
+  {
+    slug: "kokomi-vs-barbara",
+    nameA: "Kokomi",
+    nameB: "Barbara",
+    element: "Hydro",
+    seoTitle: "Kokomi vs Barbara: Best Hydro Healer Comparison 2026",
+    seoDesc: "Compare Kokomi and Barbara for healing and Hydro application. Which healer is better for your teams?",
+    summary: "Kokomi provides 100% jellyfish uptime and enables Freeze teams. Barbara is free but has less Hydro uptime.",
+    verdict: "Kokomi is better for Freeze teams. Barbara is fine for early game Bloom teams.",
+    categories: [{name:"Healing",items:[{a:"100% jellyfish uptime",b:"E heal has long CD",winner:"A"}]}]
+  },
+  {
+    slug: "tighnari-vs-alhaitham",
+    nameA: "Tighnari",
+    nameB: "Alhaitham",
+    element: "Dendro",
+    seoTitle: "Tighnari vs Alhaitham: Dendro DPS Comparison 2026",
+    seoDesc: "Compare Tighnari and Alhaitham for Dendro DPS. Quick-swap vs on-field playstyle, which fits your account?",
+    summary: "Tighnari is a quick-swap DPS with fast rotations. Alhaitham is an on-field DPS with sustained mirror damage.",
+    verdict: "Tighnari fits better into reaction teams as a quick-swap unit. Alhaitham needs field time but deals higher personal damage.",
+    categories: [{name:"Playstyle",items:[{a:"Quick-swap, 4s field time",b:"On-field, 12s field time",winner:"A"}]}]
+  }
 ];
