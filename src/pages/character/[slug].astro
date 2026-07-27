@@ -14,9 +14,11 @@ export function getStaticPaths() {
 const { character: c } = Astro.props;
 const title = c.name + " Best Build & Weapons Guide (2026) - Artifacts, Teams & Rotation";
 const description = c.name + " best build guide for 2026. Top weapon: " + c.bestWeapon + " | F2P: " + c.f2pWeapon + " | Best artifacts: " + c.bestArtifacts + ". Complete stats, team comps & rotation guide included.";
+const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 ---
 
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={jsonld}></script>
   <p>
     <span class={"tag tag-" + c.tier}>{c.tier}</span>
     <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>

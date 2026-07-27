@@ -13,9 +13,11 @@ export function getStaticPaths() {
 const { character: c } = Astro.props;
 const title = `${c.name} Best Team Guide 2026 — Team Compositions`;
 const description = `Best teams for ${c.name}. Strongest team and F2P team. Team role and rotation guide.`;
+const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 ---
 
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={jsonld}></script>
   <p>
     <span class="tag tag-{c.tier}">Tier {c.tier}</span>
     <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
