@@ -12,8 +12,8 @@ export function getStaticPaths() {
 }
 
 const { character: c } = Astro.props;
-const title = c.name + " Build Guide - Best Weapons and Artifacts 2026";
-const description = "Complete " + c.name + " build guide. Best weapon: " + c.bestWeapon + ". Best artifacts: " + c.bestArtifacts + ".";
+const title = c.name + " Best Build & Weapons Guide (2026) - Artifacts, Teams & Rotation";
+const description = c.name + " best build guide for 2026. Top weapon: " + c.bestWeapon + " | F2P: " + c.f2pWeapon + " | Best artifacts: " + c.bestArtifacts + ". Complete stats, team comps & rotation guide included.";
 ---
 
 <BaseLayout title={title} description={description}>
