@@ -6,6 +6,13 @@ const metaTitle = "Best Genshin Impact Artifact Sets 2026 — Which Sets to Farm
 const metaDescription =
   "Best Genshin Impact artifact sets for 2026. Which four-piece sets are worth farming, who each set is best for, and which sets are traps.";
 
+const slugify = (s) =>
+  s
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
 const itemListJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -40,7 +47,7 @@ const itemListJsonLd = JSON.stringify({
     {
       artifactSets.map((a) => (
         <div class="gear-card">
-          <h3>{a.name}</h3>
+          <h3><a href={`/artifact/${slugify(a.name)}/`}>{a.name}</a></h3>
           <p class="gear-for">
             <strong>Best for:</strong> {a.bestFor}
           </p>

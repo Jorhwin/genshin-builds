@@ -43,5 +43,10 @@ export const changelog = [
   "date": "2026-08-30",
   "title": "Weapon Pages, 18 New Comparisons &amp; Thin-Page Cleanup",
   "desc": "Added 39 individual weapon pages with best-character picks, usage tips and alternatives. Expanded comparisons from 15 to 33, and fixed comparison links so they resolve character slugs from the data instead of guessing. Added in-depth guides for Kinich, Xilonen, Citlali, Mualani, Chasca, Venti, Wanderer, Navia, Baizhu and Skirk (37 characters now have full guides). Build and team pages for characters without in-depth content are now set to noindex and removed from the sitemap, which cuts 116 thin pages from Google's index."
+},
+{
+  "date": "2026-08-30",
+  "title": "Artifact Pages, More Analyses &amp; Classic Character Guides",
+  "desc": "Added 18 individual artifact set pages with best-character picks, farming caveats and 2-piece guidance. Expanded analyses from 4 to 12, covering National team mechanics, Furina Fanfare stacking, Aggravate vs Hyperbloom, Burgeon, Freeze vs Melt, artifact main stats, Abyss team building and rotation fundamentals. Added in-depth guides for Keqing, Diluc, Mona, Eula, Klee, Jean, Albedo and Ayato — 45 characters now have full guides."
 }
 ];

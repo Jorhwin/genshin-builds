@@ -4,6 +4,7 @@ import { analyses } from "../src/data/analyses.js";
 import { guides } from "../src/data/guides.js";
 import { bestLists } from "../src/data/best-lists.js";
 import { weaponGroups } from "../src/data/gear.js";
+import { artifactSets } from "../src/data/gear.js";
 import { extendedGuides } from "../src/data/extended-guides.js";
 import { writeFileSync, mkdirSync } from "fs";
 
@@ -59,6 +60,9 @@ for (const g of weaponGroups) {
   for (const w of g.weapons) {
     pages.push({ loc: `/weapon/${slugifyWeapon(w.name)}/`, priority: "0.7", changefreq: "monthly" });
   }
+}
+for (const a of artifactSets) {
+  pages.push({ loc: `/artifact/${slugifyWeapon(a.name)}/`, priority: "0.7", changefreq: "monthly" });
 }
 
 const urls = pages

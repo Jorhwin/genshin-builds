@@ -257,5 +257,61 @@ export const coreInsights = {
   "metaStatus": "The more reliable modern Cryo carry — lower peak AoE than Ayaka, but usable in far more chambers.",
   "weakness": "Optimal rotations are still being refined by the community, and weapon choice matters more for her than for older carries.",
   "controversy": "Skirk vs Ayaka: Ayaka still wins on AoE burst damage when Freeze works, but Skirk is far more consistent against unfreezable bosses."
+},
+  "keqing": {
+  "whyItWorks": "Her extremely fast Electro hits trigger Aggravate constantly, and Dendro's release turned her from a low-multiplier carry into a competitive quick-swap DPS.",
+  "keyThreshold": "ATK 1,800+. CRIT 70/140+. EM 200-300 on top of normal carry stats for Aggravate.",
+  "metaStatus": "Viable Aggravate carry with the shortest field time of any Electro DPS — not top-tier, but genuinely competitive.",
+  "weakness": "Low raw multipliers mean she depends entirely on Aggravate, and she needs EM as well as CRIT investment.",
+  "controversy": "Keqing was the community's favourite 'buff me please' character for years. Aggravate finally delivered, but the debate now is whether she is genuinely strong or simply no longer weak."
+},
+  "diluc": {
+  "whyItWorks": "Three sequential skill charges plus a Pyro-infused burst make him the easiest carry to play — no cancels, no HP management, no stance timing.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. EM 100-200 in Vaporize teams.",
+  "metaStatus": "Outclassed but usable. Clears all content with enough investment, just slower than modern Pyro carries.",
+  "weakness": "Old multipliers and no unique damage mechanic — he needs significantly more investment than Hu Tao or Arlecchino for the same result.",
+  "controversy": "Diluc vs Gaming: Gaming has higher multipliers and a similar playstyle, which has pushed Diluc further down the tier lists despite his popularity."
+},
+  "mona": {
+  "whyItWorks": "Her burst applies Omen, which increases enemy damage taken — and freezing enemies while Omen is active extends the debuff significantly.",
+  "keyThreshold": "ER around 200% so her burst is ready every rotation. ATK and Hydro DMG for whatever personal damage she contributes.",
+  "metaStatus": "Best burst amplifier for Freeze teams and one-shot showcases; weak as a Hydro aura applier.",
+  "weakness": "Her Hydro application is too weak to drive reaction teams, and mistiming her burst wastes the entire Omen window.",
+  "controversy": "Mona vs Kokomi in Freeze: Kokomi provides far better Hydro uptime and healing, while Mona provides a much larger damage window — the choice is comfort versus burst."
+},
+  "eula": {
+  "whyItWorks": "Her burst stacks damage while she attacks and then detonates, producing the single largest Physical hit available in the game.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/160+. ER 130-160% (80-cost burst). Superconduct is mandatory, which means an Electro teammate is part of her build.",
+  "metaStatus": "The only viable Physical carry. Strong when Physical resistance is low, weak when it is not.",
+  "weakness": "Long setup, the detonation can whiff entirely, and Physical damage cannot benefit from reaction multipliers.",
+  "controversy": "The long-standing community question is whether Physical teams are still viable at all. Eula is the only character keeping the archetype relevant, and newer bosses with high Physical RES have made her less reliable."
+},
+  "klee": {
+  "whyItWorks": "Her charged attacks have high multipliers and she applies Pyro faster than almost any other character, which makes her a strong reaction driver.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. Animation cancels are effectively part of her requirements.",
+  "metaStatus": "Playable but outclassed — her multipliers and handling are both below modern Pyro carries.",
+  "weakness": "Requires animation cancels to be competitive, scatters small enemies, and has short range with slow animations.",
+  "controversy": "Klee is a much-loved character with consistently mediocre meta placement, which makes her one of the most requested buffs in the community."
+},
+  "jean": {
+  "whyItWorks": "One slot provides full-party healing, Viridescent Venerer shred, and crowd control — and her healing scales with ATK, so she still deals damage.",
+  "keyThreshold": "ATK 2,000+ (healing and damage both scale with ATK). ER 160-200% for burst uptime.",
+  "metaStatus": "Best healing Anemo support, and a core piece of Sunfire compositions.",
+  "weakness": "Her skill launches enemies upward, which can scatter groups, and her crowd control is weaker than Kazuha's.",
+  "controversy": "Jean vs Sucrose: Sucrose provides EM share and better grouping, while Jean provides healing — most reaction teams prefer Sucrose unless the team specifically needs a healer."
+},
+  "albedo": {
+  "whyItWorks": "His skill provides automatic off-field Geo damage with almost no field time, and it scales on DEF, which is cheap to build.",
+  "keyThreshold": "DEF 2,000+. CRIT 60/120+. ER is a minor concern because his burst is secondary.",
+  "metaStatus": "Solid off-field Geo sub-DPS, but no longer best-in-role.",
+  "weakness": "The Isotoma can be destroyed by bosses, and enemies that move away from it stop taking damage entirely.",
+  "controversy": "Albedo vs Chiori: Chiori deals more damage and has no placement problems, which has made her the default pick for the same role."
+},
+  "kamisato-ayato": {
+  "whyItWorks": "His skill stance converts normal attacks into fast Hydro slashes, so he can drive Vaporize, Bloom, Electro-Charged, or Freeze with the same build.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. ER 120-140% so his off-field burst is ready each rotation.",
+  "metaStatus": "The most flexible Hydro carry — very good at everything, best at nothing.",
+  "weakness": "Mid-tier damage ceiling compared to Neuvillette or a well-played Childe, and his value depends on teammates using his Hydro.",
+  "controversy": "Ayato vs Childe: Childe enables faster Vaporize and higher AoE ceilings, while Ayato is far more comfortable and fits more team types."
 }
 };
