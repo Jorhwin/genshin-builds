@@ -320,7 +320,7 @@ export const characters = [
   "rating": "9/10 — top Cryo DPS, best freeze enabler."
 },
 {
-  "slug": "arlechinno",
+  "slug": "arlechino",
   "name": "Arlecchino",
   "role": "Main DPS",
   "element": "Pyro",

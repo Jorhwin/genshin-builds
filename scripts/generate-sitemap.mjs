@@ -2,6 +2,7 @@ import { characters } from "../src/data/characters.js";
 import { comparisons } from "../src/data/comparisons.js";
 import { analyses } from "../src/data/analyses.js";
 import { guides } from "../src/data/guides.js";
+import { bestLists } from "../src/data/best-lists.js";
 import { writeFileSync, mkdirSync } from "fs";
 
 const site = "https://gameup.lol";
@@ -14,6 +15,7 @@ const pages = [
   { loc: "/teams/", priority: "0.9", changefreq: "weekly" },
   { loc: "/comparisons/", priority: "0.9", changefreq: "weekly" },
   { loc: "/guides/", priority: "0.8", changefreq: "weekly" },
+  { loc: "/best/", priority: "0.9", changefreq: "weekly" },
   { loc: "/changelog/", priority: "0.6", changefreq: "monthly" },
 ];
 
@@ -34,6 +36,10 @@ for (const a of analyses) {
 for (const g of guides) {
   if (!g || !g.slug) continue;
   pages.push({ loc: `/guide/${g.slug}/`, priority: "0.7", changefreq: "monthly" });
+}
+for (const b of bestLists) {
+  if (!b || !b.slug) continue;
+  pages.push({ loc: `/best/${b.slug}/`, priority: "0.9", changefreq: "weekly" });
 }
 
 const urls = pages

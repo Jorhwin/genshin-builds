@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { bestLists } from "../../data/best-lists";
+
+export function getStaticPaths() {
+  return bestLists.map((b) => ({
+    params: { slug: b.slug },
+    props: { list: b },
+  }));
+}
+
+const { list } = Astro.props;
+const title = list.title;
+const description = list.seoDesc;
+
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+});
+
+const itemListJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: title,
+  itemListElement: list.items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.name,
+    url: "https://gameup.lol/character/" + item.slug + "/",
+  })),
+});
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: list.faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={itemListJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
+
+  <h1>{list.title}</h1>
+  <p class="subtitle">{list.summary}</p>
+
+  <div class="insight-box">
+    <h3>How We Rank These</h3>
+    <p>{list.intro}</p>
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x · {list.items.length} entries</div>
+
+  <div class="rank-list">
+    {
+      list.items.map((item, i) => (
+        <div class="rank-card">
+          <div class="rank-num">{i + 1}</div>
+          <div class="rank-body">
+            <h2>
+              <a href={`/character/${item.slug}/`}>{item.name}</a>
+            </h2>
+            <p class="why">{item.why}</p>
+            <p class="caveat"><strong>Watch out:</strong> {item.caveat}</p>
+            <p class="rank-links">
+              <a href={`/build/${item.slug}/`}>Best build →</a>
+              <a href={`/team/${item.slug}/`}>Best teams →</a>
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="insight-box" style="margin-top: 32px;">
+    <h3>Verdict</h3>
+    <p>{list.verdict}</p>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  {
+    list.faq.map((f) => (
+      <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+        <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+        <p style="margin: 0;">{f.a}</p>
+      </div>
+    ))
+  }
+
+  <div class="internal-links">
+    <h3>More Rankings</h3>
+    {
+      bestLists
+        .filter((b) => b.slug !== list.slug)
+        .map((b) => <a href={`/best/${b.slug}/`}>{b.title}</a>)
+    }
+    <a href="/characters/">All Characters →</a>
+    <a href="/comparisons/">Character Comparisons →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .rank-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .rank-card {
+    display: flex;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.2s;
+  }
+  .rank-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(96, 128, 255, 0.2);
+  }
+  .rank-num {
+    flex: 0 0 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #a040ff);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rank-body { flex: 1; }
+  .rank-body h2 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+    border: none;
+    padding: 0;
+  }
+  .why {
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .caveat {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .rank-links {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 640px) {
+    .rank-card { padding: 14px 16px; }
+    .rank-num { flex-basis: 32px; height: 32px; font-size: 0.9rem; }
+  }
+</style>

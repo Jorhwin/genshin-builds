@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { bestLists } from "../../data/best-lists";
+
+const metaTitle = "Best Genshin Impact Characters & Teams 2026 — Ranked Lists";
+const metaDescription =
+  "Ranked Genshin Impact lists: best DPS, best supports, best 4-star characters, best F2P teams, and the best Hyperbloom team — with builds and rotations.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Best Genshin Impact Characters &amp; Teams</h1>
+  <p class="subtitle">
+    Decision-focused rankings: who to pull, who to build first, and which teams clear content with
+    the least investment.
+  </p>
+
+  <div class="mini-grid">
+    {
+      bestLists.map((b) => (
+        <a href={`/best/${b.slug}/`}>{b.title.replace(/ — .*$/, "")}</a>
+      ))
+    }
+  </div>
+
+  {
+    bestLists.map((b) => (
+      <section style="margin-top: 32px;">
+        <h2>
+          <a href={`/best/${b.slug}/`}>{b.title}</a>
+        </h2>
+        <p>{b.summary}</p>
+        <ul>
+          {b.items.slice(0, 4).map((item) => (
+            <li>
+              <a href={`/character/${item.slug}/`}>{item.name}</a> — {item.why}
+            </li>
+          ))}
+        </ul>
+        <p>
+          <a href={`/best/${b.slug}/`}>Read the full ranking →</a>
+        </p>
+      </section>
+    ))
+  }
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/builds/">All Build Guides →</a>
+    <a href="/teams/">All Team Guides →</a>
+    <a href="/comparisons/">Character Comparisons →</a>
+  </div>
+</BaseLayout>

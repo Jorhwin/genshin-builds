@@ -28,5 +28,10 @@ export const changelog = [
   "date": "2026-08-29",
   "title": "Site Architecture & SEO Overhaul",
   "desc": "Rebuilt the site on Astro 5 (fixing a broken build). Added Characters, Builds, Teams, Comparisons and Guides index pages with search and element filters. Fixed language tags, canonical URLs, Open Graph tags, robots.txt and a full 315-URL sitemap. Removed duplicate characters and added in-depth guides for Kokomi, Clorinde, Nilou, Shenhe and Kuki Shinobu."
+},
+{
+  "date": "2026-08-29",
+  "title": "Best-X Rankings &amp; More Core Guides",
+  "desc": "Added a decision-focused page cluster: Best DPS Characters, Best Support Characters, Best 4-Star Characters, Best F2P Teams and Best Hyperbloom Team, each with reasoning, caveats and FAQ. Added in-depth guides for Furina, Bennett, Xingqiu, Xiangling, Arlecchino and Ayaka. Fixed the misspelled Arlecchino URL (arlechinno to arlechino) with 301 redirects."
 }
 ];

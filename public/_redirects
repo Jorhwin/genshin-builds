@@ -1,2 +1,10 @@
 # Prevent 308 redirect for GSC verification
 /google38d3ac91395f53d8.html  /google38d3ac91395f53d8  200
+
+# Fix misspelled character slug (arlechinno -> arlechino)
+/character/arlechinno  /character/arlechino/  301
+/character/arlechinno/  /character/arlechino/  301
+/build/arlechinno  /build/arlechino/  301
+/build/arlechinno/  /build/arlechino/  301
+/team/arlechinno  /team/arlechino/  301
+/team/arlechinno/  /team/arlechino/  301

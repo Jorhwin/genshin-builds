@@ -4,6 +4,7 @@ import { characters } from "../data/characters";
 import { comparisons } from "../data/comparisons";
 import { guides } from "../data/guides";
 import { analyses } from "../data/analyses";
+import { bestLists } from "../data/best-lists";
 
 const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
 const sTier = characters.filter((c) => c.tier === "S");
@@ -67,6 +68,11 @@ const metaDescription =
   <h2>Popular Team Guides</h2>
   <div class="mini-grid">
     {sTier.slice(0, 12).map((c) => <a href={`/team/${c.slug}/`}>{c.name} — Best Team</a>)}
+  </div>
+
+  <h2>Best Characters &amp; Teams</h2>
+  <div class="mini-grid">
+    {bestLists.map((b) => <a href={`/best/${b.slug}/`}>{b.title.replace(/ — .*$/, "")}</a>)}
   </div>
 
   <h2>Character Comparisons</h2>
