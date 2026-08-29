@@ -299,6 +299,29 @@ const ogImg = ogImage || site + "/og-default.svg";
 
       .internal-links a:hover { background: rgba(96, 128, 255, 0.06); }
 
+      .avatar {
+        flex: 0 0 34px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: #0a0a12;
+        background: var(--accent);
+        letter-spacing: 0;
+      }
+
+      .avatar-pyro { background: linear-gradient(135deg, #ffa06a, var(--pyro)); }
+      .avatar-hydro { background: linear-gradient(135deg, #6ab0ff, var(--hydro)); }
+      .avatar-dendro { background: linear-gradient(135deg, #86e086, var(--dendro)); }
+      .avatar-anemo { background: linear-gradient(135deg, #a6f0f0, var(--anemo)); }
+      .avatar-electro { background: linear-gradient(135deg, #c48aff, var(--electro)); }
+      .avatar-geo { background: linear-gradient(135deg, #f0c878, var(--geo)); }
+      .avatar-cryo { background: linear-gradient(135deg, #b3daff, var(--cryo)); }
+
       .character-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -431,6 +454,8 @@ const ogImg = ogImage || site + "/og-default.svg";
           <a href="/teams/">Teams</a>
           <a href="/best/">Best</a>
           <a href="/comparisons/">Compare</a>
+          <a href="/weapons/">Weapons</a>
+          <a href="/artifacts/">Artifacts</a>
           <a href="/guides/">Guides</a>
         </nav>
       </div>

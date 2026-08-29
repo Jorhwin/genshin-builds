@@ -349,4 +349,208 @@ export const bestLists = [
       },
     ],
   },
+  {
+    slug: "best-freeze-team",
+    title: "Best Freeze Team in Genshin Impact 2026 — Comps, Rotation & Builds",
+    seoDesc:
+      "Best Genshin Impact Freeze teams for 2026. Team compositions, rotation order, Cryo and Hydro picks, and why Freeze is the cheapest archetype to build.",
+    summary:
+      "Freeze teams are the most artifact-friendly archetype in the game: Blizzard Strayer plus Cryo resonance gives up to 55% free CRIT Rate, which means your Cryo carry needs almost no CRIT investment.",
+    intro:
+      "A Freeze team needs three things: a Cryo carry, an off-field Hydro applier, and an Anemo unit holding Viridescent Venerer for RES shred. The fourth slot is a Cryo support or a healer. The archetype's strength is consistency — frozen enemies cannot act, which removes most of the mechanical difficulty from endgame content.",
+    items: [
+      {
+        name: "Ayaka — best Freeze carry",
+        slug: "ayaka",
+        why: "Highest AoE burst damage in the game, and her sprint applies Cryo on demand to start Freeze immediately.",
+        caveat: "Loses almost all value against bosses that cannot be frozen.",
+      },
+      {
+        name: "Kokomi — best Hydro enabler",
+        slug: "kokomi",
+        why: "Her jellyfish applies Hydro off-field with near-permanent uptime while healing, which frees the fourth slot for a buffer.",
+        caveat: "No personal damage and no crowd control.",
+      },
+      {
+        name: "Shenhe — best Cryo amplifier",
+        slug: "shenhe",
+        why: "Icy Quills add flat damage based on her ATK, and Ayaka's burst ticks consume them extremely efficiently.",
+        caveat: "Quill stacks disappear quickly in heavy AoE, and she needs 180-220% ER at C0.",
+      },
+      {
+        name: "Kazuha — best Anemo slot",
+        slug: "kazuha",
+        why: "40% Viridescent Venerer RES shred plus Elemental DMG Bonus, and he groups enemies so the carry's burst hits everything.",
+        caveat: "Crowd control does nothing against bosses that cannot be pulled.",
+      },
+      {
+        name: "Ganyu — alternative carry or off-field aura",
+        slug: "ganyu",
+        why: "Her burst is a persistent AoE Cryo field, so she can enable Freeze for another carry without standing on field.",
+        caveat: "As an on-field carry she is interruption-prone and much harder to play on mobile.",
+      },
+      {
+        name: "Sucrose — best 4-star Anemo option",
+        slug: "sucrose",
+        why: "VV shred plus EM share and Thrilling Tales make her a legitimate budget replacement for Kazuha.",
+        caveat: "Weaker grouping than Kazuha, and her buffs need EM investment to matter.",
+      },
+    ],
+    verdict:
+      "The strongest version is Ayaka + Shenhe + Kazuha + Kokomi. Rotation: Kazuha E+Q → Kokomi E → Shenhe hold E → Q → Ayaka dash → N2C ×2 → Q → N2C spam. Budget version: Ayaka + Sucrose + Xingqiu + Diona, which still provides Freeze, VV shred, and healing.",
+    faq: [
+      {
+        q: "Is Freeze still viable in 2026?",
+        a: "Yes for any content where enemies can be frozen. It remains the easiest archetype to build because Blizzard Strayer and Cryo resonance supply most of your CRIT Rate. Against unfreezable bosses you should switch to a different team.",
+      },
+      {
+        q: "Do Freeze teams need CRIT Rate?",
+        a: "Very little. With Blizzard Strayer 4pc and Cryo resonance you get up to 55% CRIT Rate for free, so 30-45% from artifacts is usually enough. Invest the rest into CRIT DMG and ATK%.",
+      },
+      {
+        q: "Who is the best Freeze support: Shenhe or Rosaria?",
+        a: "Shenhe at high investment, because her flat damage bonus scales with her ATK. Rosaria is the better low-investment option because she also shares CRIT Rate and deals her own damage.",
+      },
+    ],
+  },
+  {
+    slug: "best-aggravate-team",
+    title: "Best Aggravate Team in Genshin Impact 2026 — Comps, Rotation & EM",
+    seoDesc:
+      "Best Genshin Impact Aggravate teams for 2026. Electro and Dendro compositions, EM requirements, rotation order, and who triggers the reaction.",
+    summary:
+      "Aggravate adds flat damage to Electro hits while Quicken is active. Unlike transformative reactions, Aggravate can crit and is amplified by CRIT, so it rewards full carry builds plus 200-300 EM.",
+    intro:
+      "Aggravate is an additive reaction: Dendro plus Electro creates Quicken, and subsequent Electro hits gain a flat damage bonus that scales with the Electro character's Elemental Mastery. Because that bonus is applied before CRIT and DMG multipliers, Aggravate teams want normal carry stats plus 200-300 EM — not full EM builds.",
+    items: [
+      {
+        name: "Yae Miko — best off-field Electro",
+        slug: "yae-miko",
+        why: "Three Sesshou Sakura turrets apply Electro continuously off-field, so Aggravate keeps proccing while another character is on field.",
+        caveat: "Setup takes field time (three skill casts) and her burst costs 90 energy.",
+      },
+      {
+        name: "Fischl — best Electro battery",
+        slug: "fischl",
+        why: "Oz provides the most reliable single-target Electro application in the game and generates energy for the whole team.",
+        caveat: "Her damage is single-target only, and Oz can target the wrong enemy.",
+      },
+      {
+        name: "Nahida — best Dendro enabler",
+        slug: "nahida",
+        why: "Her mark applies Dendro from off-field to up to 8 enemies and keeps Quicken active permanently.",
+        caveat: "Range-limited marking, and she is squishy without a shielder.",
+      },
+      {
+        name: "Kazuha — best Anemo slot",
+        slug: "kazuha",
+        why: "VV shreds Electro RES and his Elemental DMG Bonus amplifies Aggravate damage further.",
+        caveat: "Swirling Electro consistently requires care; Sucrose is easier for reaction uptime.",
+      },
+      {
+        name: "Clorinde — best on-field Electro",
+        slug: "clorinde",
+        why: "Fast Electro hits plus Bond of Life scaling make her the strongest on-field Aggravate driver.",
+        caveat: "Interruption-sensitive and wants a second Electro unit for consistent uptime.",
+      },
+      {
+        name: "Baizhu — best sustain slot",
+        slug: "baizhu",
+        why: "Heals the whole party and provides interruption resistance without removing Dendro aura.",
+        caveat: "No meaningful damage contribution and he needs ER investment.",
+      },
+    ],
+    verdict:
+      "The standard team is Nahida + Yae Miko + Fischl + Kazuha (or Baizhu if you need sustain). Rotation: Nahida E+Q → Fischl E/Q → Kazuha E+Q → Yae E×3 → on-field driver. Your Electro characters want 200-300 EM on top of normal CRIT stats.",
+    faq: [
+      {
+        q: "How much Elemental Mastery does an Aggravate team need?",
+        a: "Around 200-300 EM on the Electro characters. Unlike Hyperbloom, Aggravate also benefits from full CRIT investment, so you want both — not EM at the expense of CRIT.",
+      },
+      {
+        q: "What is the difference between Aggravate and Hyperbloom?",
+        a: "Aggravate adds flat damage to your own Electro hits and can crit, so it rewards high-investment carries. Hyperbloom creates separate projectiles that scale only with the trigger's EM and level, so it rewards cheap builds.",
+      },
+      {
+        q: "Can Aggravate work without Nahida?",
+        a: "Yes. Dendro Traveler and Collei both maintain Quicken, though with noticeably less uptime and smaller coverage than Nahida's mark.",
+      },
+    ],
+  },
+  {
+    slug: "best-beginner-characters",
+    title: "Best Genshin Impact Characters for Beginners 2026 — Who to Build First",
+    seoDesc:
+      "Best Genshin Impact characters for new players in 2026. Who to invest resin in early, which 4-stars carry you to endgame, and what to avoid building.",
+    summary:
+      "Early resin is the scarcest resource in the game. This list prioritizes characters that stay relevant in Spiral Abyss, so nothing you invest in early becomes wasted later.",
+    intro:
+      "New players make the same mistake: spreading resin across eight characters and ending up with eight mediocre ones. The correct approach is to fully build one team of four, and to pick characters whose value does not disappear once you reach late game. Everything on this list is either a free 4-star or a character that remains best-in-slot years later.",
+    items: [
+      {
+        name: "Bennett",
+        slug: "bennett",
+        why: "The best 4-star in the game. He buffs ATK, heals, and batteries — and he is still used in endgame teams years later.",
+        caveat: "Do not activate his C6 unless you understand what it overrides.",
+      },
+      {
+        name: "Xingqiu",
+        slug: "xingqiu",
+        why: "Highest off-field Hydro application, plus damage reduction and interrupt resistance. He enables Vaporize, Hyperbloom, and Freeze.",
+        caveat: "Needs 180-200% ER before he feels good, which is a real early-game hurdle.",
+      },
+      {
+        name: "Xiangling",
+        slug: "xiangling",
+        why: "Free from Spiral Abyss, deals the best off-field Pyro damage in the game, and The Catch R5 is a free weapon that suits her perfectly.",
+        caveat: "Useless without Bennett for energy — build them together.",
+      },
+      {
+        name: "Kuki Shinobu",
+        slug: "kuki-shinobu",
+        why: "Turns any Dendro plus Hydro pair into a Hyperbloom team, and needs only level 90 plus EM artifacts to reach near-maximum damage.",
+        caveat: "Weak outside Hyperbloom and Overload teams.",
+      },
+      {
+        name: "Fischl",
+        slug: "fischl",
+        why: "Oz applies Electro off-field and generates energy, which makes her useful in Aggravate, Taser, and Overload teams.",
+        caveat: "Single-target only, so she is less impressive in large mob pulls.",
+      },
+      {
+        name: "Sucrose",
+        slug: "sucrose",
+        why: "Best 4-star Anemo support: VV shred, EM share, and she can hold Thrilling Tales for a free ATK buff.",
+        caveat: "Weaker crowd control than Kazuha, and her buffs need EM investment.",
+      },
+      {
+        name: "Kaeya",
+        slug: "kaeya",
+        why: "Free, applies Cryo off-field, and works as a budget Freeze or Melt enabler before you have better Cryo units.",
+        caveat: "His damage falls off in late game compared to limited 5-star Cryo units.",
+      },
+      {
+        name: "Collei — free Dendro applicator",
+        slug: "collei",
+        why: "A free Dendro unit who unlocks Hyperbloom, Aggravate, and Bloom without pulling Nahida, and her boomerang applies Dendro from off-field.",
+        caveat: "Short skill uptime compared to Nahida, so reaction coverage is noticeably worse in longer fights.",
+      },
+    ],
+    verdict:
+      "Build one team first: Bennett + Xiangling + Xingqiu + one on-field driver you enjoy. That single team carries you through almost all early and mid-game content. Then add Kuki Shinobu plus Dendro Traveler to unlock Hyperbloom, which is the cheapest path to clearing Spiral Abyss.",
+    faq: [
+      {
+        q: "How many characters should I build early?",
+        a: "Four. Fully building one team is far more effective than partially building eight characters, because talent levels and weapon levels matter more than character count.",
+      },
+      {
+        q: "Should beginners wish on the weapon banner?",
+        a: "No. Every archetype has a strong 4-star or craftable weapon, and primogems are far better spent on characters.",
+      },
+      {
+        q: "When should I start farming artifacts?",
+        a: "After Adventure Rank 45, when 5-star artifacts are guaranteed from domains. Before that, use whatever has the correct main stats and spend resin on talents, weapons, and character levels.",
+      },
+    ],
+  },
 ];

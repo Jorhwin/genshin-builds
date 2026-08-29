@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { weaponGroups } from "../../data/gear";
+
+const metaTitle = "Best Genshin Impact Weapons 2026 — Best-in-Slot by Type";
+const metaDescription =
+  "Best Genshin Impact weapons for 2026, grouped by type. Best-in-slot picks for every carry and support, plus the strongest 4-star and free alternatives.";
+
+const weaponCount = weaponGroups.reduce((n, g) => n + g.weapons.length, 0);
+
+const itemListJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Best Genshin Impact Weapons by Type",
+  itemListElement: weaponGroups
+    .flatMap((g) => g.weapons.map((w) => w.name))
+    .map((name, i) => ({ "@type": "ListItem", position: i + 1, name })),
+});
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <script type="application/ld+json" set:html={itemListJsonLd}></script>
+
+  <h1>Best Genshin Impact Weapons</h1>
+  <p class="subtitle">
+    Best-in-slot weapons for every type, plus the 4-star and free options that are genuinely
+    competitive. {weaponCount} weapons across {weaponGroups.length} types.
+  </p>
+
+  <div class="insight-box">
+    <h3>How to choose a weapon</h3>
+    <p>
+      Match the weapon's passive to how the character deals damage, not just to the rarity. A
+      refined 4-star that matches the kit often beats a 5-star stat stick — The Catch on Raiden and
+      Sacrificial Sword on Xingqiu are the clearest examples.
+    </p>
+  </div>
+
+  {
+    weaponGroups.map((g) => (
+      <section style="margin-top: 32px;">
+        <h2>Best {g.type}s</h2>
+        <p>{g.intro}</p>
+        <div class="gear-grid">
+          {g.weapons.map((w) => (
+            <div class="gear-card">
+              <div class="gear-head">
+                <h3>{w.name}</h3>
+                <span class="gear-rarity">{w.rarity}</span>
+              </div>
+              <p class="gear-for">
+                <strong>Best for:</strong> {w.bestFor}
+              </p>
+              <p class="gear-why">{w.why}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <div class="insight-box" style="margin-top: 32px;">
+    <h3>Verdict</h3>
+    <p>
+      Do not pull on the weapon banner until your character roster is set. Every archetype has a
+      strong craftable or event weapon, and the gap between a signature weapon and a refined 4-star
+      is usually 10-20% — far less than the value of an extra character.
+    </p>
+  </div>
+
+  <div class="internal-links">
+    <h3>Related Guides</h3>
+    <a href="/artifacts/">Best Artifact Sets →</a>
+    <a href="/characters/">All Characters →</a>
+    <a href="/builds/">All Build Guides →</a>
+    <a href="/best/">Best Characters &amp; Teams →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .gear-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: all 0.2s;
+  }
+  .gear-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(96, 128, 255, 0.2);
+  }
+  .gear-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .gear-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+  .gear-rarity {
+    font-size: 0.72rem;
+    color: var(--tier-s);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .gear-for {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .gear-why {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>

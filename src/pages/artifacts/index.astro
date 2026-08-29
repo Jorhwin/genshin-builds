@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { artifactSets } from "../../data/gear";
+
+const metaTitle = "Best Genshin Impact Artifact Sets 2026 — Which Sets to Farm";
+const metaDescription =
+  "Best Genshin Impact artifact sets for 2026. Which four-piece sets are worth farming, who each set is best for, and which sets are traps.";
+
+const itemListJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Best Genshin Impact Artifact Sets",
+  itemListElement: artifactSets.map((a, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: a.name,
+  })),
+});
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <script type="application/ld+json" set:html={itemListJsonLd}></script>
+
+  <h1>Best Genshin Impact Artifact Sets</h1>
+  <p class="subtitle">
+    The artifact sets worth farming in 2026, who each one is best for, and the caveats that decide
+    whether a set is actually an upgrade. {artifactSets.length} sets covered.
+  </p>
+
+  <div class="insight-box">
+    <h3>Main stat beats set bonus</h3>
+    <p>
+      Before chasing a four-piece bonus, make sure your main stats are correct. A correct main stat
+      with an off-set piece almost always outperforms the wrong main stat with a completed set. Farm
+      the set bonus last, not first.
+    </p>
+  </div>
+
+  <div class="gear-grid">
+    {
+      artifactSets.map((a) => (
+        <div class="gear-card">
+          <h3>{a.name}</h3>
+          <p class="gear-for">
+            <strong>Best for:</strong> {a.bestFor}
+          </p>
+          <p class="gear-why">{a.why}</p>
+          <p class="gear-caveat">
+            <strong>Watch out:</strong> {a.caveat}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="insight-box" style="margin-top: 32px;">
+    <h3>Verdict</h3>
+    <p>
+      If you are not sure what to farm, Emblem of Severed Fate and Golden Troupe are the two most
+      universally useful sets in the game — between them they cover most burst DPS and off-field
+      sub-DPS characters. Farm one, then move to the specialist sets your favourite carry needs.
+    </p>
+  </div>
+
+  <div class="internal-links">
+    <h3>Related Guides</h3>
+    <a href="/weapons/">Best Weapons by Type →</a>
+    <a href="/builds/">All Build Guides →</a>
+    <a href="/characters/">All Characters →</a>
+    <a href="/best/">Best Characters &amp; Teams →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .gear-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: all 0.2s;
+  }
+  .gear-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(96, 128, 255, 0.2);
+  }
+  .gear-card h3 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+  .gear-for {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .gear-why {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .gear-caveat {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>

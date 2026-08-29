@@ -16,6 +16,8 @@ const pages = [
   { loc: "/comparisons/", priority: "0.9", changefreq: "weekly" },
   { loc: "/guides/", priority: "0.8", changefreq: "weekly" },
   { loc: "/best/", priority: "0.9", changefreq: "weekly" },
+  { loc: "/weapons/", priority: "0.8", changefreq: "monthly" },
+  { loc: "/artifacts/", priority: "0.8", changefreq: "monthly" },
   { loc: "/changelog/", priority: "0.6", changefreq: "monthly" },
 ];
 

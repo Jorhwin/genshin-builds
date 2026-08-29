@@ -46,6 +46,7 @@ const metaDescription =
           data-name={c.name.toLowerCase()}
         >
           <a href={`/character/${c.slug}/`}>
+            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
             <span class={"tag tag-" + c.tier}>{c.tier}</span>
             <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
             <span class="char-name">{c.name}</span>
@@ -62,12 +63,14 @@ const metaDescription =
 
   <h2>Popular Build Guides</h2>
   <div class="mini-grid">
-    {sTier.slice(0, 12).map((c) => <a href={`/build/${c.slug}/`}>{c.name} — Best Build</a>)}
+    {sTier.slice(0, 12).map((c) => <a href={`/build/${c.slug}/`}>
+            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>{c.name} — Best Build</a>)}
   </div>
 
   <h2>Popular Team Guides</h2>
   <div class="mini-grid">
-    {sTier.slice(0, 12).map((c) => <a href={`/team/${c.slug}/`}>{c.name} — Best Team</a>)}
+    {sTier.slice(0, 12).map((c) => <a href={`/team/${c.slug}/`}>
+            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>{c.name} — Best Team</a>)}
   </div>
 
   <h2>Best Characters &amp; Teams</h2>

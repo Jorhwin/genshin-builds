@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { coreInsights } from "../../data/insights";
 import { extendedGuides } from "../../data/extended-guides";
+import { bestLists } from "../../data/best-lists";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -12,6 +13,7 @@ export function getStaticPaths() {
 }
 
 const { character: c } = Astro.props;
+const relatedLists = bestLists.filter((b) => b.items.some((i) => i.slug === c.slug));
 const title = c.name + " Best Build & Weapons Guide (2026) - Artifacts, Teams & Rotation";
 const description = c.name + " best build guide for 2026. Top weapon: " + c.bestWeapon + " | F2P: " + c.f2pWeapon + " | Best artifacts: " + c.bestArtifacts + ". Complete stats, team comps & rotation guide included.";
 const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
@@ -137,6 +139,17 @@ const faqJsonLd = JSON.stringify({
       <p style="margin: 0;">{f.a}</p>
     </div>
   ))}
+
+  {relatedLists.length > 0 && (
+    <div class="internal-links">
+      <h3>Where {c.name} Ranks</h3>
+      {
+        relatedLists.map((b) => (
+          <a href={`/best/${b.slug}/`}>{b.title}</a>
+        ))
+      }
+    </div>
+  )}
 
   <div class="internal-links">
     <h3>More {c.name} Guides</h3>

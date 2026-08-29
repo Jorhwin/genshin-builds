@@ -35,6 +35,7 @@ const metaDescription =
             .map((c) => (
               <li>
                 <a href={`/character/${c.slug}/`}>
+            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
                   <span class={"tag tag-" + c.tier}>{c.tier}</span>
                   <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
                   <span class="char-name">{c.name}</span>

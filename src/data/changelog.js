@@ -33,5 +33,10 @@ export const changelog = [
   "date": "2026-08-29",
   "title": "Best-X Rankings &amp; More Core Guides",
   "desc": "Added a decision-focused page cluster: Best DPS Characters, Best Support Characters, Best 4-Star Characters, Best F2P Teams and Best Hyperbloom Team, each with reasoning, caveats and FAQ. Added in-depth guides for Furina, Bennett, Xingqiu, Xiangling, Arlecchino and Ayaka. Fixed the misspelled Arlecchino URL (arlechinno to arlechino) with 301 redirects."
+},
+{
+  "date": "2026-08-29",
+  "title": "Equipment Guides, More Rankings &amp; Visual Upgrade",
+  "desc": "Added Best Weapons and Best Artifact Sets guides covering 39 weapons by type and 18 artifact sets. Added three more rankings: Best Freeze Team, Best Aggravate Team and Best Beginner Characters. Added in-depth guides for Ganyu, Xiao, Childe, Itto, Yoimiya, Yae Miko, Cyno and Mavuika. Character pages now link to every ranking they appear in, and character lists show element-coloured avatars."
 }
 ];
