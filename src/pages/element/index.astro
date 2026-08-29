@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { elements } from "../../data/elements";
+import { characters } from "../../data/characters";
+
+const metaTitle = "Genshin Impact Elements Guide 2026 — Reactions & Best Characters";
+const metaDescription =
+  "Genshin Impact elemental guide: how each element works, every elemental reaction explained, and the best characters and teams for Pyro, Hydro, Dendro, Electro, Cryo, Anemo and Geo.";
+
+const countFor = (slug) => characters.filter((c) => c.element.toLowerCase() === slug).length;
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Genshin Impact Elements</h1>
+  <p class="subtitle">
+    Every element explained: what it does, which reactions it enables, and the strongest characters
+    and teams built around it.
+  </p>
+
+  <div class="mini-grid">
+    {
+      elements.map((e) => (
+        <a href={`/element/${e.slug}/`}>
+          <span class={"tag tag-" + e.slug}>{e.name}</span> Best {e.name} Characters
+          <span style="color: var(--text-muted); font-size: 0.82rem;"> · {countFor(e.slug)} characters</span>
+        </a>
+      ))
+    }
+  </div>
+
+  {
+    elements.map((e) => (
+      <section style="margin-top: 32px;">
+        <h2>
+          <a href={`/element/${e.slug}/`}>{e.name}</a>
+        </h2>
+        <p>{e.tagline}</p>
+        <ul>
+          {e.reactions.slice(0, 3).map((r) => (
+            <li>
+              <strong>{r.name}</strong> ({r.with}) — {r.effect}
+            </li>
+          ))}
+        </ul>
+        <p>
+          <a href={`/element/${e.slug}/`}>Best {e.name} characters, teams &amp; reactions →</a>
+        </p>
+      </section>
+    ))
+  }
+
+  <div class="internal-links">
+    <h3>Related Guides</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/guides/">Game Mechanic Guides →</a>
+    <a href="/best/">Best Characters &amp; Teams →</a>
+    <a href="/artifacts/">Best Artifact Sets →</a>
+  </div>
+</BaseLayout>

@@ -5,6 +5,7 @@ import { guides } from "../src/data/guides.js";
 import { bestLists } from "../src/data/best-lists.js";
 import { weaponGroups } from "../src/data/gear.js";
 import { artifactSets } from "../src/data/gear.js";
+import { elements } from "../src/data/elements.js";
 import { extendedGuides } from "../src/data/extended-guides.js";
 import { writeFileSync, mkdirSync } from "fs";
 
@@ -21,6 +22,7 @@ const pages = [
   { loc: "/best/", priority: "0.9", changefreq: "weekly" },
   { loc: "/weapons/", priority: "0.8", changefreq: "monthly" },
   { loc: "/artifacts/", priority: "0.8", changefreq: "monthly" },
+  { loc: "/element/", priority: "0.8", changefreq: "monthly" },
   { loc: "/changelog/", priority: "0.6", changefreq: "monthly" },
 ];
 
@@ -63,6 +65,9 @@ for (const g of weaponGroups) {
 }
 for (const a of artifactSets) {
   pages.push({ loc: `/artifact/${slugifyWeapon(a.name)}/`, priority: "0.7", changefreq: "monthly" });
+}
+for (const e of elements) {
+  pages.push({ loc: `/element/${e.slug}/`, priority: "0.8", changefreq: "monthly" });
 }
 
 const urls = pages

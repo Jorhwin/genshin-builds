@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { elements } from "../../data/elements";
+import { characters } from "../../data/characters";
+
+export function getStaticPaths() {
+  return elements.map((e) => ({
+    params: { slug: e.slug },
+    props: { el: e },
+  }));
+}
+
+const { el } = Astro.props;
+const title = "Best " + el.name + " Characters in Genshin Impact 2026 — Teams, Reactions & Builds";
+const description =
+  "Best " +
+  el.name +
+  " characters in Genshin Impact: how the element works, every " +
+  el.name +
+  " reaction, the strongest teams, and which characters to build first.";
+
+const roster = characters.filter((c) => c.element.toLowerCase() === el.slug);
+const sTier = roster.filter((c) => c.tier === "S");
+const aTier = roster.filter((c) => c.tier === "A");
+const bTier = roster.filter((c) => c.tier === "B");
+
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  about: { "@type": "Thing", name: el.name + " (Genshin Impact)" },
+});
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: el.faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
+
+  <p><span class={"tag tag-" + el.slug}>{el.name}</span></p>
+  <h1>Best {el.name} Characters</h1>
+  <p class="subtitle">{el.tagline}</p>
+
+  <div class="insight-box">
+    <h3>How {el.name} Works</h3>
+    <p>{el.overview}</p>
+  </div>
+
+  <div class="version-badge">{roster.length} {el.name} characters · {sTier.length} S-tier</div>
+
+  <h2>{el.name} Reactions</h2>
+  <div class="reaction-table">
+    <div class="rrow rhead">
+      <div>Reaction</div>
+      <div>With</div>
+      <div>What it does</div>
+    </div>
+    {
+      el.reactions.map((r) => (
+        <div class="rrow">
+          <div class="rname">{r.name}</div>
+          <div class="rwith">{r.with}</div>
+          <div class="reffect">{r.effect}</div>
+        </div>
+      ))
+    }
+  </div>
+
+  <h2>Best {el.name} Teams</h2>
+  {
+    el.bestTeams.map((t) => (
+      <div class="card" style="margin: 12px 0;">
+        <h3 style="margin-top:0;">{t.name}</h3>
+        <p style="margin-bottom: 4px;">
+          <strong>{t.comp}</strong>
+        </p>
+        <p style="margin: 0;">{t.why}</p>
+      </div>
+    ))
+  }
+
+  <h2>All {el.name} Characters</h2>
+  <ul class="character-list">
+    {
+      [...sTier, ...aTier, ...bTier].map((c) => (
+        <li>
+          <a href={`/character/${c.slug}/`}>
+            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
+            <span class={"tag tag-" + c.tier}>{c.tier}</span>
+            <span class="char-name">{c.name}</span>
+            <span class="desc">{c.role}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  {
+    el.faq.map((f) => (
+      <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+        <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+        <p style="margin: 0;">{f.a}</p>
+      </div>
+    ))
+  }
+
+  <div class="internal-links">
+    <h3>Browse Other Elements</h3>
+    {
+      elements
+        .filter((e) => e.slug !== el.slug)
+        .map((e) => <a href={`/element/${e.slug}/`}>Best {e.name} Characters →</a>)
+    }
+    <a href="/characters/">All Characters →</a>
+    <a href="/best/">Best Characters &amp; Teams →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .reaction-table {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 12px 0 20px;
+  }
+  .rrow {
+    display: grid;
+    grid-template-columns: 0.9fr 0.8fr 2.3fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .rrow:last-child { border-bottom: none; }
+  .rhead {
+    background: var(--bg-secondary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .rrow > div {
+    padding: 10px 12px;
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    border-right: 1px solid var(--border);
+  }
+  .rrow > div:last-child { border-right: none; }
+  .rname { color: var(--text-primary); font-weight: 600; }
+  .rwith { color: var(--text-muted); }
+  @media (max-width: 640px) {
+    .rrow { grid-template-columns: 1fr; }
+    .rrow > div { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>

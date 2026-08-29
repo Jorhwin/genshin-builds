@@ -119,13 +119,39 @@ const faqJsonLd = JSON.stringify({
 
   <div class="version-badge">Updated for Version 5.x</div>
   <h2>Best Build Overview</h2>
-  <div class="stat-grid">
-    {['bestWeapon','f2pWeapon','bestArtifacts','mainStats','subStats','talentPriority'].map(key => (
-      <div class="stat-card">
-        <div class="stat-label">{key.replace(/([A-Z])/g," $1").trim()}</div>
-        <div class="stat-value">{c[key]}</div>
-      </div>
-    ))}
+  <div class="quick-table">
+    <div class="qrow qhead">
+      <div>Slot</div>
+      <div>Recommendation</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Best Weapon</div>
+      <div class="qvalue">{c.bestWeapon}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">F2P Weapon</div>
+      <div class="qvalue">{c.f2pWeapon}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Artifact Set</div>
+      <div class="qvalue">{c.bestArtifacts}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Main Stats</div>
+      <div class="qvalue">{c.mainStats}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Substat Priority</div>
+      <div class="qvalue">{c.subStats}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Talent Priority</div>
+      <div class="qvalue">{c.talentPriority}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Rating</div>
+      <div class="qvalue">{c.rating}</div>
+    </div>
   </div>
   <h2>Team Role</h2>
   <p>{c.teamRole}</p>
@@ -155,5 +181,44 @@ const faqJsonLd = JSON.stringify({
     <h3>More {c.name} Guides</h3>
     <a href={"/build/" + c.slug + "/"}>{c.name} Best Build Guide</a>
     <a href={"/team/" + c.slug + "/"}>{c.name} Best Team Guide</a>
+    <a href={`/element/${c.element.toLowerCase()}/`}>All {c.element} Characters →</a>
   </div>
 </BaseLayout>
+
+<style>
+  .quick-table {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 12px 0 20px;
+  }
+  .qrow {
+    display: grid;
+    grid-template-columns: 0.8fr 2.2fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .qrow:last-child { border-bottom: none; }
+  .qhead {
+    background: var(--bg-secondary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .qrow > div {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  .qlabel {
+    color: var(--text-muted);
+    font-weight: 600;
+    border-right: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .qvalue { color: var(--text-primary); }
+  @media (max-width: 640px) {
+    .qrow { grid-template-columns: 1fr; }
+    .qlabel { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>

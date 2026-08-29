@@ -313,5 +313,75 @@ export const coreInsights = {
   "metaStatus": "The most flexible Hydro carry — very good at everything, best at nothing.",
   "weakness": "Mid-tier damage ceiling compared to Neuvillette or a well-played Childe, and his value depends on teammates using his Hydro.",
   "controversy": "Ayato vs Childe: Childe enables faster Vaporize and higher AoE ceilings, while Ayato is far more comfortable and fits more team types."
+},
+  "fischl": {
+  "whyItWorks": "Oz applies Electro off-field with the best single-target uptime in the game, and her A4 passive adds Electro damage every time the team triggers an Electro reaction.",
+  "keyThreshold": "ATK 1,800+. CRIT 60/120+. EM 100-200 in Aggravate. ER is rarely a problem if you refresh Oz with her burst.",
+  "metaStatus": "Best 4-star sub-DPS. Core of Aggravate, Taser, and Overload teams.",
+  "weakness": "Strictly single-target, and Oz can target the wrong enemy when several are grouped.",
+  "controversy": "Fischl vs Yae Miko: Yae has higher raw damage and three turrets, but Fischl needs no field time, costs no resources to build, and her A4 passive scales with the whole team's reactions."
+},
+  "sucrose": {
+  "whyItWorks": "VV shred plus EM share plus Thrilling Tales — three buffs from one 4-star slot that requires no field time.",
+  "keyThreshold": "EM 700-900 (her share scales with her own EM). ER 160-180% for consistent bursts.",
+  "metaStatus": "Best 4-star Anemo support, and a legitimate replacement for Kazuha in reaction teams.",
+  "weakness": "Weaker crowd control than Kazuha, and her buffs need real EM investment before they matter.",
+  "controversy": "Sucrose vs Kazuha: C6 Sucrose can outperform Kazuha in Vaporize, Melt, and Hyperbloom teams, but Kazuha is better in mono-element teams and much easier to play."
+},
+  "beidou": {
+  "whyItWorks": "Her burst lightning arcs between enemies, so the more targets there are, the more damage she deals.",
+  "keyThreshold": "ER 180%+ (or 140-160% with a second Electro unit). CRIT 60/120+. ATK 1,800+.",
+  "metaStatus": "Best AoE Electro sub-DPS; weak against single bosses.",
+  "weakness": "80-cost burst with strict ER requirements, and her damage falls off hard in single-target content.",
+  "controversy": "Beidou vs Fischl: they are not really competitors — Beidou wins in AoE (2+ enemies) and Fischl wins against a single boss. Strong Electro teams often run both."
+},
+  "faruzan": {
+  "whyItWorks": "Her burst shreds Anemo RES and grants Anemo DMG Bonus, which is the only way Anemo carries reach competitive damage.",
+  "keyThreshold": "ER 250%+ at C0 (150-180% at C6). CRIT and ATK only after ER is solved.",
+  "metaStatus": "Mandatory for Xiao and Wanderer. Worthless outside Anemo hypercarry teams.",
+  "weakness": "Extreme ER requirements before C6, and zero value in any team without an Anemo carry.",
+  "controversy": "The community consensus is that Faruzan is a 'C6 or bust' unit — at C0 her ER needs are so punishing that many players prefer building a second buffer instead."
+},
+  "gorou": {
+  "whyItWorks": "Grants DEF and Geo DMG Bonus that scale with the number of Geo teammates, which is exactly what DEF-scaling Geo carries want.",
+  "keyThreshold": "ER around 200% for consistent bursts. DEF% and CRIT after that.",
+  "metaStatus": "Best-in-slot Geo buffer and mandatory for Itto. Niche everywhere else.",
+  "weakness": "Only works in teams with three Geo units, and provides no healing or shielding beyond crystallize.",
+  "controversy": "Gorou vs Zhongli as the third Geo slot: Zhongli brings universal RES shred and a stronger shield, while Gorou brings DEF buffs that scale Itto's damage higher. Most Itto teams run both."
+},
+  "layla": {
+  "whyItWorks": "Her shield scales with HP, has near-100% uptime, and applies Cryo off-field — giving your carry interruption resistance plus a Cryo aura in one slot.",
+  "keyThreshold": "HP 35k+. ER 160%+ so her burst is ready each rotation. No CRIT or damage investment needed.",
+  "metaStatus": "Strongest 4-star shielder, and a good budget alternative to Zhongli in non-RES-shred teams.",
+  "weakness": "No healing at all, negligible personal damage, and a shield weaker than Zhongli's.",
+  "controversy": "Layla vs Diona: Diona heals and generates energy for Cryo teams, while Layla has a stronger shield and better Cryo uptime — pick based on whether your team needs sustain or interruption resistance."
+},
+  "tighnari": {
+  "whyItWorks": "After his skill, his next three charged shots fire almost instantly and home in on enemies, letting him unload his damage in about four seconds.",
+  "keyThreshold": "ATK 1,800+. CRIT 70/140+. EM 200-400 in Spread teams.",
+  "metaStatus": "Best quick-swap Dendro carry — easier to fit into teams than Alhaitham, but with a lower ceiling.",
+  "weakness": "Single-target focus in an element with strong AoE options, and his burst contributes very little.",
+  "controversy": "Tighnari vs Alhaitham: Alhaitham has much higher sustained damage, while Tighnari's four-second windows are far easier to fit around other units' cooldowns."
+},
+  "rosaria": {
+  "whyItWorks": "Her burst applies Cryo off-field in an AoE and her passive shares up to 15% CRIT Rate with the party — a buff that helps carries at every investment level.",
+  "keyThreshold": "CRIT Rate as high as possible (her share scales with her own CRIT Rate). ER 160-180%.",
+  "metaStatus": "Most flexible budget Cryo support — works in Freeze, reverse Melt, and Physical teams.",
+  "weakness": "Modest personal damage and a long skill cooldown.",
+  "controversy": "Rosaria vs Shenhe: Shenhe gives a much larger buff at high investment, but Rosaria is a 4-star who also shares CRIT Rate — she is the better choice for most accounts that are not fully built."
+},
+  "chevreuse": {
+  "whyItWorks": "She shreds Pyro and Electro RES and buffs ATK, turning Overload from a throwaway reaction into a competitive archetype.",
+  "keyThreshold": "HP 30k+ (both her buff and healing scale with HP). ER 160-200% for burst uptime.",
+  "metaStatus": "Core of Overload teams and the only reason that archetype is viable.",
+  "weakness": "Her passive requires every party member to be Pyro or Electro — one off-element unit disables it completely.",
+  "controversy": "Chevreuse teams are divisive because the restriction removes Anemo supports entirely, which means no Viridescent Venerer shred — players either accept that trade or avoid her teams."
+},
+  "emilie": {
+  "whyItWorks": "Her skill deals Dendro damage over time and gains a large damage bonus while enemies are affected by Burning.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. Very little ER needed because her burst is secondary.",
+  "metaStatus": "Best Burning sub-DPS, and the strongest partner for Kinich and Pyro Burning carries.",
+  "weakness": "Almost no value outside Burning teams, and her damage depends on a Pyro teammate maintaining the Burning aura.",
+  "controversy": "Emilie vs Nahida: they are not substitutes — Nahida enables reactions, while Emilie deals raw Dendro damage in Burning. Burning teams want Emilie; every other Dendro team wants Nahida."
 }
 };

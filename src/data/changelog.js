@@ -48,5 +48,10 @@ export const changelog = [
   "date": "2026-08-30",
   "title": "Artifact Pages, More Analyses &amp; Classic Character Guides",
   "desc": "Added 18 individual artifact set pages with best-character picks, farming caveats and 2-piece guidance. Expanded analyses from 4 to 12, covering National team mechanics, Furina Fanfare stacking, Aggravate vs Hyperbloom, Burgeon, Freeze vs Melt, artifact main stats, Abyss team building and rotation fundamentals. Added in-depth guides for Keqing, Diluc, Mona, Eula, Klee, Jean, Albedo and Ayato — 45 characters now have full guides."
+},
+{
+  "date": "2026-08-30",
+  "title": "Element Hubs, Quick-Reference Tables &amp; Support Guides",
+  "desc": "Added seven element hub pages covering every elemental reaction, the strongest teams per element, and the full character roster per element, linked from the footer of every page. Character pages now show a quick-reference build table instead of a card grid, plus a shortcut to the matching element hub. Added in-depth guides for Fischl, Sucrose, Beidou, Faruzan, Gorou, Layla, Tighnari, Rosaria, Chevreuse and Emilie — 55 of 95 characters now have full guides, and their build and team pages are back in the index."
 }
 ];
