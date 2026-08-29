@@ -1,0 +1,10 @@
+const fs = require("fs");
+const base = "D:/GAME/Game web 1000plus AI/genshin-builds";
+let chars = fs.readFileSync(base + "/src/data/characters.js", "utf-8");
+const slugs = [...chars.matchAll(/slug: "([^"]+)"/g)].map(m => m[1]);
+const seen = {};
+const dups = [];
+slugs.forEach(s => { if (seen[s]) dups.push(s); seen[s] = true; });
+console.log("总 slug 数: " + slugs.length);
+console.log("唯一 slug 数: " + Object.keys(seen).length);
+console.log("重复 slug: " + (dups.length ? dups.join(", ") : "无"));

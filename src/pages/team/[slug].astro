@@ -11,16 +11,47 @@ export function getStaticPaths() {
 }
 
 const { character: c } = Astro.props;
-const title = `${c.name} Best Team Guide 2026 — Team Compositions`;
-const description = `Best teams for ${c.name}. Strongest team and F2P team. Team role and rotation guide.`;
-const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
+const title = `${c.name} Best Team Guide 2026 — Comps, Synergy & Rotation`;
+const description = `Best teams for ${c.name}. Strongest team: ${c.strongTeam}. F2P team: ${c.f2pTeam}. Team synergy, rotation & FAQ included.`;
+
+const faq = [
+  {
+    q: `What is the best team for ${c.name}?`,
+    a: `The strongest ${c.name} team is ${c.strongTeam}. This composition maximizes ${c.name}'s damage by providing the right reactions, energy support, and buffs that a ${c.role} needs to shine.`
+  },
+  {
+    q: `What is a good F2P team for ${c.name}?`,
+    a: `For players without premium units, ${c.f2pTeam} is an excellent budget option. This team uses mostly 4-star characters while maintaining strong performance, making it accessible for most accounts.`
+  },
+  {
+    q: `How should I play the ${c.name} rotation?`,
+    a: `The key rotation is: ${c.rotation}. The key is keeping energy flowing so every burst is ready when needed, and timing ${c.name}'s field time to line up with support buffs.`
+  },
+  {
+    q: `What role does ${c.name} play in a team?`,
+    a: `${c.name} functions as a ${c.role}. Their kit is built around ${c.teamRole} — understanding this role is the key to placing them correctly in team compositions.`
+  }
+];
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(f => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a }
+  }))
+});
+
+const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 ---
 
 <BaseLayout title={title} description={description}>
-  <script type="application/ld+json" set:html={jsonld}></script>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>
-    <span class="tag tag-{c.tier}">Tier {c.tier}</span>
-    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span class={"tag tag-" + c.tier}>Tier {c.tier}</span>
+    <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
     <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role}</span>
   </p>
 
@@ -30,7 +61,7 @@ const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article"
 
   <div class="insight-box">
     <h3>⚡ Team Synergy Insight</h3>
-    <p>{c.name} functions best as a {c.role}. The recommended team compositions maximize their contribution by providing the right elemental reactions, energy support, and buffs that {c.name} needs to perform at their peak in the current abyss cycle.</p>
+    <p>{c.name} functions best as a {c.role}. The recommended team compositions maximize their contribution by providing the right elemental reactions, energy support, and buffs that {c.name} needs to perform at their peak in the current abyss cycle. Building around {c.name}'s strengths while covering their weaknesses is the key to consistent clears.</p>
   </div>
 
   {teamExtendedGuides[c.slug] && (
@@ -43,15 +74,32 @@ const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article"
   <div class="version-badge">Updated for Version 5.x</div>
 
   <h2>Strongest Team</h2>
-  <p>{c.strongTeam}</p>
-  <p>This composition maximizes {c.name}'s damage potential and provides the best synergy with their kit.</p>
+  <p><strong>{c.strongTeam}</strong></p>
+  <p>This composition maximizes {c.name}'s damage potential and provides the best synergy with their kit. Each teammate is chosen to fill a specific role: one provides elemental reactions, one offers energy support, and one supplies buffs or healing. Together they create a loop where every character's ability feeds into the next.</p>
 
   <h2>F2P Team</h2>
-  <p>{c.f2pTeam}</p>
-  <p>A budget-friendly alternative that uses mostly 4-star characters while maintaining strong team performance.</p>
+  <p><strong>{c.f2pTeam}</strong></p>
+  <p>A budget-friendly alternative that uses mostly 4-star characters while maintaining strong team performance. This version trades some damage or comfort for accessibility, but still completes the core reaction loop that makes {c.name} strong. It's an excellent starting point before upgrading to the premium version.</p>
 
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
+  <p>The rotation matters more than raw stats for this team. Practice the order until it becomes muscle memory — the difference between a smooth rotation and a messy one can be 30-40% of team DPS. Key tips: always snapshot buffs before the main damage window, and don't waste energy by overcapping.</p>
+
+  <h2>Team Building Tips</h2>
+  <ul>
+    <li><strong>Reaction coverage:</strong> Make sure your team enables {c.name}'s best reactions. For a {c.element} unit, this means having the right off-field aura appliers.</li>
+    <li><strong>Energy requirements:</strong> Check every teammate's ER needs. {c.name}'s rotation depends on everyone having their burst ready on time.</li>
+    <li><strong>Survivability:</strong> Include a healer or shielder unless {c.name} can sustain themselves. Comfort lets you focus on damage.</li>
+    <li><strong>Upgrade path:</strong> Start with the F2P team, then upgrade one slot at a time as you pull better units.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  {faq.map((f) => (
+    <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+      <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+      <p style="margin: 0;">{f.a}</p>
+    </div>
+  ))}
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>

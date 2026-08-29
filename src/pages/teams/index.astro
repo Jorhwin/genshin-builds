@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { characters } from "../../data/characters";
+
+const metaTitle = "Genshin Impact Best Teams 2026 — Team Comps & Rotations";
+const metaDescription =
+  "Best team compositions for every Genshin Impact character: strongest meta team, F2P alternative, synergy notes, and rotation order.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Best Teams</h1>
+  <p class="subtitle">
+    Strongest team comps and budget-friendly F2P alternatives for every character, with rotation
+    guidance.
+  </p>
+
+  <ul class="character-list">
+    {
+      characters.map((c) => (
+        <li>
+          <a href={`/team/${c.slug}/`}>
+            <span class={"tag tag-" + c.tier}>{c.tier}</span>
+            <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+            <span class="char-name">{c.name}</span>
+            <span class="desc">{c.role}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/builds/">All Build Guides →</a>
+  </div>
+</BaseLayout>

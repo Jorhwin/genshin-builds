@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { comparisons } from "../../data/comparisons";
+
+const metaTitle = "Genshin Impact Character Comparisons 2026 — Who Should You Pull?";
+const metaDescription =
+  "Side-by-side Genshin Impact character comparisons: damage, teams, F2P value, ease of use, and clear pull recommendations.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Character Comparisons</h1>
+  <p class="subtitle">
+    Head-to-head comparisons to help you decide who to pull and who to build first.
+  </p>
+
+  <div class="mini-grid">
+    {comparisons.map((c) => <a href={`/comparison/${c.slug}/`}>{c.nameA} vs {c.nameB}</a>)}
+  </div>
+
+  <div class="insight-box" style="margin-top: 28px;">
+    <h3>How to read these comparisons</h3>
+    <p>
+      Each comparison breaks down damage, team flexibility, ease of use, and F2P friendliness, then
+      gives a clear verdict. When both options are close, we tell you which account types benefit
+      more from each choice.
+    </p>
+  </div>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/builds/">All Build Guides →</a>
+    <a href="/teams/">All Team Guides →</a>
+  </div>
+</BaseLayout>

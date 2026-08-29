@@ -15,10 +15,38 @@ const { character: c } = Astro.props;
 const title = c.name + " Best Build & Weapons Guide (2026) - Artifacts, Teams & Rotation";
 const description = c.name + " best build guide for 2026. Top weapon: " + c.bestWeapon + " | F2P: " + c.f2pWeapon + " | Best artifacts: " + c.bestArtifacts + ". Complete stats, team comps & rotation guide included.";
 const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
+const faq = [
+  {
+    q: "What is the best build for " + c.name + "?",
+    a: "The best " + c.name + " build uses " + c.bestWeapon + " with " + c.bestArtifacts + ". Main stats: " + c.mainStats + ". This setup maximizes their damage and keeps their rotation smooth."
+  },
+  {
+    q: "Is " + c.name + " good in the current meta?",
+    a: c.rating + " " + c.name + " is a " + c.role + " that works well in " + c.strongTeam + ". They remain a strong pick in current abyss rotations."
+  },
+  {
+    q: "What is the best F2P weapon for " + c.name + "?",
+    a: "The best free-to-play weapon for " + c.name + " is " + c.f2pWeapon + ". It provides competitive damage without requiring the weapon banner, making it a great budget option."
+  },
+  {
+    q: "What is the recommended rotation for " + c.name + "?",
+    a: "The recommended rotation is: " + c.rotation + ". Practicing this order ensures " + c.name + " snapshots buffs and maximizes their damage window."
+  }
+];
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(f => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a }
+  }))
+});
 ---
 
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={jsonld}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>
     <span class={"tag tag-" + c.tier}>{c.tier}</span>
     <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
@@ -101,6 +129,15 @@ const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article"
   <p>{c.teamRole}</p>
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
+
+  <h2>Frequently Asked Questions</h2>
+  {faq.map((f) => (
+    <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+      <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+      <p style="margin: 0;">{f.a}</p>
+    </div>
+  ))}
+
   <div class="internal-links">
     <h3>More {c.name} Guides</h3>
     <a href={"/build/" + c.slug + "/"}>{c.name} Best Build Guide</a>

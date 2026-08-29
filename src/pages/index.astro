@@ -1,60 +1,130 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { characters } from "../data/characters";
+import { comparisons } from "../data/comparisons";
+import { guides } from "../data/guides";
+import { analyses } from "../data/analyses";
 
-const sTier = characters.filter(c => c.tier === "S");
-const aTier = characters.filter(c => c.tier === "A");
+const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
+const sTier = characters.filter((c) => c.tier === "S");
 const metaTitle = "Genshin Impact Best Build Guides 2026 — All Characters";
-const metaDescription = "Complete Genshin Impact build guides for every character. Best weapons, artifacts, teams, and rotations. Updated for the latest version.";
+const metaDescription =
+  "Complete Genshin Impact build guides for every character. Best weapons, artifact sets, team compositions, and rotations. Updated for the current meta.";
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
   <h1>Genshin Impact Build Guides</h1>
-  <p class="subtitle">Complete build guides for every character. Best weapons, artifact sets, team compositions, and rotations — updated for the current meta.</p>
+  <p class="subtitle">
+    Best weapons, artifact sets, stat priorities, team compositions, and rotations for every
+    Genshin Impact character. Filter by element or search by name.
+  </p>
 
-  <h2>All Characters</h2>
-  <ul class="character-list">
-    {characters.map((c) => (
-      <li>
-        <a href={`/character/${c.slug}/`}>
-          <span class="tag tag-{c.tier}">{c.tier}</span>
-          <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
-          {c.name}
-          <span class="desc">{c.description.slice(0, 55)}...</span>
-        </a>
-      </li>
-    ))}
+  <input
+    id="charSearch"
+    class="search-box"
+    type="search"
+    placeholder="Search a character… (e.g. Raiden, Hu Tao, Nahida)"
+    autocomplete="off"
+  />
+
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="S">S Tier</button>
+    {elements.map((el) => <button class="filter-btn" data-filter={el}>{el}</button>)}
+  </div>
+
+  <div class="version-badge">Updated for Version 5.x · {characters.length} characters</div>
+
+  <ul class="character-list" id="charList">
+    {
+      characters.map((c) => (
+        <li
+          class="char-item"
+          data-element={c.element}
+          data-tier={c.tier}
+          data-name={c.name.toLowerCase()}
+        >
+          <a href={`/character/${c.slug}/`}>
+            <span class={"tag tag-" + c.tier}>{c.tier}</span>
+            <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+            <span class="char-name">{c.name}</span>
+            <span class="desc">{c.description}</span>
+          </a>
+        </li>
+      ))
+    }
   </ul>
+
+  <p id="noResults" style="display:none; color: var(--text-muted);">
+    No characters match your search.
+  </p>
 
   <h2>Popular Build Guides</h2>
   <div class="mini-grid">
-    {sTier.map((c) => (
-      <a href={`/build/${c.slug}/`}>{c.name} — Best Build</a>
-    ))}
+    {sTier.slice(0, 12).map((c) => <a href={`/build/${c.slug}/`}>{c.name} — Best Build</a>)}
   </div>
 
   <h2>Popular Team Guides</h2>
   <div class="mini-grid">
-    {sTier.map((c) => (
-      <a href={`/team/${c.slug}/`}>{c.name} — Best Team</a>
-    ))}
+    {sTier.slice(0, 12).map((c) => <a href={`/team/${c.slug}/`}>{c.name} — Best Team</a>)}
   </div>
-
-  <div class="insight-box" style="margin-top: 36px;">
-    <h3>📈 Meta Note</h3>
-    <p>Current meta (Version 5.x) favors Dendro reaction teams and Furina-centric compositions. Neuvillette, Raiden Shogun, and Nahida remain top-tier picks across multiple abyss cycles. Sucrose remains the best 4-star Anemo option for EM-focused teams.</p>
-  </div>
-
-  <div class="version-badge">Updated for Version 5.x</div>
 
   <h2>Character Comparisons</h2>
   <div class="mini-grid">
-    <a href="/comparison/raiden-vs-yae/">⚡ Raiden Shogun vs Yae Miko</a>
-    <a href="/comparison/hu-tao-vs-yoimiya/">🔥 Hu Tao vs Yoimiya</a>
-    <a href="/comparison/neuvillette-vs-ayato/">💧 Neuvillette vs Ayato</a>
-    <a href="/comparison/kazuha-vs-sucrose/">🌪️ Kazuha vs Sucrose</a>
-    <a href="/comparison/furina-vs-yelan/">💧 Furina vs Yelan</a>
-    <a href="/comparison/zhongli-vs-layla/">🛡️ Zhongli vs Layla</a>
+    {comparisons.map((c) => <a href={`/comparison/${c.slug}/`}>{c.nameA} vs {c.nameB}</a>)}
   </div>
 
+  <h2>Game Mechanic Guides</h2>
+  <div class="mini-grid">
+    {guides.map((g) => <a href={`/guide/${g.slug}/`}>{g.title}</a>)}
+    {analyses.map((a) => <a href={`/analysis/${a.slug}/`}>{a.title}</a>)}
+  </div>
+
+  <div class="insight-box" style="margin-top: 36px;">
+    <h3>Meta Note</h3>
+    <p>
+      The current meta favors Dendro reaction teams and Furina-centric compositions. Neuvillette,
+      Raiden Shogun, and Nahida remain top-tier picks across multiple Abyss cycles, while
+      Hyperbloom stays the most accessible F2P archetype.
+    </p>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var input = document.getElementById("charSearch");
+      var items = Array.prototype.slice.call(document.querySelectorAll(".char-item"));
+      var noRes = document.getElementById("noResults");
+      var buttons = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
+      var currentFilter = "all";
+
+      function apply() {
+        var q = (input.value || "").trim().toLowerCase();
+        var shown = 0;
+        items.forEach(function (li) {
+          var matchFilter =
+            currentFilter === "all" ||
+            li.getAttribute("data-element") === currentFilter ||
+            li.getAttribute("data-tier") === currentFilter;
+          var matchSearch = !q || li.getAttribute("data-name").indexOf(q) !== -1;
+          var visible = matchFilter && matchSearch;
+          li.style.display = visible ? "" : "none";
+          if (visible) shown += 1;
+        });
+        noRes.style.display = shown === 0 ? "block" : "none";
+      }
+
+      input.addEventListener("input", apply);
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          buttons.forEach(function (b) {
+            b.classList.remove("active");
+          });
+          btn.classList.add("active");
+          currentFilter = btn.getAttribute("data-filter");
+          apply();
+        });
+      });
+    })();
+  </script>
 </BaseLayout>

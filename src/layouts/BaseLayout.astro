@@ -3,20 +3,37 @@ export interface Props {
   title: string;
   description: string;
   canonical?: string;
+  ogImage?: string;
 }
 
-const { title, description, canonical } = Astro.props as Props;
+const { title, description, canonical, ogImage } = Astro.props as Props;
+const site = "https://gameup.lol";
+const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : site + Astro.url.pathname);
+const ogImg = ogImage || site + "/og-default.svg";
 ---
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Genshin Builds" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImg} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImg} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -40,6 +57,7 @@ const { title, description, canonical } = Astro.props as Props;
         --cryo: #80c0ff;
         --tier-s: #ffd700;
         --tier-a: #c0c0c0;
+        --tier-b: #cd7f32;
       }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,6 +97,8 @@ const { title, description, canonical } = Astro.props as Props;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
       .header-logo {
@@ -98,13 +118,11 @@ const { title, description, canonical } = Astro.props as Props;
         color: var(--text-secondary);
         text-decoration: none;
         font-size: 0.85rem;
-        margin-left: 20px;
+        margin-left: 16px;
         transition: color 0.2s;
       }
 
-      .header-nav a:hover {
-        color: var(--accent);
-      }
+      .header-nav a:hover { color: var(--accent); }
 
       h1 {
         font-size: 2rem;
@@ -158,12 +176,14 @@ const { title, description, canonical } = Astro.props as Props;
 
       .tag-S { background: rgba(255, 215, 0, 0.12); color: var(--tier-s); border: 1px solid rgba(255, 215, 0, 0.2); }
       .tag-A { background: rgba(192, 192, 192, 0.1); color: var(--tier-a); border: 1px solid rgba(192, 192, 192, 0.15); }
+      .tag-B { background: rgba(205, 127, 50, 0.12); color: var(--tier-b); border: 1px solid rgba(205, 127, 50, 0.2); }
       .tag-pyro { background: rgba(255, 96, 32, 0.1); color: var(--pyro); border: 1px solid rgba(255, 96, 32, 0.15); }
       .tag-hydro { background: rgba(32, 128, 255, 0.1); color: var(--hydro); border: 1px solid rgba(32, 128, 255, 0.15); }
       .tag-dendro { background: rgba(64, 192, 64, 0.1); color: var(--dendro); border: 1px solid rgba(64, 192, 64, 0.15); }
       .tag-anemo { background: rgba(96, 224, 224, 0.1); color: var(--anemo); border: 1px solid rgba(96, 224, 224, 0.15); }
       .tag-electro { background: rgba(160, 64, 255, 0.1); color: var(--electro); border: 1px solid rgba(160, 64, 255, 0.15); }
       .tag-geo { background: rgba(224, 160, 64, 0.1); color: var(--geo); border: 1px solid rgba(224, 160, 64, 0.15); }
+      .tag-cryo { background: rgba(128, 192, 255, 0.1); color: var(--cryo); border: 1px solid rgba(128, 192, 255, 0.15); }
 
       .card {
         background: var(--bg-card);
@@ -176,8 +196,6 @@ const { title, description, canonical } = Astro.props as Props;
       .card:hover {
         background: var(--bg-card-hover);
         border-color: rgba(96, 128, 255, 0.2);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
       }
 
       .stat-grid {
@@ -195,9 +213,7 @@ const { title, description, canonical } = Astro.props as Props;
         transition: border-color 0.2s;
       }
 
-      .stat-card:hover {
-        border-color: rgba(96, 128, 255, 0.15);
-      }
+      .stat-card:hover { border-color: rgba(96, 128, 255, 0.15); }
 
       .stat-label {
         font-size: 0.7rem;
@@ -212,16 +228,6 @@ const { title, description, canonical } = Astro.props as Props;
         font-size: 0.92rem;
         color: var(--text-primary);
         font-weight: 500;
-      }
-
-      .rating-big {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: var(--tier-s);
-        background: linear-gradient(135deg, var(--tier-s), #ff8c00);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
       }
 
       .insight-box {
@@ -242,10 +248,7 @@ const { title, description, canonical } = Astro.props as Props;
         padding: 0;
       }
 
-      .insight-box p {
-        color: var(--text-secondary);
-        margin: 0;
-      }
+      .insight-box p { color: var(--text-secondary); margin: 0; }
 
       .version-badge {
         display: inline-flex;
@@ -294,22 +297,18 @@ const { title, description, canonical } = Astro.props as Props;
         font-weight: 500;
       }
 
-      .internal-links a:hover {
-        background: rgba(96, 128, 255, 0.06);
-      }
+      .internal-links a:hover { background: rgba(96, 128, 255, 0.06); }
 
       .character-list {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
         list-style: none;
         padding: 0;
         margin: 12px 0;
       }
 
-      .character-list li {
-        margin: 0;
-      }
+      .character-list li { margin: 0; }
 
       .character-list a {
         display: flex;
@@ -322,12 +321,13 @@ const { title, description, canonical } = Astro.props as Props;
         transition: all 0.2s;
         color: var(--text-primary);
         font-weight: 500;
+        height: 100%;
       }
 
       .character-list a:hover {
         background: var(--bg-card-hover);
         border-color: rgba(96, 128, 255, 0.2);
-        transform: translateX(4px);
+        transform: translateY(-2px);
       }
 
       .character-list .desc {
@@ -335,7 +335,6 @@ const { title, description, canonical } = Astro.props as Props;
         font-size: 0.82rem;
         font-weight: 400;
         margin-left: auto;
-        max-width: 50%;
         text-align: right;
       }
 
@@ -363,6 +362,45 @@ const { title, description, canonical } = Astro.props as Props;
         border-color: rgba(96, 128, 255, 0.2);
       }
 
+      .search-box {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        font-family: inherit;
+        margin: 12px 0 20px;
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: rgba(96, 128, 255, 0.4);
+      }
+
+      .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0 4px;
+      }
+
+      .filter-btn {
+        padding: 6px 14px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .filter-btn:hover { border-color: rgba(96, 128, 255, 0.3); color: var(--text-primary); }
+      .filter-btn.active { background: rgba(96, 128, 255, 0.15); border-color: var(--accent); color: var(--text-primary); }
+
       footer {
         border-top: 1px solid var(--border);
         margin-top: 48px;
@@ -372,11 +410,14 @@ const { title, description, canonical } = Astro.props as Props;
         text-align: center;
       }
 
+      footer a { color: var(--text-secondary); }
+
       @media (max-width: 640px) {
         .stat-grid { grid-template-columns: 1fr; }
+        .character-list { grid-template-columns: 1fr; }
         h1 { font-size: 1.5rem; }
         .character-list .desc { display: none; }
-        .header-nav a { margin-left: 12px; font-size: 0.78rem; }
+        .header-nav a { margin-left: 10px; font-size: 0.78rem; }
       }
     </style>
   </head>
@@ -385,9 +426,11 @@ const { title, description, canonical } = Astro.props as Props;
       <div class="header-inner">
         <a href="/" class="header-logo">✦ Genshin Builds</a>
         <nav class="header-nav">
-          <a href="/">Characters</a>
-          <a href="/">Builds</a>
-          <a href="/">Teams</a>
+          <a href="/characters/">Characters</a>
+          <a href="/builds/">Builds</a>
+          <a href="/teams/">Teams</a>
+          <a href="/comparisons/">Comparisons</a>
+          <a href="/guides/">Guides</a>
         </nav>
       </div>
     </header>
@@ -396,8 +439,15 @@ const { title, description, canonical } = Astro.props as Props;
     </main>
     <footer>
       <div class="container">
-        <p>Genshin Impact Build Guides — Updated for latest version. Not affiliated with HoYoverse.</p>
-        <p style="margin-top: 4px; font-size: 0.75rem;">Data sourced from community consensus & KQM.</p>
+        <p>
+          Genshin Impact build guides — weapons, artifacts, teams, and rotations.
+          Not affiliated with HoYoverse.
+        </p>
+        <p style="margin-top: 6px; font-size: 0.75rem;">
+          <a href="/changelog/">Changelog</a> ·
+          <a href="/sitemap.xml">Sitemap</a> ·
+          Data based on community consensus &amp; KQM theorycrafting.
+        </p>
       </div>
     </footer>
   </body>

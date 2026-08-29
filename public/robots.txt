@@ -1,3 +1,4 @@
 ﻿User-agent: *
 Allow: /
-Sitemap: https://genshin-builds.example.com/sitemap.xml
+
+Sitemap: https://gameup.lol/sitemap.xml

@@ -11,24 +11,55 @@ export function getStaticPaths() {
 }
 
 const { character: c } = Astro.props;
-const title = `${c.name} Best Build Guide 2026 — Weapons & Artifacts`;
-const description = `Best ${c.name} build guide. Best weapon: ${c.bestWeapon}. F2P option: ${c.f2pWeapon}. Best artifact set: ${c.bestArtifacts}. Stats priority and rotation included.`;
-const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
+const title = `${c.name} Best Build Guide 2026 — Weapons, Artifacts & Stats`;
+const description = `Best ${c.name} build guide 2026. Best weapon: ${c.bestWeapon}. F2P option: ${c.f2pWeapon}. Best artifacts: ${c.bestArtifacts}. Stats priority, rotation & FAQ included.`;
+
+const faq = [
+  {
+    q: `What is the best weapon for ${c.name}?`,
+    a: `The best-in-slot weapon for ${c.name} is ${c.bestWeapon}. It synergizes with their ${c.element} kit by providing the exact stats they need. For players who don't have it, ${c.f2pWeapon} is the strongest free-to-play alternative and performs well even at refinement 1.`
+  },
+  {
+    q: `What artifact set should I use on ${c.name}?`,
+    a: `${c.bestArtifacts} is the recommended set for ${c.name}. This set maximizes their damage output by working with their kit mechanics. The main stats to prioritize are: ${c.mainStats}. Substats should follow this priority: ${c.subStats}.`
+  },
+  {
+    q: `What is the optimal rotation for ${c.name}?`,
+    a: `The optimal ${c.name} rotation is: ${c.rotation}. Timing is key — make sure supports cast their abilities first so ${c.name} can snapshot buffs and maximize their damage window.`
+  },
+  {
+    q: `Is ${c.name} worth building in the current meta?`,
+    a: `${c.name} is rated ${c.rating}. As a ${c.role}, they fit into ${c.strongTeam}. Even at moderate investment, they perform well in current abyss rotations and are a solid addition to most accounts.`
+  }
+];
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(f => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a }
+  }))
+});
+
+const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 ---
 
 <BaseLayout title={title} description={description}>
-  <script type="application/ld+json" set:html={jsonld}></script>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>
-    <span class="tag tag-{c.tier}">Tier {c.tier}</span>
-    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
-    <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role}</span>
+    <span class={"tag tag-" + c.tier}>Tier {c.tier}</span>
+    <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+    <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 4px;">{c.role} &middot; {c.weapon}</span>
   </p>
 
   <h1>{c.name} Best Build Guide</h1>
 
   <div class="insight-box">
-    <h3>⚡ Why This Build</h3>
-    <p>{c.bestWeapon} synergizes with {c.name}'s kit because it provides the stats they need most. Combined with {c.bestArtifacts}, this build achieves the best balance of damage output and energy efficiency in the current meta.</p>
+    <h3>⚡ Why This Build Works</h3>
+    <p>{c.bestWeapon} synergizes with {c.name}'s kit because it provides the stats they need most. Combined with {c.bestArtifacts}, this build achieves the best balance of damage output and energy efficiency in the current meta. The main stat priority of {c.mainStats} ensures {c.name} hits the right damage breakpoints while keeping their rotation smooth.</p>
   </div>
 
   {buildExtendedGuides[c.slug] && (
@@ -41,31 +72,42 @@ const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article"
   <div class="version-badge">Updated for Version 5.x</div>
 
   <h2>Best Weapon</h2>
-  <p><strong>{c.bestWeapon}</strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics.</p>
+  <p><strong>{c.bestWeapon}</strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics. It provides the optimal stat balance — whether that is ER for burst uptime, CRIT for raw damage, or EM for reaction teams.</p>
 
   <h3>F2P Weapon Option</h3>
-  <p>{c.f2pWeapon} is a strong alternative that performs well without spending primogems on the weapon banner. It provides competitive damage especially at refinement 5.</p>
+  <p>{c.f2pWeapon} is a strong alternative that performs well without spending primogems on the weapon banner. It provides competitive damage especially at refinement 5. For budget players, this weapon lets {c.name} clear most content without sacrificing too much damage — the gap between {c.f2pWeapon} and {c.bestWeapon} is usually manageable in endgame content.</p>
 
   <h2>Best Artifact Set</h2>
-  <p>{c.bestArtifacts} is the recommended set. This set provides the best balance of damage and utility for {c.name} in most team compositions.</p>
+  <p>{c.bestArtifacts} is the recommended set. This set provides the best balance of damage and utility for {c.name} in most team compositions. The 4-piece set bonus works directly with their kit to amplify damage, while the 2-piece bonus covers their stat requirements early on.</p>
 
   <h2>Stats Priority</h2>
   <ul>
     <li><strong>Substats:</strong> {c.subStats}</li>
     <li><strong>Main Stats:</strong> {c.mainStats}</li>
   </ul>
+  <p>Getting the right main stats is the most important step — a correct main stat with bad substats will always outperform the wrong main stat. Once your main stats are correct, focus on improving substat rolls to optimize {c.name}'s damage further.</p>
 
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
+  <p>Practicing this rotation is essential. {c.name} relies on proper ability ordering to snapshot buffs, maintain uptime, and maximize their damage window. Watch your energy gauge and swap back to supports before {c.name}'s buff window expires.</p>
 
   <h2>Common Mistakes When Building This Character</h2>
   <ul>
     <li>Using wrong main stat on artifacts — stat priority beats set bonus in most cases.</li>
     <li>Ignoring Energy Recharge requirements — not enough ER breaks the rotation.</li>
-    <li>Copying whale builds — most guides assume 5-star weapons and high cons.</li>
-    <li>Over-investing in ATK when the character scales with HP, DEF, or EM.</li>
+    <li>Copying whale builds — most guides assume 5-star weapons and high constellations.</li>
+    <li>Over-investing in ATK when the character scales with HP, DEF, or EM instead.</li>
     <li>Not leveling the right talents first — some talent upgrades are trap investments.</li>
+    <li>Neglecting the team — {c.name} performs best in {c.strongTeam}, so build around their support needs.</li>
   </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  {faq.map((f) => (
+    <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+      <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+      <p style="margin: 0;">{f.a}</p>
+    </div>
+  ))}
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>

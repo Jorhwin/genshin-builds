@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { guides } from "../../data/guides";
+import { analyses } from "../../data/analyses";
+
+const metaTitle = "Genshin Impact Game Mechanic Guides 2026 — EM, ER, Reactions";
+const metaDescription =
+  "In-depth Genshin Impact mechanic guides: Elemental Mastery, Energy Recharge, Hyperbloom, snapshotting, and build-vs-build analyses.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Game Mechanic Guides</h1>
+  <p class="subtitle">
+    Understand the mechanics behind the builds: reactions, stat thresholds, rotations, and
+    team archetypes.
+  </p>
+
+  <h2>Mechanic Guides</h2>
+  <div class="mini-grid">
+    {guides.map((g) => <a href={`/guide/${g.slug}/`}>{g.title}</a>)}
+  </div>
+
+  <h2>Build Analyses</h2>
+  <div class="mini-grid">
+    {analyses.map((a) => <a href={`/analysis/${a.slug}/`}>{a.title}</a>)}
+  </div>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/comparisons/">Character Comparisons →</a>
+    <a href="/changelog/">Changelog →</a>
+  </div>
+</BaseLayout>

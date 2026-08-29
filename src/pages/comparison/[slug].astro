@@ -12,11 +12,23 @@ export function getStaticPaths() {
 const { comp: c } = Astro.props;
 const title = c.seoTitle;
 const description = c.seoDesc;
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is " + c.nameA + " or " + c.nameB + " better?",
+      acceptedAnswer: { "@type": "Answer", text: c.verdict }
+    }
+  ]
+});
 ---
 
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>
-    <span class="tag tag-{c.element.toLowerCase()}">{c.element}</span>
+    <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
     <span style="color: var(--text-muted); font-size: 0.9rem;">Character Comparison</span>
   </p>
 
@@ -59,6 +71,23 @@ const description = c.seoDesc;
   <div class="insight-box" style="margin-top: 28px;">
     <h3>🎯 Verdict</h3>
     <p>{c.verdict}</p>
+  </div>
+
+
+  <h2>Which One Should You Choose?</h2>
+  <div class="card" style="margin: 16px 0;">
+    <p>{c.verdict}</p>
+    <p style="margin-top: 10px;">Consider your account when deciding. Look at the weapons and artifacts you already own, the teams you already have built, and the content you struggle with most. Both {c.nameA} and {c.nameB} are strong — the right choice depends on which fills a bigger gap in your roster.</p>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+    <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">Is {c.nameA} or {c.nameB} better?</h3>
+    <p style="margin: 0;">There is no universal answer — {c.nameA} wins in {c.categories.map(cat => cat.name).join(" and ").replace(/,([^,]*)$/, " and$1")} scenarios where their kit shines, while {c.nameB} is stronger in others. Use the comparison tables above to match each character's strengths to your specific needs.</p>
+  </div>
+  <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+    <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">Which one is better for F2P players?</h3>
+    <p style="margin: 0;">Both characters are viable at C0 with their F2P weapon options. Check each character's dedicated guide for the best budget builds and teams to see which one fits your account's current roster.</p>
   </div>
 
   <div class="internal-links">
