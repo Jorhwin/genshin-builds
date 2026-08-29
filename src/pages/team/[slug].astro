@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { teamExtendedGuides } from "../../data/extended-guides-team";
+import { teamTitle, teamDescription, updatedLabel, roleLabel, article, shortPhrase } from "../../lib/seo";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -10,14 +11,16 @@ export function getStaticPaths() {
   }));
 }
 
+import { characterTitle, teamTitle, teamDescription } from "../../lib/seo";
+
 const { character: c } = Astro.props;
-const title = `${c.name} Best Team Guide 2026 — Comps, Synergy & Rotation`;
-const description = `Best teams for ${c.name}. Strongest team: ${c.strongTeam}. F2P team: ${c.f2pTeam}. Team synergy, rotation & FAQ included.`;
+const title = teamTitle(c);
+const description = teamDescription(c);
 
 const faq = [
   {
     q: `What is the best team for ${c.name}?`,
-    a: `The strongest ${c.name} team is ${c.strongTeam}. This composition maximizes ${c.name}'s damage by providing the right reactions, energy support, and buffs that a ${c.role} needs to shine.`
+    a: `The strongest ${c.name} team is ${shortPhrase(c.strongTeam, 60)}. ${c.teamRole}`
   },
   {
     q: `What is a good F2P team for ${c.name}?`,
@@ -29,7 +32,7 @@ const faq = [
   },
   {
     q: `What role does ${c.name} play in a team?`,
-    a: `${c.name} functions as a ${c.role}. Their kit is built around ${c.teamRole} — understanding this role is the key to placing them correctly in team compositions.`
+    a: `${c.name} functions as ${article(roleLabel(c))} ${roleLabel(c).toLowerCase()}. Their kit is built around ${c.teamRole}`
   }
 ];
 
@@ -60,8 +63,11 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
   <p>{c.teamRole}</p>
 
   <div class="insight-box">
-    <h3>⚡ Team Synergy Insight</h3>
-    <p>{c.name} functions best as a {c.role}. The recommended team compositions maximize their contribution by providing the right elemental reactions, energy support, and buffs that {c.name} needs to perform at their peak in the current abyss cycle. Building around {c.name}'s strengths while covering their weaknesses is the key to consistent clears.</p>
+    <h3>⚡ At a Glance</h3>
+    <p>
+      {c.name} is a Tier {c.tier} unit — {article(roleLabel(c))} {roleLabel(c).toLowerCase()}.
+      Best team: {shortPhrase(c.strongTeam, 70)}. Best F2P team: {shortPhrase(c.f2pTeam, 70)}.
+    </p>
   </div>
 
   {teamExtendedGuides[c.slug] && (
@@ -71,15 +77,13 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
     </div>
   )}
 
-  <div class="version-badge">Updated for Version 5.x</div>
+  <div class="version-badge">{updatedLabel()}</div>
 
   <h2>Strongest Team</h2>
   <p><strong>{c.strongTeam}</strong></p>
-  <p>This composition maximizes {c.name}'s damage potential and provides the best synergy with their kit. Each teammate is chosen to fill a specific role: one provides elemental reactions, one offers energy support, and one supplies buffs or healing. Together they create a loop where every character's ability feeds into the next.</p>
 
   <h2>F2P Team</h2>
   <p><strong>{c.f2pTeam}</strong></p>
-  <p>A budget-friendly alternative that uses mostly 4-star characters while maintaining strong team performance. This version trades some damage or comfort for accessibility, but still completes the core reaction loop that makes {c.name} strong. It's an excellent starting point before upgrading to the premium version.</p>
 
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
@@ -87,7 +91,7 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
 
   <h2>Team Building Tips</h2>
   <ul>
-    <li><strong>Reaction coverage:</strong> Make sure your team enables {c.name}'s best reactions. For a {c.element} unit, this means having the right off-field aura appliers.</li>
+    <li><strong>Reaction coverage:</strong> Make sure your team enables {c.name}'s best reactions. For {article(c.element)} {c.element} unit, this means having the right off-field aura appliers.</li>
     <li><strong>Energy requirements:</strong> Check every teammate's ER needs. {c.name}'s rotation depends on everyone having their burst ready on time.</li>
     <li><strong>Survivability:</strong> Include a healer or shielder unless {c.name} can sustain themselves. Comfort lets you focus on damage.</li>
     <li><strong>Upgrade path:</strong> Start with the F2P team, then upgrade one slot at a time as you pull better units.</li>
@@ -103,7 +107,7 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>
-    <a href={`/character/${c.slug}/`}>📋 {c.name} Overview →</a>
-    <a href={`/build/${c.slug}/`}>🛠️ {c.name} Best Build Guide →</a>
+    <a href={`/character/${c.slug}/`}>📋 {c.name} Build Overview →</a>
+    <a href={`/build/${c.slug}/`}>🛠️ {c.name} Best Weapon &amp; Artifacts →</a>
   </div>
 </BaseLayout>

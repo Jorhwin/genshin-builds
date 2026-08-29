@@ -104,7 +104,7 @@ export const coreInsights = {
   "weakness": "Completely dependent on a battery (usually Bennett) and punished hard by incorrect rotation order.",
   "controversy": "Some players argue Xiangling is overrated because she is 'carried' by Bennett — but no other character converts one support slot into this much sustained AoE damage."
 },
-  "arlechino": {
+  "arlecchino": {
   "whyItWorks": "Bond of Life converts directly into normal attack damage, giving her Pyro multipliers without requiring the low-HP management that Hu Tao needs.",
   "keyThreshold": "ATK 2,000+. CRIT 70/160+. Enough Bond of Life uptime to keep her enhanced normals active for the whole rotation.",
   "metaStatus": "Top-tier Pyro carry. Strongest in Vaporize and Overload.",

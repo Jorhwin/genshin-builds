@@ -1,10 +1,18 @@
 # Prevent 308 redirect for GSC verification
 /google38d3ac91395f53d8.html  /google38d3ac91395f53d8  200
 
-# Fix misspelled character slug (arlechinno -> arlechino)
-/character/arlechinno  /character/arlechino/  301
-/character/arlechinno/  /character/arlechino/  301
-/build/arlechinno  /build/arlechino/  301
-/build/arlechinno/  /build/arlechino/  301
-/team/arlechinno  /team/arlechino/  301
-/team/arlechinno/  /team/arlechino/  301
+# Correct the Arlecchino slug to the real spelling.
+# Old URL was missing a "c" (arlechino); the double-n variant was a separate typo.
+/character/arlechinno  /character/arlecchino/  301
+/character/arlechinno/  /character/arlecchino/  301
+/build/arlechinno  /build/arlecchino/  301
+/build/arlechinno/  /build/arlecchino/  301
+/team/arlechinno  /team/arlecchino/  301
+/team/arlechinno/  /team/arlecchino/  301
+
+/character/arlechino  /character/arlecchino/  301
+/character/arlechino/  /character/arlecchino/  301
+/build/arlechino  /build/arlecchino/  301
+/build/arlechino/  /build/arlecchino/  301
+/team/arlechino  /team/arlecchino/  301
+/team/arlechino/  /team/arlecchino/  301

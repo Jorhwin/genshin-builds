@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { bestLists } from "../../data/best-lists";
+import { updatedLabel } from "../../lib/seo";
 
 export function getStaticPaths() {
   return bestLists.map((b) => ({
@@ -56,7 +57,7 @@ const faqJsonLd = JSON.stringify({
     <p>{list.intro}</p>
   </div>
 
-  <div class="version-badge">Updated for Version 5.x · {list.items.length} entries</div>
+  <div class="version-badge">{updatedLabel()} · {list.items.length} entries</div>
 
   <div class="rank-list">
     {

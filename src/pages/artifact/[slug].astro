@@ -24,10 +24,11 @@ export function getStaticPaths() {
   }));
 }
 
+import { artifactTitle, artifactDescription } from "../../lib/seo";
+
 const { set } = Astro.props;
-const title = set.name + " — Best Characters, Set Bonus & Is It Worth Farming (2026)";
-const description =
-  set.name + " artifact set guide: who should use it, how the set bonus works, and the situations where it is the wrong choice. " + set.why;
+const title = artifactTitle(set);
+const description = artifactDescription(set);
 
 const nameToSlug = new Map();
 for (const c of characters) {

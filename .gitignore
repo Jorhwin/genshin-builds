@@ -6,5 +6,13 @@ dist_old*/
 *.zip
 .DS_Store
 
+# Scratch space for local scripts
+.tmp/
+
+# GSC exports contain real search-console numbers -- keep them local.
+# Re-run `node scripts/gsc-import.mjs <export.csv>` to regenerate.
+data/gsc-pages.json
+reports/
+
 scripts/direct-deploy*
 scripts/final-deploy*

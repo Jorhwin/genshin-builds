@@ -4,6 +4,8 @@ import { characters } from "../../data/characters";
 import { coreInsights } from "../../data/insights";
 import { extendedGuides } from "../../data/extended-guides";
 import { bestLists } from "../../data/best-lists";
+import { comparisons } from "../../data/comparisons";
+import { characterTitle, characterDescription, roleLabel, article, shortPhrase, score } from "../../lib/seo";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -14,8 +16,15 @@ export function getStaticPaths() {
 
 const { character: c } = Astro.props;
 const relatedLists = bestLists.filter((b) => b.items.some((i) => i.slug === c.slug));
-const title = c.name + " Best Build & Weapons Guide (2026) - Artifacts, Teams & Rotation";
-const description = c.name + " best build guide for 2026. Top weapon: " + c.bestWeapon + " | F2P: " + c.f2pWeapon + " | Best artifacts: " + c.bestArtifacts + ". Complete stats, team comps & rotation guide included.";
+const title = characterTitle(c);
+const description = characterDescription(c);
+
+// Head-to-head pages this character appears in. These used to be orphaned --
+// 33 comparison pages with no internal links pointing at them.
+const relatedComparisons = comparisons.filter(
+  (x) => x.nameA.toLowerCase() === c.name.toLowerCase() || x.nameB.toLowerCase() === c.name.toLowerCase()
+);
+const rivalOf = (x) => (x.nameA.toLowerCase() === c.name.toLowerCase() ? x.nameB : x.nameA);
 const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 const faq = [
   {
@@ -24,7 +33,10 @@ const faq = [
   },
   {
     q: "Is " + c.name + " good in the current meta?",
-    a: c.rating + " " + c.name + " is a " + c.role + " that works well in " + c.strongTeam + ". They remain a strong pick in current abyss rotations."
+    // The article agrees with the word that FOLLOWS it -- the role ("a pyro
+    // main dps", "an electro sub-dps") -- not with the tier letter.
+    a: "Yes — " + c.name + " scores " + score(c.rating) + " as " + article(roleLabel(c)) + " " + roleLabel(c).toLowerCase() +
+      ", and fits into " + shortPhrase(c.strongTeam, 45) + "."
   },
   {
     q: "What is the best F2P weapon for " + c.name + "?",
@@ -55,7 +67,54 @@ const faqJsonLd = JSON.stringify({
     <span style="color: var(--text-muted);">{c.role} &middot; {c.weapon}</span>
   </p>
   <h1>{c.name} Build Guide</h1>
-  <p>{c.description}</p>
+
+  <!-- Answer-first block. Google's featured snippet wants a single dense
+       paragraph that resolves the query without scrolling, so the gear answer
+       sits above the fold instead of at the bottom of the page. -->
+  <div class="quick-answer">
+    <p>
+      <strong>{c.name}</strong> is {article("Tier")} Tier {c.tier} {roleLabel(c).toLowerCase()} in Genshin Impact.
+      Best weapon: <strong>{c.bestWeapon}</strong>. Best artifacts: <strong>{c.bestArtifacts}</strong>.
+      Best F2P weapon: <strong>{c.f2pWeapon}</strong>. Strongest team: {shortPhrase(c.strongTeam, 60)}.
+      Rating: {score(c.rating)}.
+    </p>
+  </div>
+
+  <h2>Best Build Overview</h2>
+  <div class="quick-table">
+    <div class="qrow qhead">
+      <div>Slot</div>
+      <div>Recommendation</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Best Weapon</div>
+      <div class="qvalue">{c.bestWeapon}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">F2P Weapon</div>
+      <div class="qvalue">{c.f2pWeapon}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Artifact Set</div>
+      <div class="qvalue">{c.bestArtifacts}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Main Stats</div>
+      <div class="qvalue">{c.mainStats}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Substat Priority</div>
+      <div class="qvalue">{c.subStats}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Talent Priority</div>
+      <div class="qvalue">{c.talentPriority}</div>
+    </div>
+    <div class="qrow">
+      <div class="qlabel">Rating</div>
+      <div class="qvalue">{c.rating}</div>
+    </div>
+  </div>
 
   {coreInsights[c.slug] && (
     <div class="insight-box">
@@ -68,16 +127,19 @@ const faqJsonLd = JSON.stringify({
     </div>
   )}
 
-  <h2>Gameplay Strategy</h2>
+  <h2>Best Teams</h2>
+  <p>{c.teamRole}</p>
   <div class="card">
-    <p>{c.name} functions best as a {c.role}. The key to mastering this character is understanding how their kit interacts with the current abyss meta. Below are the critical gameplay patterns you need to know.</p>
-    <h3>Rotation Tips</h3>
-    <p>{c.rotation}</p>
-    <h3>Team Synergy</h3>
-    <p>{c.teamRole} In practice, this means pairing them with characters that complement their strengths and cover their weaknesses.</p>
+    <h3>Strongest Team</h3>
+    <p>{c.strongTeam}</p>
+    <h3>Best F2P Team</h3>
+    <p>{c.f2pTeam}</p>
   </div>
 
-  <h2>Build Comparison: Entry vs Endgame</h2>
+  <h2>Rotation Guide</h2>
+  <p>{c.rotation}</p>
+
+  <h2>Entry vs Endgame Build</h2>
   <div class="stat-grid">
     <div class="stat-card">
       <div class="stat-label">Entry Level Build</div>
@@ -117,46 +179,7 @@ const faqJsonLd = JSON.stringify({
     </div>
   )}
 
-  <div class="version-badge">Updated for Version 5.x</div>
-  <h2>Best Build Overview</h2>
-  <div class="quick-table">
-    <div class="qrow qhead">
-      <div>Slot</div>
-      <div>Recommendation</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Best Weapon</div>
-      <div class="qvalue">{c.bestWeapon}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">F2P Weapon</div>
-      <div class="qvalue">{c.f2pWeapon}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Artifact Set</div>
-      <div class="qvalue">{c.bestArtifacts}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Main Stats</div>
-      <div class="qvalue">{c.mainStats}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Substat Priority</div>
-      <div class="qvalue">{c.subStats}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Talent Priority</div>
-      <div class="qvalue">{c.talentPriority}</div>
-    </div>
-    <div class="qrow">
-      <div class="qlabel">Rating</div>
-      <div class="qvalue">{c.rating}</div>
-    </div>
-  </div>
-  <h2>Team Role</h2>
-  <p>{c.teamRole}</p>
-  <h2>Rotation Guide</h2>
-  <p>{c.rotation}</p>
+  <div class="version-badge">Updated August 2026</div>
 
   <h2>Frequently Asked Questions</h2>
   {faq.map((f) => (
@@ -165,6 +188,17 @@ const faqJsonLd = JSON.stringify({
       <p style="margin: 0;">{f.a}</p>
     </div>
   ))}
+
+  {relatedComparisons.length > 0 && (
+    <div class="internal-links">
+      <h3>{c.name} vs Other Characters</h3>
+      {
+        relatedComparisons.map((x) => (
+          <a href={`/comparison/${x.slug}/`}>{c.name} vs {rivalOf(x)}</a>
+        ))
+      }
+    </div>
+  )}
 
   {relatedLists.length > 0 && (
     <div class="internal-links">
@@ -186,6 +220,17 @@ const faqJsonLd = JSON.stringify({
 </BaseLayout>
 
 <style>
+  .quick-answer {
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 14px 0 22px;
+    line-height: 1.75;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+  .quick-answer strong { color: var(--text-primary); }
   .quick-table {
     border: 1px solid var(--border);
     border-radius: 10px;

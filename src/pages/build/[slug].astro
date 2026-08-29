@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { buildExtendedGuides } from "../../data/extended-guides-build";
+import { buildTitle, buildDescription, updatedLabel, roleLabel, article, shortPhrase, score } from "../../lib/seo";
 
 export function getStaticPaths() {
   return characters.map((c) => ({
@@ -10,9 +11,11 @@ export function getStaticPaths() {
   }));
 }
 
+import { characterTitle, buildTitle, buildDescription } from "../../lib/seo";
+
 const { character: c } = Astro.props;
-const title = `${c.name} Best Build Guide 2026 — Weapons, Artifacts & Stats`;
-const description = `Best ${c.name} build guide 2026. Best weapon: ${c.bestWeapon}. F2P option: ${c.f2pWeapon}. Best artifacts: ${c.bestArtifacts}. Stats priority, rotation & FAQ included.`;
+const title = buildTitle(c);
+const description = buildDescription(c);
 
 const faq = [
   {
@@ -29,7 +32,7 @@ const faq = [
   },
   {
     q: `Is ${c.name} worth building in the current meta?`,
-    a: `${c.name} is rated ${c.rating}. As a ${c.role}, they fit into ${c.strongTeam}. Even at moderate investment, they perform well in current abyss rotations and are a solid addition to most accounts.`
+    a: `${c.name} is rated ${score(c.rating)} and works as ${article(roleLabel(c))} ${roleLabel(c).toLowerCase()}. They fit into ${shortPhrase(c.strongTeam, 60)}. Even at moderate investment they perform well in current abyss rotations.`
   }
 ];
 
@@ -69,7 +72,7 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
     </div>
   )}
 
-  <div class="version-badge">Updated for Version 5.x</div>
+  <div class="version-badge">{updatedLabel()}</div>
 
   <h2>Best Weapon</h2>
   <p><strong>{c.bestWeapon}</strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics. It provides the optimal stat balance — whether that is ER for burst uptime, CRIT for raw damage, or EM for reaction teams.</p>
@@ -111,7 +114,7 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>
-    <a href={`/character/${c.slug}/`}>📋 {c.name} Overview →</a>
-    <a href={`/team/${c.slug}/`}>👥 {c.name} Best Team Guide →</a>
+    <a href={`/character/${c.slug}/`}>📋 {c.name} Build Overview →</a>
+    <a href={`/team/${c.slug}/`}>👥 {c.name} Best Teams →</a>
   </div>
 </BaseLayout>

@@ -32,7 +32,7 @@ export const changelog = [
 {
   "date": "2026-08-29",
   "title": "Best-X Rankings &amp; More Core Guides",
-  "desc": "Added a decision-focused page cluster: Best DPS Characters, Best Support Characters, Best 4-Star Characters, Best F2P Teams and Best Hyperbloom Team, each with reasoning, caveats and FAQ. Added in-depth guides for Furina, Bennett, Xingqiu, Xiangling, Arlecchino and Ayaka. Fixed the misspelled Arlecchino URL (arlechinno to arlechino) with 301 redirects."
+  "desc": "Added a decision-focused page cluster: Best DPS Characters, Best Support Characters, Best 4-Star Characters, Best F2P Teams and Best Hyperbloom Team, each with reasoning, caveats and FAQ. Added in-depth guides for Furina, Bennett, Xingqiu, Xiangling, Arlecchino and Ayaka. Fixed the misspelled Arlecchino URL (arlechinno to arlecchino) with 301 redirects."
 },
 {
   "date": "2026-08-29",
@@ -53,5 +53,10 @@ export const changelog = [
   "date": "2026-08-30",
   "title": "Element Hubs, Quick-Reference Tables &amp; Support Guides",
   "desc": "Added seven element hub pages covering every elemental reaction, the strongest teams per element, and the full character roster per element, linked from the footer of every page. Character pages now show a quick-reference build table instead of a card grid, plus a shortcut to the matching element hub. Added in-depth guides for Fischl, Sucrose, Beidou, Faruzan, Gorou, Layla, Tighnari, Rosaria, Chevreuse and Emilie — 55 of 95 characters now have full guides, and their build and team pages are back in the index."
+},
+{
+  "date": "2026-08-30",
+  "title": "Search Snippet Overhaul &amp; Answer-First Character Pages",
+  "desc": "Rewrote the title and description for all 349 character, build, team, weapon, artifact and element pages. Each page type now targets its own query instead of competing with itself: character pages own \"X build\", build pages own \"X best weapon\", team pages own \"X best team\". Character pages lead with a one-paragraph answer and a build table above the fold, so the gear answer is visible without scrolling, and they now link to every head-to-head comparison the character appears in. Also corrected the Arlecchino URL spelling with redirects from the old addresses."
 }
 ];

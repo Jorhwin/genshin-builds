@@ -10,14 +10,11 @@ export function getStaticPaths() {
   }));
 }
 
+import { elementTitle, elementDescription } from "../../lib/seo";
+
 const { el } = Astro.props;
-const title = "Best " + el.name + " Characters in Genshin Impact 2026 — Teams, Reactions & Builds";
-const description =
-  "Best " +
-  el.name +
-  " characters in Genshin Impact: how the element works, every " +
-  el.name +
-  " reaction, the strongest teams, and which characters to build first.";
+const title = elementTitle(el);
+const description = elementDescription(el);
 
 const roster = characters.filter((c) => c.element.toLowerCase() === el.slug);
 const sTier = roster.filter((c) => c.tier === "S");

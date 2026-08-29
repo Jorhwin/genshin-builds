@@ -715,7 +715,7 @@ export const comparisons = [
   ]
 },
 {
-  "slug": "mavuika-vs-arlechino",
+  "slug": "mavuika-vs-arlecchino",
   "nameA": "Mavuika",
   "nameB": "Arlecchino",
   "element": "Pyro",
@@ -772,7 +772,7 @@ export const comparisons = [
   ]
 },
 {
-  "slug": "arlechino-vs-hu-tao",
+  "slug": "arlecchino-vs-hu-tao",
   "nameA": "Arlecchino",
   "nameB": "Hu Tao",
   "element": "Pyro",

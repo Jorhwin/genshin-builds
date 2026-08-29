@@ -28,10 +28,11 @@ export function getStaticPaths() {
 
 const allWeapons = weaponGroups.flatMap((g) => g.weapons.map((w) => ({ ...w, type: g.type })));
 
+import { weaponTitle, weaponDescription } from "../../lib/seo";
+
 const { weapon: w } = Astro.props;
-const title = w.name + " — Best Characters, Stats & Is It Worth It (2026)";
-const description =
-  w.name + " (" + w.rarity + " " + w.type.toLowerCase() + "): best characters, how the passive works, and whether it is worth your primogems. " + w.why;
+const title = weaponTitle(w);
+const description = weaponDescription(w);
 
 const nameToSlug = new Map();
 for (const c of characters) {

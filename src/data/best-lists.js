@@ -23,7 +23,7 @@ export const bestLists = [
       },
       {
         name: "Arlecchino",
-        slug: "arlechino",
+        slug: "arlecchino",
         why: "Bond of Life scaling gives her enormous multipliers without the HP-tanking downside that Hu Tao has. Very strong in Vaporize and Overload.",
         caveat: "She cannot be healed by other characters during her stance — her only sustain is her own burst.",
       },

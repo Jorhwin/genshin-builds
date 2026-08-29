@@ -5,6 +5,7 @@ import { comparisons } from "../data/comparisons";
 import { guides } from "../data/guides";
 import { analyses } from "../data/analyses";
 import { bestLists } from "../data/best-lists";
+import { updatedLabel } from "../lib/seo";
 
 const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
 const sTier = characters.filter((c) => c.tier === "S");
@@ -34,7 +35,7 @@ const metaDescription =
     {elements.map((el) => <button class="filter-btn" data-filter={el}>{el}</button>)}
   </div>
 
-  <div class="version-badge">Updated for Version 5.x · {characters.length} characters</div>
+  <div class="version-badge">{updatedLabel()} · {characters.length} characters</div>
 
   <ul class="character-list" id="charList">
     {
