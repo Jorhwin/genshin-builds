@@ -23,5 +23,10 @@ export const changelog = [
   "date": "2026-07-22",
   "title": "Build & Team Enhancements",
   "desc": "Added build-specific and team-specific extended guides for all core characters. Added 5 new comparison pages. Added site changelog."
+},
+{
+  "date": "2026-08-29",
+  "title": "Site Architecture & SEO Overhaul",
+  "desc": "Rebuilt the site on Astro 5 (fixing a broken build). Added Characters, Builds, Teams, Comparisons and Guides index pages with search and element filters. Fixed language tags, canonical URLs, Open Graph tags, robots.txt and a full 315-URL sitemap. Removed duplicate characters and added in-depth guides for Kokomi, Clorinde, Nilou, Shenhe and Kuki Shinobu."
 }
 ];

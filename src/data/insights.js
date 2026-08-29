@@ -55,4 +55,39 @@ export const coreInsights = {
     weakness: "Mirror management is punishing if mistimed — losing 3 mirrors wastes 30%+ of damage. Needs significant field time. Requires a second Dendro (Nahida) for optimal damage.",
     controversy: "Alhaitham vs Nahida as Dendro DPS is commonly debated. He deals more on-field damage; she provides team-wide EM buff. Most accounts benefit more from Nahida first.",
   },
+  "kokomi": {
+    whyItWorks: "Her jellyfish applies Hydro off-field every 2s for 12s, and her burst refreshes it — near-permanent Hydro aura while also healing the team.",
+    keyThreshold: "HP 35k+ (healing scales with HP). ER 130-160% with Prototype Amber, less with a second Hydro. CRIT is useless — her passive sets CRIT Rate negative.",
+    metaStatus: "S-tier enabler. Core of Nilou Bloom and Ayaka Freeze; still the safest Hydro healer in the game.",
+    weakness: "Zero personal damage. If your team already has healing or does not need a Hydro aura, a damage-oriented Hydro unit contributes more.",
+    controversy: "Kokomi vs Barbara in Nilou Bloom: Barbara heals more but has almost no Hydro uptime, while Kokomi trades raw healing for consistent aura and Tenacity buffs.",
+  },
+  "clorinde": {
+    whyItWorks: "Bond of Life is both her resource and her damage source — healing received while the bond is active is converted into more Bond of Life, which becomes more Electro damage.",
+    keyThreshold: "ATK 2,000+. CRIT 70/160+. EM 100-200 in Aggravate teams. ER 120-140% so the burst is ready every rotation.",
+    metaStatus: "Strong on-field Electro DPS. Best in Aggravate and Overload; falls off in reactionless Electro teams.",
+    weakness: "Interruption-sensitive during normal attack strings — run a shielder or a poise healer. Also wants a second Electro unit for Aggravate uptime.",
+    controversy: "Clorinde vs Cyno: Cyno has longer field time and more AoE, while Clorinde has better front-loaded damage and much shorter rotation commitment.",
+  },
+  "nilou": {
+    whyItWorks: "Bountiful Cores detonate instantly in a large radius and scale purely with her HP — she turns an entire team into an AoE Bloom engine without dealing damage herself.",
+    keyThreshold: "HP 74,444 for the maximum Bloom damage bonus (cap). Below 50k HP team damage drops sharply. Dendro/Hydro only — other elements disable her passive.",
+    metaStatus: "Best AoE enabler in the game. Weak against single-target bosses.",
+    weakness: "Completely inflexible team building (Hydro + Dendro only) and weak versus single-target bosses where Bountiful Cores cannot stack.",
+    controversy: "Nilou teams are often called expensive because they want Nahida plus Kokomi; budget versions with Dendro MC + Barbara work, but lose AoE consistency.",
+  },
+  "shenhe": {
+    whyItWorks: "Icy Quills add a flat damage bonus to Cryo damage instances based on her ATK — the fewer and larger the Cryo hits, the more value she provides.",
+    keyThreshold: "ATK 3,000+ (quills scale with her ATK). ER 180-220% at C0 without a second Cryo battery. CRIT is nearly worthless on her.",
+    metaStatus: "Best-in-slot Cryo amplifier for Ayaka and Ganyu. Niche outside Cryo teams.",
+    weakness: "Only works in Cryo teams, and her quill stacks disappear almost instantly in heavy AoE content.",
+    controversy: "Shenhe vs Rosaria: Rosaria brings CRIT Rate share and personal damage, while Shenhe brings a much larger raw Cryo buff but nothing else — Shenhe wins at high investment, Rosaria at low investment.",
+  },
+  "kuki-shinobu": {
+    whyItWorks: "Her skill follows the active character, applying Electro off-field and healing at the same time — exactly what a Hyperbloom team needs in one slot.",
+    keyThreshold: "Level 90 (mandatory — reaction damage scales with level). EM 800-1,000. Ignore ATK, CRIT, and DMG% entirely.",
+    metaStatus: "S-tier 4-star. Best Hyperbloom trigger in the game and the reason Hyperbloom is the top F2P archetype.",
+    weakness: "Her skill costs her own HP, and at full EM she is squishy with reduced healing. Outside Hyperbloom and Overload she contributes very little.",
+    controversy: "Kuki vs Raiden as Hyperbloom trigger: Kuki heals and is a 4-star, while Raiden has better uptime and no HP cost — most players prefer Kuki because the healing removes the need for a separate sustain slot."
+  }
 };
