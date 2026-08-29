@@ -187,5 +187,75 @@ export const coreInsights = {
   "metaStatus": "Highest damage ceiling among Pyro carries, and the strongest Melt enabler currently available.",
   "weakness": "Needs Natlan teammates to charge Fighting Spirit efficiently, and her best team (with Citlali and Xilonen) is very expensive.",
   "controversy": "Mavuika vs Arlecchino: Mavuika has the higher burst ceiling and overworld utility, while Arlecchino is more self-sufficient and does not need specific teammates to function."
+},
+  "kinich": {
+  "whyItWorks": "His grappling stance fires high-multiplier cannon shots that count as skill damage, and a Burning aura converts every shot into bonus reaction damage.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. A reliable Pyro teammate is effectively part of his build.",
+  "metaStatus": "Strongest Dendro carry in Burning teams, and the only claymore user who wants Unfinished Reverie.",
+  "weakness": "Awkward against groups, dependent on a Pyro aura, and missing the grapple wastes real time.",
+  "controversy": "Kinich vs Alhaitham: Kinich has higher burst windows and works in Burning, while Alhaitham has smoother sustained damage and fits existing Dendro cores more easily."
+},
+  "xilonen": {
+  "whyItWorks": "One slot gives RES shred for multiple teammate elements, full-party healing, and Nightsoul synergy — the most value per team slot of any modern support.",
+  "keyThreshold": "DEF stacked in all three main stats (aim high, around 3,000+) to maximise both RES shred and healing. ER enough for her burst every rotation.",
+  "metaStatus": "Top-tier universal support. Especially strong with Natlan carries and Furina teams.",
+  "weakness": "RES shred depends on your team's elemental diversity, and she brings no crowd control or meaningful personal damage.",
+  "controversy": "Xilonen vs Kazuha: Kazuha gives a bigger damage buff and grouping in reaction teams, while Xilonen adds healing and works against enemies that cannot be swirled."
+},
+  "citlali": {
+  "whyItWorks": "Shield, off-field Cryo, and Pyro RES shred in one slot — she removes the usual tradeoff between Melt application and defensive utility.",
+  "keyThreshold": "EM as high as possible (EM Sands, Goblet, Circlet) plus enough ER for her burst. Her shield scales with EM, not HP.",
+  "metaStatus": "Best-in-slot Melt support and the reason Pyro Melt teams are competitive again.",
+  "weakness": "Weaker shield than Zhongli, burst-dependent Cryo application, and much of her value is wasted outside Pyro teams.",
+  "controversy": "Citlali vs Layla: Layla has a stronger shield and is a 4-star, but she provides no RES shred — in Melt teams Citlali is worth far more."
+},
+  "mualani": {
+  "whyItWorks": "Her final bite scales on max HP and reacts with Vaporize, producing some of the largest single Hydro numbers in the game.",
+  "keyThreshold": "HP 40k+. CRIT Rate around 60% is enough thanks to Obsidian Codex. Requires a Pyro aura to realise her damage.",
+  "metaStatus": "Top-tier burst Hydro carry, strongest in single-target content.",
+  "weakness": "No self-healing, interruption-sensitive, and she loses roughly half her damage without a Pyro aura.",
+  "controversy": "Mualani vs Neuvillette: Neuvillette is self-sufficient and sustained, while Mualani has higher burst windows but needs a Pyro teammate to function at full power."
+},
+  "chasca": {
+  "whyItWorks": "She converts teammates' elements into her own bullets, so a diverse team directly increases her damage without needing a specific reaction setup.",
+  "keyThreshold": "CRIT Rate around 60% with Obsidian Codex. ATK 2,000+. Bring three different PHEC elements for maximum bullet variety.",
+  "metaStatus": "Most flexible Anemo carry, and one of the most comfortable units to play in awkward content.",
+  "weakness": "Damage is split across elements, so her peak is lower than a specialised carry, and she wants a multi-element team.",
+  "controversy": "Chasca vs Wanderer: Wanderer has higher single-target damage with Faruzan, while Chasca needs no dedicated support and plays more comfortably."
+},
+  "venti": {
+  "whyItWorks": "His burst groups almost every small enemy into one point while refunding energy to the team for the absorbed element.",
+  "keyThreshold": "ER 160-200% so the burst is ready every rotation. Build EM for Swirl damage or CRIT if you want personal damage.",
+  "metaStatus": "Unmatched in small-enemy content, weak against bosses that cannot be pulled.",
+  "weakness": "Contributes very little against large enemies and bosses, and his burst can whiff against mobile targets.",
+  "controversy": "Venti vs Kazuha: Kazuha is the better general pick because his buff works on everything, while Venti remains the best choice specifically for mob-heavy chambers."
+},
+  "wanderer": {
+  "whyItWorks": "Floating normal attacks let him ignore ground mechanics while dealing fast Anemo damage, and Faruzan multiplies that damage substantially.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/160+. Faruzan is effectively mandatory, and a shielder is required in difficult content.",
+  "metaStatus": "Strong Anemo carry with a high ceiling — but only when Faruzan and a shielder are both present.",
+  "weakness": "Being hit ends his damage window and drops him, and he has zero off-field presence.",
+  "controversy": "Wanderer vs Xiao: Xiao has higher plunge damage and more AoE, while Wanderer has better ranged comfort and a smoother rotation."
+},
+  "navia": {
+  "whyItWorks": "Each Crystallize shard multiplies her skill damage, so three shards turn one skill press into one of the biggest instant hits in the game.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/140+. Teammates must reliably create Crystallize shards before her skill.",
+  "metaStatus": "Best front-loaded Geo carry, and far more flexible than Itto because she does not require mono-Geo.",
+  "weakness": "Damage is concentrated in a few hits, so a missed or mistimed skill wastes most of her rotation.",
+  "controversy": "Navia vs Itto: Itto has higher sustained damage in mono-Geo, while Navia front-loads damage and fits into far more team types."
+},
+  "baizhu": {
+  "whyItWorks": "His burst provides a refreshing shield plus healing, and that continuous full-party healing is exactly what Furina needs to build Fanfare stacks.",
+  "keyThreshold": "HP 40k+. ER 180-200% so his burst is ready every rotation — this is his real build constraint.",
+  "metaStatus": "Best sustain option for reaction teams, and best-in-slot for interruption-sensitive carries like Cyno and Neuvillette.",
+  "weakness": "Almost no personal damage, slow Dendro application, and a high burst energy cost.",
+  "controversy": "Baizhu vs Yaoyao: Yaoyao heals well and is a 4-star, but she provides no interruption resistance, which is the main reason Baizhu is preferred in endgame teams."
+},
+  "skirk": {
+  "whyItWorks": "Her damage comes from her skill stance rather than Freeze, so she keeps her full output against bosses that cannot be frozen.",
+  "keyThreshold": "ATK 2,000+. CRIT 70/160+. Keep Harbinger of Dawn users above 90% HP to preserve its CRIT DMG passive.",
+  "metaStatus": "The more reliable modern Cryo carry — lower peak AoE than Ayaka, but usable in far more chambers.",
+  "weakness": "Optimal rotations are still being refined by the community, and weapon choice matters more for her than for older carries.",
+  "controversy": "Skirk vs Ayaka: Ayaka still wins on AoE burst damage when Freeze works, but Skirk is far more consistent against unfreezable bosses."
 }
 };

@@ -46,7 +46,7 @@ const faqJsonLd = JSON.stringify({
 const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex={!teamExtendedGuides[c.slug]}>
   <script type="application/ld+json" set:html={articleJsonLd}></script>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>

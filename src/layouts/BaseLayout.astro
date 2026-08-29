@@ -4,9 +4,10 @@ export interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical, ogImage } = Astro.props as Props;
+const { title, description, canonical, ogImage, noindex } = Astro.props as Props;
 const site = "https://gameup.lol";
 const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : site + Astro.url.pathname);
 const ogImg = ogImage || site + "/og-default.svg";
@@ -20,6 +21,7 @@ const ogImg = ogImage || site + "/og-default.svg";
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Genshin Builds" />

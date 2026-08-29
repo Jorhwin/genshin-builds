@@ -38,5 +38,10 @@ export const changelog = [
   "date": "2026-08-29",
   "title": "Equipment Guides, More Rankings &amp; Visual Upgrade",
   "desc": "Added Best Weapons and Best Artifact Sets guides covering 39 weapons by type and 18 artifact sets. Added three more rankings: Best Freeze Team, Best Aggravate Team and Best Beginner Characters. Added in-depth guides for Ganyu, Xiao, Childe, Itto, Yoimiya, Yae Miko, Cyno and Mavuika. Character pages now link to every ranking they appear in, and character lists show element-coloured avatars."
+},
+{
+  "date": "2026-08-30",
+  "title": "Weapon Pages, 18 New Comparisons &amp; Thin-Page Cleanup",
+  "desc": "Added 39 individual weapon pages with best-character picks, usage tips and alternatives. Expanded comparisons from 15 to 33, and fixed comparison links so they resolve character slugs from the data instead of guessing. Added in-depth guides for Kinich, Xilonen, Citlali, Mualani, Chasca, Venti, Wanderer, Navia, Baizhu and Skirk (37 characters now have full guides). Build and team pages for characters without in-depth content are now set to noindex and removed from the sitemap, which cuts 116 thin pages from Google's index."
 }
 ];

@@ -3,6 +3,8 @@ import { comparisons } from "../src/data/comparisons.js";
 import { analyses } from "../src/data/analyses.js";
 import { guides } from "../src/data/guides.js";
 import { bestLists } from "../src/data/best-lists.js";
+import { weaponGroups } from "../src/data/gear.js";
+import { extendedGuides } from "../src/data/extended-guides.js";
 import { writeFileSync, mkdirSync } from "fs";
 
 const site = "https://gameup.lol";
@@ -23,9 +25,13 @@ const pages = [
 
 for (const c of characters) {
   if (!c || !c.slug) continue;
+  // Thin pages (no in-depth content yet) are excluded from the sitemap and set to noindex
+  const hasDepth = !!(extendedGuides && extendedGuides[c.slug]);
   pages.push({ loc: `/character/${c.slug}/`, priority: "0.8", changefreq: "weekly" });
-  pages.push({ loc: `/build/${c.slug}/`, priority: "0.8", changefreq: "weekly" });
-  pages.push({ loc: `/team/${c.slug}/`, priority: "0.7", changefreq: "weekly" });
+  if (hasDepth) {
+    pages.push({ loc: `/build/${c.slug}/`, priority: "0.8", changefreq: "weekly" });
+    pages.push({ loc: `/team/${c.slug}/`, priority: "0.7", changefreq: "weekly" });
+  }
 }
 for (const comp of comparisons) {
   if (!comp || !comp.slug) continue;
@@ -42,6 +48,17 @@ for (const g of guides) {
 for (const b of bestLists) {
   if (!b || !b.slug) continue;
   pages.push({ loc: `/best/${b.slug}/`, priority: "0.9", changefreq: "weekly" });
+}
+const slugifyWeapon = (s) =>
+  s
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+for (const g of weaponGroups) {
+  for (const w of g.weapons) {
+    pages.push({ loc: `/weapon/${slugifyWeapon(w.name)}/`, priority: "0.7", changefreq: "monthly" });
+  }
 }
 
 const urls = pages

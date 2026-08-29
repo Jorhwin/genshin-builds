@@ -1,0 +1,175 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { weaponGroups } from "../../data/gear";
+import { weaponTips } from "../../data/weapon-tips";
+import { characters } from "../../data/characters";
+
+const slugify = (s) =>
+  s
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+export function getStaticPaths() {
+  // Define locally — Astro extracts getStaticPaths, so module-level consts are not in scope
+  const slug = (s) =>
+    s
+      .toLowerCase()
+      .replace(/['’]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  const all = weaponGroups.flatMap((g) => g.weapons.map((w) => ({ ...w, type: g.type })));
+  return all.map((w) => ({
+    params: { slug: slug(w.name) },
+    props: { weapon: w },
+  }));
+}
+
+const allWeapons = weaponGroups.flatMap((g) => g.weapons.map((w) => ({ ...w, type: g.type })));
+
+const { weapon: w } = Astro.props;
+const title = w.name + " — Best Characters, Stats & Is It Worth It (2026)";
+const description =
+  w.name + " (" + w.rarity + " " + w.type.toLowerCase() + "): best characters, how the passive works, and whether it is worth your primogems. " + w.why;
+
+const nameToSlug = new Map();
+for (const c of characters) {
+  nameToSlug.set(c.name.toLowerCase(), c.slug);
+  nameToSlug.set(c.name.toLowerCase().replace(/\s*\(.*\)\s*/g, "").trim(), c.slug);
+}
+const resolveChar = (n) => {
+  const key = n.toLowerCase().trim();
+  if (nameToSlug.has(key)) return nameToSlug.get(key);
+  const noParens = key.replace(/\s*\(.*\)\s*/g, "").trim();
+  return nameToSlug.get(noParens) || null;
+};
+
+const bestFor = w.bestFor.split(",").map((s) => s.trim()).filter(Boolean);
+const siblings = allWeapons.filter((x) => x.type === w.type && x.name !== w.name);
+const tip = weaponTips[w.name] || "";
+
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  about: { "@type": "Thing", name: w.name },
+});
+
+const faq = [
+  {
+    q: "Who should use " + w.name + "?",
+    a: "It is best on " + w.bestFor + ". " + w.why,
+  },
+  {
+    q: "Is " + w.name + " worth pulling?",
+    a:
+      w.rarity.startsWith("5")
+        ? "Only if the characters above are core to your account. The gap between a signature weapon and a refined 4-star alternative is usually 10-20%, which is less valuable than an additional character."
+        : "It is a 4-star option, so you will likely obtain it through normal wishes. Refinement rank matters far more than whether you own it at all.",
+  },
+  {
+    q: "What are the alternatives to " + w.name + "?",
+    a:
+      "Other strong " +
+      w.type.toLowerCase() +
+      " options include " +
+      siblings
+        .slice(0, 4)
+        .map((s) => s.name)
+        .join(", ") +
+      ".",
+  },
+];
+
+const faqJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={articleJsonLd}></script>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
+
+  <p>
+    <span class="tag tag-S">{w.rarity}</span>
+    <span style="color: var(--text-muted);">{w.type}</span>
+  </p>
+  <h1>{w.name}</h1>
+  <p class="subtitle">{w.why}</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Weapon Type</div>
+      <div class="stat-value">{w.type}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Rarity</div>
+      <div class="stat-value">{w.rarity}</div>
+    </div>
+  </div>
+
+  <h2>Best Characters for {w.name}</h2>
+  <ul class="character-list" style="grid-template-columns: 1fr;">
+    {
+      bestFor.map((n) => {
+        const slug = resolveChar(n);
+        return (
+          <li>
+            {slug ? (
+              <a href={`/character/${slug}/`}>
+                <span class="char-name">{n}</span>
+                <span class="desc">{n} build guide →</span>
+              </a>
+            ) : (
+              <span style="display:block;padding:12px 16px;color:var(--text-secondary);">{n}</span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  {tip && (
+    <div class="insight-box">
+      <h3>How to get the most out of it</h3>
+      <p>{tip}</p>
+    </div>
+  )}
+
+  <h2>Alternatives &amp; Similar {w.type}s</h2>
+  <div class="mini-grid">
+    {
+      siblings.map((s) => (
+        <a href={`/weapon/${slugify(s.name)}/`}>
+          {s.name} <span style="color: var(--text-muted); font-size: 0.8rem;">· {s.rarity}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  {
+    faq.map((f) => (
+      <div class="card" style="margin: 12px 0; padding: 14px 18px;">
+        <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">{f.q}</h3>
+        <p style="margin: 0;">{f.a}</p>
+      </div>
+    ))
+  }
+
+  <div class="internal-links">
+    <h3>Related Guides</h3>
+    <a href="/weapons/">All Best Weapons by Type →</a>
+    <a href="/artifacts/">Best Artifact Sets →</a>
+    <a href="/characters/">All Characters →</a>
+    <a href="/best/">Best Characters &amp; Teams →</a>
+  </div>
+</BaseLayout>

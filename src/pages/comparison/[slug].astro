@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { comparisons } from "../../data/comparisons";
+import { characters } from "../../data/characters";
 
 export function getStaticPaths() {
   return comparisons.map((c) => ({
@@ -12,6 +13,26 @@ export function getStaticPaths() {
 const { comp: c } = Astro.props;
 const title = c.seoTitle;
 const description = c.seoDesc;
+
+// Resolve a display name to an existing character slug (never guess — guessed slugs 404)
+const byName = new Map();
+for (const ch of characters) {
+  byName.set(ch.name.toLowerCase(), ch.slug);
+  byName.set(ch.name.toLowerCase().replace(/\s*\(.*\)\s*/g, "").trim(), ch.slug);
+  byName.set(ch.slug, ch.slug);
+}
+const resolveSlug = (name) => {
+  if (!name) return null;
+  const key = name.toLowerCase().trim();
+  if (byName.has(key)) return byName.get(key);
+  const noParens = key.replace(/\s*\(.*\)\s*/g, "").trim();
+  if (byName.has(noParens)) return byName.get(noParens);
+  const guess = key.replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  if (byName.has(guess)) return byName.get(guess);
+  return null;
+};
+const slugA = resolveSlug(c.nameA);
+const slugB = resolveSlug(c.nameB);
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -92,9 +113,22 @@ const faqJsonLd = JSON.stringify({
 
   <div class="internal-links">
     <h3>📂 Related Character Guides</h3>
-    <a href={`/character/${c.nameA.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "")}/`}>📋 {c.nameA} Guide →</a>
-    <a href={`/character/${c.nameB.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "")}/`}>📋 {c.nameB} Guide →</a>
-    <a href="/">🏠 All Characters</a>
+    {
+      slugA ? (
+        <a href={`/character/${slugA}/`}>📋 {c.nameA} Guide →</a>
+      ) : (
+        <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameA}</span>
+      )
+    }
+    {
+      slugB ? (
+        <a href={`/character/${slugB}/`}>📋 {c.nameB} Guide →</a>
+      ) : (
+        <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameB}</span>
+      )
+    }
+    <a href="/characters/">🏠 All Characters</a>
+    <a href="/comparisons/">📊 All Comparisons →</a>
   </div>
 </BaseLayout>
 
