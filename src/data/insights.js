@@ -383,5 +383,26 @@ export const coreInsights = {
   "metaStatus": "Best Burning sub-DPS, and the strongest partner for Kinich and Pyro Burning carries.",
   "weakness": "Almost no value outside Burning teams, and her damage depends on a Pyro teammate maintaining the Burning aura.",
   "controversy": "Emilie vs Nahida: they are not substitutes — Nahida enables reactions, while Emilie deals raw Dendro damage in Burning. Burning teams want Emilie; every other Dendro team wants Nahida."
+},
+  "dehya": {
+  "whyItWorks": "Her Skill field redirects part of the active character's incoming damage onto herself and grants interruption resistance, while her Burst is a sustained melee sequence. Hybrid ATK/HP scaling plus her A4 self-heal (below 40% HP) make her a durable bodyguard, and her best value is as a mitigator or off-field Burgeon trigger rather than a carry.",
+  "keyThreshold": "Support: ~180-200% ER so her Burst can redeploy the field, HP% or ATK% sands. Burgeon: EM 500-800+ with Flower of Paradise Lost. Avoid pure HP at C0 — C1 makes HP scaling viable.",
+  "metaStatus": "Low-tier DPS but flexible enabler. Best as a Burgeon trigger, an interruption shield for glass cannons (Wanderer, Ganyu), or in Chevreuse Overload. Niche and outclassed as a primary carry.",
+  "weakness": "Split ATK/HP scaling means she rarely out-damages a dedicated carry, her field is not a true shield and breaks against heavy hitters, and on-field ER needs are punishing (160-225%) without a Pyro battery.",
+  "controversy": "Dehya is one of the most debated 5-stars: widely called weak on release for her dual scaling, yet her mitigation plus self-heal make her a unique bodyguard. The community still argues whether her kit was salvageable or doomed by design."
+},
+  "wriothesley": {
+  "whyItWorks": "His Skill (Icefang Rush) turns Charged Attacks into Rebuke strikes that spend his own HP to boost damage, while his Gracious Rebuke passive heals him when HP drops below 60% — a self-sustaining HP oscillation. Marechaussee Hunter keeps max CRIT Rate stacks permanently because his HP moves on nearly every attack.",
+  "keyThreshold": "ATK 2,000+. CRIT ~70/180+ (Marechaussee Hunter supplies free CRIT Rate, so favour CRIT DMG). ER 120-130% for burst. He must stay above 50% HP to keep his Skill buff, so a healer (Bennett/Mika) or shielder is effectively required.",
+  "metaStatus": "A-tier Cryo on-field carry, strong in Freeze and Melt/Burnmelt. One of the most comfortable premium Cryo DPS alongside Ayaka and Skirk.",
+  "weakness": "Needs to stay above 50% HP to retain his Skill buff (a C0 quality-of-life issue), has no interruption resistance (shielder advised), and short range. C1 greatly smooths his HP economy.",
+  "controversy": "Wriothesley vs Ayaka/Skirk/Ganyu for the Cryo carry slot: he has higher sustained on-field DPS than Ayaka and easier play than Ganyu, but Skirk edges him in unfreezable boss content where he cannot rely on Freeze."
+},
+  "barbara": {
+  "whyItWorks": "Her Skill applies Hydro off-field and heals the active character on every Normal Attack, while her Burst is a large party-wide instant heal. Her C6 auto-revives a fallen character — making her the only free resurrection in the game.",
+  "keyThreshold": "HP 30k+ (all healing scales with HP). ER 120-140% with Thrilling Tales of Dragon Slayers. Healing Bonus circlet if not running HP%. CRIT and DMG% are irrelevant — her personal damage is minor.",
+  "metaStatus": "Best free Hydro healer. Still useful in Bloom and Freeze comfort teams, but outclassed by Kokomi, Xingqiu, and Yelan for Hydro application and by dedicated healers for pure sustain.",
+  "weakness": "On-field Hydro application costs her field time, her Wet aura can cause accidental Freeze that interrupts charged-attack carries, and she provides no shielding or off-field damage.",
+  "controversy": "Barbara vs Kokomi: Kokomi gives better Hydro uptime, Tenacity buffs, and off-field healing, while Barbara is free and brings a C6 revive. For F2P Bloom and early-game sustain, Barbara remains the budget pick."
 }
 };

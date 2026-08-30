@@ -11,6 +11,32 @@ const { title, description, canonical, ogImage, noindex } = Astro.props as Props
 const site = "https://gameup.lol";
 const canonicalURL = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : site + Astro.url.pathname);
 const ogImg = ogImage || site + "/og-default.svg";
+
+// BreadcrumbList JSON-LD for every page, derived from the URL path.
+const SITE = "https://gameup.lol";
+const CRUMB_LABELS = {
+  characters: "Characters", character: "Characters",
+  builds: "Builds", build: "Build",
+  teams: "Teams", team: "Team",
+  weapons: "Weapons", weapon: "Weapons",
+  artifacts: "Artifacts", artifact: "Artifacts",
+  elements: "Elements", element: "Elements",
+  best: "Best", comparisons: "Comparisons", comparison: "Comparisons",
+  guides: "Guides", guide: "Guides",
+  search: "Search", changelog: "Changelog"
+};
+function buildBreadcrumb(pathname) {
+  const segs = String(pathname || "/").split("/").filter(Boolean);
+  const items = [{ "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" }];
+  let acc = "";
+  segs.forEach((s) => {
+    acc += "/" + s;
+    const label = CRUMB_LABELS[s] || s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    items.push({ "@type": "ListItem", position: items.length + 1, name: label, item: SITE + acc + "/" });
+  });
+  return { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items };
+}
+const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 ---
 
 <!DOCTYPE html>
@@ -18,9 +44,13 @@ const ogImg = ogImage || site + "/og-default.svg";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
     {noindex && <meta name="robots" content="noindex, follow" />}
 
     <meta property="og:type" content="website" />
@@ -37,8 +67,6 @@ const ogImg = ogImage || site + "/og-default.svg";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap.xml" />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
       :root {
         --bg-primary: #0a0a12;
         --bg-secondary: #12121e;

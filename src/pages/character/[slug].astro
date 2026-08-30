@@ -5,6 +5,7 @@ import { coreInsights } from "../../data/insights";
 import { extendedGuides } from "../../data/extended-guides";
 import { bestLists } from "../../data/best-lists";
 import { comparisons } from "../../data/comparisons";
+import { weaponGroups, artifactSets } from "../../data/gear";
 import { characterTitle, characterDescription, roleLabel, article, shortPhrase, score } from "../../lib/seo";
 
 export function getStaticPaths() {
@@ -15,6 +16,21 @@ export function getStaticPaths() {
 }
 
 const { character: c } = Astro.props;
+const slugify = (s) =>
+  String(s || "").toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+// Real weapon/artifact slugs come from src/data/gear.js (same slugify used by
+// the weapon/artifact pages). Resolving against this set guarantees we never
+// emit a 404 internal link for combo strings like "X / Y" or "X 4pc + 2pc Y".
+const weaponSlugs = new Set(weaponGroups.flatMap((g) => g.weapons.map((w) => slugify(w.name))));
+const artifactSlugs = new Set(artifactSets.map((a) => slugify(a.name)));
+const resolveGear = (text, set) => {
+  const n = slugify(text);
+  if (set.has(n)) return n;
+  for (const k of set) if (n.includes(k) && k.length > 2) return k;
+  return null;
+};
+const wSlug = resolveGear(c.bestWeapon, weaponSlugs);
+const aSlug = resolveGear(c.bestArtifacts, artifactSlugs);
 const relatedLists = bestLists.filter((b) => b.items.some((i) => i.slug === c.slug));
 const title = characterTitle(c);
 const description = characterDescription(c);
@@ -51,6 +67,14 @@ const faq = [
   {
     q: "What is the best " + c.name + " team in " + YEAR + "?",
     a: "The strongest " + c.name + " team in " + YEAR + " is " + shortPhrase(c.strongTeam, 60) + ". " + shortPhrase(c.f2pTeam, 60) + " is the best budget alternative."
+  },
+  {
+    q: "What are the best artifact main stats for " + c.name + "?",
+    a: "Prioritize " + c.mainStats + " on " + c.name + "'s artifacts to maximize performance."
+  },
+  {
+    q: "Who are the best teammates for " + c.name + "?",
+    a: shortPhrase(c.strongTeam, 80)
   }
 ];
 const faqJsonLd = JSON.stringify({
@@ -94,7 +118,7 @@ const faqJsonLd = JSON.stringify({
     </div>
     <div class="qrow">
       <div class="qlabel">Best Weapon</div>
-      <div class="qvalue">{c.bestWeapon}</div>
+      <div class="qvalue">{wSlug ? <a href={`/weapon/${wSlug}/`}>{c.bestWeapon}</a> : c.bestWeapon}</div>
     </div>
     <div class="qrow">
       <div class="qlabel">F2P Weapon</div>
@@ -102,7 +126,7 @@ const faqJsonLd = JSON.stringify({
     </div>
     <div class="qrow">
       <div class="qlabel">Artifact Set</div>
-      <div class="qvalue">{c.bestArtifacts}</div>
+      <div class="qvalue">{aSlug ? <a href={`/artifact/${aSlug}/`}>{c.bestArtifacts}</a> : c.bestArtifacts}</div>
     </div>
     <div class="qrow">
       <div class="qlabel">Main Stats</div>
