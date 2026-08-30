@@ -69,7 +69,7 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap.xml" />
-    <style>
+    <style is:global>
       :root {
         --bg-primary: #0b0d16;
         --bg-secondary: #11131f;
