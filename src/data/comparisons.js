@@ -1656,11 +1656,767 @@ export const comparisons = [
     {
       "name": "Cost",
       "items": [
-        {
-          "a": "5-star",
-          "b": "4-star, easy to constellate",
-          "winner": "B"
-        }
+      {
+        "a": "5-star",
+        "b": "4-star, easy to constellate",
+        "winner": "B"
+      }
+    ]
+  }
+]
+},
+
+/* ===================== NEW: same-element & 4-star vs 5-star ===================== */
+
+{
+  "slug": "raiden-vs-clorinde",
+  "nameA": "Raiden Shogun",
+  "nameB": "Clorinde",
+  "element": "Electro",
+  "seoDesc": "Raiden Shogun vs Clorinde: which Electro carry should you build? Battery and burst damage versus fast front-loaded personal DPS compared.",
+  "summary": "Raiden Shogun is a universal battery and burst nuke who fits almost any team, while Clorinde is a faster, front-loaded Electro carry with short field time and Bond of Life scaling.",
+  "verdict": "Pull Raiden if you want a plug-and-play battery that improves every team and a massive burst. Pull Clorinde if you already have a good Electro enabler and want a self-sufficient on-field carry with short, flexible rotations.",
+  "categories": [
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Massive front-loaded burst, team-wide energy", "b": "Fast front-loaded normals, short field time", "winner": "Different roles" },
+        { "a": "Higher team damage via battery", "b": "Higher personal DPS in short windows", "winner": "B (personal)" }
+      ]
+    },
+    {
+      "name": "Team Role",
+      "items": [
+        { "a": "Battery + Burst DPS", "b": "On-field Aggravate or Quickbloom driver", "winner": "Different roles" },
+        { "a": "Fits Raiden National, Hypercarry", "b": "Fits Aggravate, Overload", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Field Time",
+      "items": [
+        { "a": "Long burst rotation", "b": "8-10s, easier to slot", "winner": "B (flexibility)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "cyno-vs-raiden",
+  "nameA": "Cyno",
+  "nameB": "Raiden Shogun",
+  "element": "Electro",
+  "seoDesc": "Cyno vs Raiden Shogun: which Electro hypercarry is better? Sustained on-field damage versus universal battery and burst compared.",
+  "summary": "Both are Electro hypercarries, but Cyno wants long field time and a Dendro core for Quickbloom, while Raiden is a burst DPS who also batteries the team.",
+  "verdict": "Pull Raiden for a universal unit that solves energy and deals huge burst damage. Pull Cyno only if you love Aggravate or Quickbloom and already have Nahida plus a shielder for his long rotations.",
+  "categories": [
+    {
+      "name": "Role",
+      "items": [
+        { "a": "Burst DPS + team battery", "b": "Sustained on-field Hypercarry", "winner": "Different roles" },
+        { "a": "Improves every team's energy", "b": "Needs Nahida + shielder", "winner": "A (versatility)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Huge front-loaded burst", "b": "Sustained over a long window", "winner": "Situational" },
+        { "a": "Lower personal, higher team", "b": "Higher personal DPS", "winner": "B (personal)" }
+      ]
+    },
+    {
+      "name": "Ease of Use",
+      "items": [
+        { "a": "Simple burst rotation", "b": "Long 12-18s field time", "winner": "A" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "wriothesley-vs-ayaka",
+  "nameA": "Wriothesley",
+  "nameB": "Ayaka",
+  "element": "Cryo",
+  "seoDesc": "Wriothesley vs Ayaka: which Cryo carry should you build? Freeze-independent self-healing damage versus the Freeze AoE benchmark compared.",
+  "summary": "Wriothesley is a self-healing on-field Cryo carry who works without Freeze, while Ayaka is the Freeze benchmark with the best AoE burst when enemies can be frozen.",
+  "verdict": "Pull Ayaka if you want the highest AoE burst in Freeze teams and a cheap craftable weapon. Pull Wriothesley for a comfortable, Freeze-independent carry who still deals strong Cryo damage against bosses.",
+  "categories": [
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Strong, no Freeze dependency", "b": "Best AoE burst when frozen", "winner": "B (AoE) / A (bosses)" },
+        { "a": "Self-healing, comfortable", "b": "Higher peak with Blizzard Strayer", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Team",
+      "items": [
+        { "a": "Works without Freeze", "b": "Needs a Freeze core", "winner": "A (flexibility)" },
+        { "a": "Flexible supports", "b": "Shenhe or Kazuha core", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Investment",
+      "items": [
+        { "a": "Signature or F2P options", "b": "Amenoma (craftable) is excellent", "winner": "B (cheaper)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "lyney-vs-hu-tao",
+  "nameA": "Lyney",
+  "nameB": "Hu Tao",
+  "element": "Pyro",
+  "seoDesc": "Lyney vs Hu Tao: which Pyro DPS is better? Ranged charged-shot self-sustain versus the Vaporize single-target benchmark compared.",
+  "summary": "Lyney is a ranged Charged-shot Pyro with self-healing and taunt, while Hu Tao is the single-target Vaporize benchmark with higher peak damage but harder execution.",
+  "verdict": "Pull Hu Tao if you want the highest Pyro single-target ceiling and already have Yelan or Xingqiu. Pull Lyney for comfortable ranged Pyro damage with self-sustain and easier play on mobile.",
+  "categories": [
+    {
+      "name": "Ease of Use",
+      "items": [
+        { "a": "Charged-shot aiming", "b": "Jump-cancel required at C0", "winner": "A (easier)" },
+        { "a": "Self-heal + taunt", "b": "Needs a shielder", "winner": "A" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "High per-hit, some AoE", "b": "Highest single-target Vaporize", "winner": "B (ceiling)" },
+        { "a": "Mono-Pyro friendly", "b": "Double Hydro for peak", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Mono-Pyro with Bennett or Kazuha", "b": "Vape with Xingqiu or Yelan", "winner": "Different teams" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "xilonen-vs-zhongli",
+  "nameA": "Xilonen",
+  "nameB": "Zhongli",
+  "element": "Geo",
+  "seoDesc": "Xilonen vs Zhongli: which Geo support is better? RES shred plus healing versus the strongest shield in the game compared.",
+  "summary": "Xilonen shreds RES for her teammates' elements and heals, working against enemies that cannot be swirled, while Zhongli provides the strongest shield plus 20 percent universal RES shred.",
+  "verdict": "Pull Zhongli if you want maximum comfort and interruption resistance for squishy carries. Pull Xilonen if you want a Natlan-era support who heals, shreds RES, and enables modern carries like Mavuika.",
+  "categories": [
+    {
+      "name": "Utility",
+      "items": [
+        { "a": "RES shred + healing + Nightsoul", "b": "Strongest shield + 20% RES shred", "winner": "Different strengths" },
+        { "a": "Works vs ungroupable enemies", "b": "Universal, no swirl needed", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Offense",
+      "items": [
+        { "a": "RES shred for team elements", "b": "Universal 20% RES shred", "winner": "B (universal)" },
+        { "a": "Enables Natlan carries", "b": "Enables any carry", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Comfort",
+      "items": [
+        { "a": "Heals the party", "b": "Shields the party", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "navia-vs-chiori",
+  "nameA": "Navia",
+  "nameB": "Chiori",
+  "element": "Geo",
+  "seoDesc": "Navia vs Chiori: which Geo unit should you build? Front-loaded DPS versus off-field sub-DPS compared.",
+  "summary": "Navia is a front-loaded Geo DPS who works outside mono-Geo, while Chiori is an off-field Geo sub-DPS who out-damages at equal investment but wants a Geo partner.",
+  "verdict": "Pull Navia if you want a flexible Geo carry with short field time and strong teams beyond mono-Geo. Pull Chiori if you already run Geo teams and want the stronger off-field sub-DPS.",
+  "categories": [
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Huge front-loaded skill", "b": "Higher off-field DPS", "winner": "B (off-field) / A (burst)" },
+        { "a": "Works in mixed teams", "b": "Wants a Geo construct", "winner": "A (flexibility)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Bennett, Xiangling, Furina", "b": "Mono-Geo, Navia teams", "winner": "A (more types)" },
+        { "a": "Shorter field time", "b": "Almost no field time", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Cost",
+      "items": [
+        { "a": "Strong 4-star weapons", "b": "5-star, benefits from signature", "winner": "A (cheaper)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "ganyu-vs-shenhe",
+  "nameA": "Ganyu",
+  "nameB": "Shenhe",
+  "element": "Cryo",
+  "seoDesc": "Ganyu vs Shenhe: which Cryo unit should you pull? On-field AoE DPS versus Cryo damage amplifier compared.",
+  "summary": "Ganyu is the premier Cryo on-field DPS with massive AoE charged shots, while Shenhe is a Cryo amp support whose Icy Quills massively boost Cryo damage but only in Cryo teams.",
+  "verdict": "Pull Ganyu if you want a self-sufficient AoE Cryo carry (great on mobile with aim style 2). Pull Shenhe if you already run Ayaka or Ganyu and want to multiply their Cryo damage at high investment.",
+  "categories": [
+    {
+      "name": "Role",
+      "items": [
+        { "a": "On-field Cryo DPS", "b": "Cryo damage amplifier", "winner": "Different roles" },
+        { "a": "AoE charged-shot damage", "b": "Flat Cryo buff via Icy Quills", "winner": "Different roles" }
+      ]
+    },
+    {
+      "name": "Team",
+      "items": [
+        { "a": "Freeze, Melt, Mono-Cryo", "b": "Cryo teams only", "winner": "A (more types)" },
+        { "a": "Self-sufficient", "b": "Best with Ayaka or Ganyu", "winner": "A" }
+      ]
+    },
+    {
+      "name": "Cost",
+      "items": [
+        { "a": "Amenoma craftable works", "b": "5-star, wants ATK percent and ER", "winner": "A (cheaper)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "mizuki-vs-kazuha",
+  "nameA": "Mizuki",
+  "nameB": "Kazuha",
+  "element": "Anemo",
+  "seoDesc": "Mizuki vs Kazuha: which Anemo unit is better? On-field swirl driver versus the universal damage buffer compared.",
+  "summary": "Mizuki is an on-field Anemo driver who swirls while moving and enables quicken and electro-charged teams, while Kazuha is the universal buffer who amps Elemental DMG and shreds RES for swirlable elements.",
+  "verdict": "Pull Kazuha for the universal damage amp and crowd control that fits every team. Pull Mizuki only if you specifically want a driver for Aggravate or Electro-Charged who can hold Deepwood and move while swirling.",
+  "categories": [
+    {
+      "name": "Buffing",
+      "items": [
+        { "a": "Deepwood + swirl while moving", "b": "VV shred + EM-scaling DMG bonus", "winner": "B (damage)" },
+        { "a": "Enables Aggravate or EC", "b": "Enables every reaction", "winner": "B (universal)" }
+      ]
+    },
+    {
+      "name": "Playstyle",
+      "items": [
+        { "a": "On-field driver, mobile", "b": "Plunge plus swirl, low field time", "winner": "Different" },
+        { "a": "No crowd control", "b": "Strong grouping", "winner": "B (CC)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Aggravate, Taser", "b": "Any reaction team", "winner": "B (more)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "kazuha-vs-lan-yan",
+  "nameA": "Kazuha",
+  "nameB": "Lan Yan",
+  "element": "Anemo",
+  "seoDesc": "Kazuha vs Lan Yan: which Anemo support should you build? Premium damage buffer versus a 4-star shielder with VV shred compared.",
+  "summary": "Kazuha is the premium Anemo buffer with EM-scaling damage amp and crowd control, while Lan Yan is a 4-star Anemo shielder who provides VV shred and a shield but lower damage.",
+  "verdict": "Pull Kazuha if you want the best general Anemo support. Lan Yan is an excellent free-to-build alternative who adds a shield on top of VV shred, but she cannot match Kazuha's damage amp or grouping.",
+  "categories": [
+    {
+      "name": "Buffing",
+      "items": [
+        { "a": "EM-scaling DMG bonus + VV", "b": "VV shred + shield", "winner": "A (damage)" },
+        { "a": "Strong crowd control", "b": "Moderate CC, shield instead", "winner": "A (CC)" }
+      ]
+    },
+    {
+      "name": "Defense",
+      "items": [
+        { "a": "No shield", "b": "Provides a shield", "winner": "B (sustain)" },
+        { "a": "Fits any team", "b": "Fits any team", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Cost",
+      "items": [
+        { "a": "5-star", "b": "4-star, easy to get", "winner": "B (cheaper)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "xiangling-vs-arlecchino",
+  "nameA": "Xiangling",
+  "nameB": "Arlecchino",
+  "element": "Pyro",
+  "seoDesc": "Xiangling vs Arlecchino: free off-field Pyro versus premium on-field Pyro DPS. Which should you build first?",
+  "summary": "Xiangling is the free off-field Pyro DPS who snapshots Bennett's buff and anchors National teams, while Arlecchino is a 5-star on-field Pyro carry with Bond of Life scaling and no HP-tanking downside.",
+  "verdict": "Build Xiangling first — she is free and powers every Pyro and National team. Pull Arlecchino if you want a premium on-field Pyro carry that works immediately with 4-star weapons and supports.",
+  "categories": [
+    {
+      "name": "Role",
+      "items": [
+        { "a": "Off-field Pyro sub-DPS", "b": "On-field Pyro main DPS", "winner": "Different roles" },
+        { "a": "Free from the Abyss", "b": "5-star, needs wishes", "winner": "A (free)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Pyronado snapshot", "b": "Higher personal damage", "winner": "B (peak)" },
+        { "a": "Needs Bennett battery", "b": "Self-sufficient", "winner": "B" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "National, Melt Ganyu", "b": "Vape, Overload", "winner": "Both strong" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "xiangling-vs-mavuika",
+  "nameA": "Xiangling",
+  "nameB": "Mavuika",
+  "element": "Pyro",
+  "seoDesc": "Xiangling vs Mavuika: free Pyro engine versus premium Natlan Pyro DPS. Which should you build first?",
+  "summary": "Xiangling is the accessible off-field Pyro engine behind National teams, while Mavuika is a 5-star Pyro carry with the highest burst ceiling but wants expensive Natlan teammates.",
+  "verdict": "Build Xiangling — she is free and irreplaceable in Pyro teams. Pull Mavuika if you are building around Natlan units and want the highest Pyro burst damage in the game.",
+  "categories": [
+    {
+      "name": "Role",
+      "items": [
+        { "a": "Off-field Pyro sub-DPS", "b": "On-field Pyro DPS", "winner": "Different roles" },
+        { "a": "Free, 4-star weapon fine", "b": "5-star, wants Natlan core", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Consistent off-field", "b": "Highest Pyro burst ceiling", "winner": "B (peak)" },
+        { "a": "Synergy with Bennett", "b": "Wants Citlali or Xilonen", "winner": "Different" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "National everywhere", "b": "Natlan-focused", "winner": "A (universal)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "fischl-vs-raiden",
+  "nameA": "Fischl",
+  "nameB": "Raiden Shogun",
+  "element": "Electro",
+  "seoDesc": "Fischl vs Raiden Shogun: best 4-star Electro versus the premium battery. Which Electro unit should you build?",
+  "summary": "Fischl provides the most reliable single-target Electro application and battery via Oz, while Raiden is a 5-star battery plus burst DPS who also solves team energy.",
+  "verdict": "Build Fischl — she is a 4-star who fits every Electro team and generates energy. Pull Raiden if you want a unit who both batteries the team and deals a massive personal burst.",
+  "categories": [
+    {
+      "name": "Application",
+      "items": [
+        { "a": "Oz: best single-target Electro", "b": "Skill: off-field Electro", "winner": "A (single-target)" },
+        { "a": "Generates energy", "b": "Generates and uses energy", "winner": "B (battery)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Low personal, pure enabler", "b": "Huge personal burst", "winner": "B (damage)" },
+        { "a": "4-star, easy to build", "b": "5-star, needs wishes", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Aggravate, Taser, Overload", "b": "National, Hypercarry", "winner": "Both versatile" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "collei-vs-nahida",
+  "nameA": "Collei",
+  "nameB": "Nahida",
+  "element": "Dendro",
+  "seoDesc": "Collei vs Nahida: free Dendro enabler versus the best Dendro support. Which should you build first?",
+  "summary": "Collei is a free 4-star Dendro applicator who unlocks Dendro reactions, while Nahida is the best off-field Dendro support with mark application and EM share.",
+  "verdict": "Build Collei first — she is free and opens Hyperbloom and Aggravate. Pull Nahida as soon as possible; she is the core of every Dendro archetype and irreplaceable at high investment.",
+  "categories": [
+    {
+      "name": "Application",
+      "items": [
+        { "a": "Boomerang off-field Dendro", "b": "Marks up to 8 enemies", "winner": "B (coverage)" },
+        { "a": "Short skill uptime", "b": "Permanent Quicken uptime", "winner": "B" }
+      ]
+    },
+    {
+      "name": "Support",
+      "items": [
+        { "a": "Enables reactions only", "b": "EM share + personal damage", "winner": "B" },
+        { "a": "Free from events", "b": "5-star, needs wishes", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Hyperbloom, Aggravate", "b": "All Dendro teams", "winner": "B (more)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "gorou-vs-xilonen",
+  "nameA": "Gorou",
+  "nameB": "Xilonen",
+  "element": "Geo",
+  "seoDesc": "Gorou vs Xilonen: 4-star Geo buffer versus premium RES-shred support. Which should you build?",
+  "summary": "Gorou is the 4-star Geo battery who buffs DEF and provides off-field Geo for mono-Geo teams, while Xilonen is a 5-star RES-shred support who heals and fits more team types.",
+  "verdict": "Build Gorou if you main Itto or Noelle and want the mono-Geo buffer. Pull Xilonen for a premium support who shreds RES, heals, and works far beyond Geo teams.",
+  "categories": [
+    {
+      "name": "Buffing",
+      "items": [
+        { "a": "DEF buff + Geo shred", "b": "RES shred + healing", "winner": "B (universal)" },
+        { "a": "Mono-Geo only", "b": "Any team element", "winner": "B (flexibility)" }
+      ]
+    },
+    {
+      "name": "Role",
+      "items": [
+        { "a": "Geo battery + buffer", "b": "Support + Nightsoul", "winner": "Different" },
+        { "a": "4-star, easy", "b": "5-star", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Itto, Noelle, Albedo", "b": "Mavuika, Natlan, Geo", "winner": "B (more)" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "kuki-shinobu-vs-raiden",
+  "nameA": "Kuki Shinobu",
+  "nameB": "Raiden Shogun",
+  "element": "Electro",
+  "seoDesc": "Kuki Shinobu vs Raiden Shogun: best Hyperbloom trigger versus premium off-field trigger. Which should you build?",
+  "summary": "Kuki Shinobu is the best Hyperbloom trigger — off-field Electro plus healing — while Raiden is a 5-star who can also trigger cores off-field but without sustain.",
+  "verdict": "Build Kuki for Hyperbloom — she is a 4-star who needs only level 90 and EM, and she heals. Pull Raiden if you want a 5-star trigger with no HP cost and a massive personal burst, accepting you need a separate healer.",
+  "categories": [
+    {
+      "name": "Hyperbloom",
+      "items": [
+        { "a": "Best trigger + heals", "b": "Off-field trigger, no heal", "winner": "A (trigger)" },
+        { "a": "Level 90 + EM only", "b": "Level 90 + EM, no heal", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Transformative only", "b": "Huge personal burst", "winner": "B (damage)" },
+        { "a": "4-star", "b": "5-star", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Hyperbloom core", "b": "National, Hyperbloom", "winner": "Both" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "yanfei-vs-hu-tao",
+  "nameA": "Yanfei",
+  "nameB": "Hu Tao",
+  "element": "Pyro",
+  "seoDesc": "Yanfei vs Hu Tao: free charged-shot Pyro versus the Vaporize benchmark. Which Pyro DPS should you build?",
+  "summary": "Yanfei is a 4-star Charged-shot Pyro who is easy and self-sufficient, while Hu Tao is the 5-star Vaporize benchmark with much higher single-target ceiling.",
+  "verdict": "Build Yanfei if you want a free, comfortable Pyro carry for early game. Pull Hu Tao if you want the highest Pyro single-target damage and already have Hydro enablers for Vaporize.",
+  "categories": [
+    {
+      "name": "Ease of Use",
+      "items": [
+        { "a": "Simple charged attacks", "b": "Jump-cancel at C0", "winner": "A (easier)" },
+        { "a": "Free, craftable weapon", "b": "5-star, wants wishes", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Comfortable, lower ceiling", "b": "Highest single-target Vaporize", "winner": "B (ceiling)" },
+        { "a": "Self-sufficient", "b": "Wants a shielder", "winner": "Even" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Vape, Mono-Pyro", "b": "Double Hydro Vape", "winner": "Different" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "diona-vs-shenhe",
+  "nameA": "Diona",
+  "nameB": "Shenhe",
+  "element": "Cryo",
+  "seoDesc": "Diona vs Shenhe: 4-star Cryo shielder versus premium Cryo amplifier. Which should you build?",
+  "summary": "Diona is a 4-star Cryo shielder and healer who provides utility and Cryo application, while Shenhe is a 5-star Cryo amp who multiplies Cryo damage for Ayaka or Ganyu teams.",
+  "verdict": "Build Diona for shielding and healing in Freeze teams on a budget. Pull Shenhe only if you already run Ayaka or Ganyu at high investment and want to multiply their Cryo damage.",
+  "categories": [
+    {
+      "name": "Utility",
+      "items": [
+        { "a": "Shield + heal + Cryo", "b": "Cryo DMG buff only", "winner": "A (utility)" },
+        { "a": "4-star, easy", "b": "5-star", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "No personal damage", "b": "Massive Cryo amp", "winner": "B (damage)" },
+        { "a": "Fits Freeze comfortably", "b": "Best with Ayaka or Ganyu", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Freeze, Melt", "b": "Cryo DPS teams", "winner": "Different" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "gaming-vs-hu-tao",
+  "nameA": "Gaming",
+  "nameB": "Hu Tao",
+  "element": "Pyro",
+  "seoDesc": "Gaming vs Hu Tao: free plunge Pyro versus the Vaporize benchmark. Which Pyro DPS should you build?",
+  "summary": "Gaming is a 4-star Pyro plunge DPS who is surprisingly strong with his signature or F2P weapons, while Hu Tao is the 5-star Vaporize benchmark with higher ceiling.",
+  "verdict": "Build Gaming if you want a free, fun Pyro plunge carry who clears content with Xianyun or Bennett. Pull Hu Tao for the highest Pyro single-target damage and stronger late-game scaling.",
+  "categories": [
+    {
+      "name": "Damage",
+      "items": [
+        { "a": "Strong plunge, F2P-friendly", "b": "Highest single-target Vaporize", "winner": "B (ceiling)" },
+        { "a": "Wants Xianyun or Bennett", "b": "Wants Hydro enablers", "winner": "Different" }
+      ]
+    },
+    {
+      "name": "Ease of Use",
+      "items": [
+        { "a": "Plunge, straightforward", "b": "Jump-cancel at C0", "winner": "A (easier)" },
+        { "a": "4-star", "b": "5-star", "winner": "A (cheaper)" }
+      ]
+    },
+    {
+      "name": "Teams",
+      "items": [
+        { "a": "Plunge, Vape", "b": "Double Hydro Vape", "winner": "Different" }
+      ]
+    }
+  ]
+},
+
+/* ===================== NEW: weapon vs weapon ===================== */
+
+{
+  "slug": "staff-of-homa-vs-engulfing-lightning",
+  "kind": "weapon",
+  "nameA": "Staff of Homa",
+  "nameB": "Engulfing Lightning",
+  "element": "Polearm",
+  "seoDesc": "Staff of Homa vs Engulfing Lightning: best polearm for HP carries versus best polearm for Raiden. Which should you pull?",
+  "summary": "Staff of Homa is the premier HP-scaling polearm for on-field Pyro and tanky carries, while Engulfing Lightning is the energy-focused polearm built for Raiden's burst kit.",
+  "verdict": "Pick Staff of Homa if your carry scales on HP or wants raw crit and ATK (Hu Tao, Xiao). Pick Engulfing Lightning for Raiden Shogun, where its ER-to-ATK conversion is unmatched and effectively mandatory.",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Hu Tao, Xiao, Diluc", "b": "Raiden Shogun", "winner": "Different" },
+        { "a": "HP or crit carries", "b": "ER-dependent burst units", "winner": "Different" }
+      ]
+    },
+    {
+      "name": "Stat Profile",
+      "items": [
+        { "a": "High crit plus HP scaling", "b": "ER converted to ATK", "winner": "Situational" },
+        { "a": "Universal DPS boost", "b": "Synergizes with Raiden kit", "winner": "B (for Raiden)" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Best general polearm", "b": "Best Raiden polearm", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "wolfs-gravestone-vs-beacon-of-the-reed-sea",
+  "kind": "weapon",
+  "nameA": "Wolf's Gravestone",
+  "nameB": "Beacon of the Reed Sea",
+  "element": "Claymore",
+  "seoDesc": "Wolf's Gravestone vs Beacon of the Reed Sea: universal claymore versus Natlan claymore. Which should you pull?",
+  "summary": "Wolf's Gravestone gives a flat ATK percent boost that helps any claymore carry, while Beacon of the Reed Sea provides HP-scaling and damage bonuses tailored to Natlan claymore users like Mavuika.",
+  "verdict": "Pick Wolf's Gravestone as the safe, universal claymore for any carry (Diluc, Eula, Chongyun). Pick Beacon of the Reed Sea if you main Mavuika or another Natlan claymore that scales on HP and wants the on-field damage bonus.",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Any claymore DPS", "b": "Mavuika, Natlan claymores", "winner": "Different" },
+        { "a": "Universal ATK percent buffer", "b": "HP-scaling synergy", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Effect",
+      "items": [
+        { "a": "ATK percent to whole team", "b": "HP plus damage bonus", "winner": "Situational" },
+        { "a": "No condition", "b": "Needs a Natlan kit", "winner": "A (universal)" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Safest claymore pick", "b": "Best for Mavuika", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "aqua-simulacra-vs-thundering-pulse",
+  "kind": "weapon",
+  "nameA": "Aqua Simulacra",
+  "nameB": "Thundering Pulse",
+  "element": "Bow",
+  "seoDesc": "Aqua Simulacra vs Thundering Pulse: universal bow versus best charged-attack bow. Which should you pull?",
+  "summary": "Aqua Simulacra gives a big HP-independent damage bonus plus a useful HP stat, strong on almost any bow carry, while Thundering Pulse maximizes Charged Attack damage for bow DPS like Yoimiya and Lyney.",
+  "verdict": "Pick Aqua Simulacra as the universal bow — its damage bonus works for every bow user and the HP helps survivability. Pick Thundering Pulse if you main Charged Attack bow DPS (Yoimiya, Lyney) and want the highest per-hit damage.",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Almost any bow DPS", "b": "Yoimiya, Lyney, charged bow", "winner": "Different" },
+        { "a": "Universal damage bonus", "b": "Charged Attack focus", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Stat",
+      "items": [
+        { "a": "Crit DMG plus HP", "b": "ATK percent plus Charged DMG", "winner": "Situational" },
+        { "a": "Works everywhere", "b": "Best for charged bow", "winner": "A (universal)" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Best general bow", "b": "Best charged bow", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "mistsplitter-vs-amenoma-kageuchi",
+  "kind": "weapon",
+  "nameA": "Mistsplitter Reforged",
+  "nameB": "Amenoma Kageuchi",
+  "element": "Sword",
+  "seoDesc": "Mistsplitter Reforged vs Amenoma Kageuchi: best sword versus best craftable sword. Which should you use?",
+  "summary": "Mistsplitter Reforged is the highest-damage sword for Elemental DMG carries like Ayaka and the Kamisato siblings, while Amenoma Kageuchi is a craftable 4-star that refunds energy and is excellent on Ayaka.",
+  "verdict": "Pull Mistsplitter if you main Ayaka or Kamisato heroes and want the best-in-slot sword. Use Amenoma Kageuchi if you are free-to-play — its energy refund makes Ayaka's rotations smooth at a fraction of the cost.",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Ayaka, Kamisato, Hydro or Electro sword", "b": "Ayaka, energy-needy swords", "winner": "Different" },
+        { "a": "Elemental DMG focus", "b": "Energy refund focus", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Cost",
+      "items": [
+        { "a": "5-star signature", "b": "4-star craftable", "winner": "B (cheaper)" },
+        { "a": "Higher personal damage", "b": "Smoother rotations", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Best sword overall", "b": "Best F2P sword", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "sacrificial-sword-vs-favonius-sword",
+  "kind": "weapon",
+  "nameA": "Sacrificial Sword",
+  "nameB": "Favonius Sword",
+  "element": "Sword",
+  "seoDesc": "Sacrificial Sword vs Favonius Sword: best Xingqiu sword versus best support sword. Which should you use?",
+  "summary": "Sacrificial Sword gives a chance to reset skill cooldown — best for Xingqiu's double skill — while Favonius Sword generates team-wide energy from crit hits, making it the universal support sword.",
+  "verdict": "Pick Sacrificial Sword for Xingqiu, where double skill is a massive upgrade. Pick Favonius Sword for any support who can land crit hits and needs to battery the team (Jean, Layla, support sword users).",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Xingqiu (double skill)", "b": "Supports who crit", "winner": "Different" },
+        { "a": "Skill-reset focus", "b": "Energy generation focus", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Team Role",
+      "items": [
+        { "a": "Personal uptime", "b": "Team battery", "winner": "B (team)" },
+        { "a": "Best on Xingqiu", "b": "Universal support", "winner": "B (universal)" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Best Xingqiu sword", "b": "Best support sword", "winner": "Situational" }
+      ]
+    }
+  ]
+},
+{
+  "slug": "the-catch-vs-dragons-bane",
+  "kind": "weapon",
+  "nameA": "The Catch",
+  "nameB": "Dragon's Bane",
+  "element": "Polearm",
+  "seoDesc": "The Catch vs Dragon's Bane: best free polearm versus best reaction polearm. Which should you use?",
+  "summary": "The Catch is a free fishing polearm that is best-in-slot for Raiden, while Dragon's Bane is a cheap shop polearm that massively boosts Vaporize and Melt for Polearm carries like Hu Tao.",
+  "verdict": "Farm The Catch if you use Raiden — it is free and arguably her best weapon. Buy Dragon's Bane at refinement 5 for Hu Tao or any Polearm Vaporize or Melt carry, where its EM bonus is huge for reaction damage.",
+  "categories": [
+    {
+      "name": "Best On",
+      "items": [
+        { "a": "Raiden Shogun (free, best in slot)", "b": "Hu Tao, Vape or Melt poles", "winner": "Different" },
+        { "a": "Burst ER plus crit", "b": "EM for reactions", "winner": "Situational" }
+      ]
+    },
+    {
+      "name": "Cost",
+      "items": [
+        { "a": "Free (fishing)", "b": "Cheap (shop, refine 5)", "winner": "Even (both cheap)" },
+        { "a": "Best on Raiden", "b": "Best on Hu Tao", "winner": "Different" }
+      ]
+    },
+    {
+      "name": "Value",
+      "items": [
+        { "a": "Best F2P polearm", "b": "Best reaction polearm", "winner": "Situational" }
       ]
     }
   ]

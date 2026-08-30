@@ -26,10 +26,16 @@ const relatedComparisons = comparisons.filter(
 );
 const rivalOf = (x) => (x.nameA.toLowerCase() === c.name.toLowerCase() ? x.nameB : x.nameA);
 const jsonld = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
+// Queries that include a year rank far better for this site than bare ones
+// (avg position 11.2 vs 42.6 in Search Console), because the big wikis optimize
+// for "mona build" and almost nobody targets "mona build 2026". Folding the
+// year into H1 and two of the four FAQ questions widens that surface area
+// without reading like keyword stuffing.
+const YEAR = 2026;
 const faq = [
   {
-    q: "What is the best build for " + c.name + "?",
-    a: "The best " + c.name + " build uses " + c.bestWeapon + " with " + c.bestArtifacts + ". Main stats: " + c.mainStats + ". This setup maximizes their damage and keeps their rotation smooth."
+    q: "What is the best " + c.name + " build in " + YEAR + "?",
+    a: "The best " + c.name + " build in " + YEAR + " uses " + c.bestWeapon + " with " + c.bestArtifacts + ". Main stats: " + c.mainStats + ". This setup maximizes their damage and keeps their rotation smooth."
   },
   {
     q: "Is " + c.name + " good in the current meta?",
@@ -43,8 +49,8 @@ const faq = [
     a: "The best free-to-play weapon for " + c.name + " is " + c.f2pWeapon + ". It provides competitive damage without requiring the weapon banner, making it a great budget option."
   },
   {
-    q: "What is the recommended rotation for " + c.name + "?",
-    a: "The recommended rotation is: " + c.rotation + ". Practicing this order ensures " + c.name + " snapshots buffs and maximizes their damage window."
+    q: "What is the best " + c.name + " team in " + YEAR + "?",
+    a: "The strongest " + c.name + " team in " + YEAR + " is " + shortPhrase(c.strongTeam, 60) + ". " + shortPhrase(c.f2pTeam, 60) + " is the best budget alternative."
   }
 ];
 const faqJsonLd = JSON.stringify({
@@ -66,7 +72,7 @@ const faqJsonLd = JSON.stringify({
     <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
     <span style="color: var(--text-muted);">{c.role} &middot; {c.weapon}</span>
   </p>
-  <h1>{c.name} Build Guide</h1>
+  <h1>Best {c.name} Build for {YEAR}</h1>
 
   <!-- Answer-first block. Google's featured snippet wants a single dense
        paragraph that resolves the query without scrolling, so the gear answer
@@ -127,7 +133,7 @@ const faqJsonLd = JSON.stringify({
     </div>
   )}
 
-  <h2>Best Teams</h2>
+  <h2>Best {c.name} Teams in {YEAR}</h2>
   <p>{c.teamRole}</p>
   <div class="card">
     <h3>Strongest Team</h3>

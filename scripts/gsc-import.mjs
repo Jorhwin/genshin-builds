@@ -57,30 +57,56 @@ function parseCsvLine(line) {
 const raw = readFileSync(csvPath, "utf8").replace(/^﻿/, "");
 const lines = raw.split(/\r?\n/);
 
-// Find the header row: the first line that mentions both clicks and impressions.
+// Find the header row: the first line mentioning both clicks and impressions.
+// Accepts localized headers -- a zh-CN export reads "点击次数,展示".
+const has = (s, ...needles) => needles.some((n) => s.includes(n));
 let headerIdx = -1;
 for (let i = 0; i < Math.min(lines.length, 25); i++) {
   const low = lines[i].toLowerCase();
-  if (low.includes("click") && low.includes("impress")) { headerIdx = i; break; }
+  if (has(low, "click", "点击") && has(low, "impress", "展示", "曝光")) {
+    headerIdx = i;
+    break;
+  }
 }
 if (headerIdx === -1) {
   console.error("Could not locate a header row containing clicks + impressions.");
+  console.error("First lines seen:\n" + lines.slice(0, 5).join("\n"));
   process.exit(1);
 }
 
 const header = parseCsvLine(lines[headerIdx]).map((h) => h.toLowerCase());
-const colOf = (...needles) => header.findIndex((h) => needles.every((n) => h.includes(n)));
 
-const I_KEY = header.findIndex((h) => h.includes("page") || h.includes("query") || h.includes("网页") || h.includes("查询"));
-const I_CLICK = colOf("click");
-const I_IMPR = colOf("impress");
-const I_CTR = colOf("ctr") > -1 ? colOf("ctr") : colOf("点击率");
-const I_POS = colOf("position") > -1 ? colOf("position") : colOf("排名");
+// Column detection accepts English and Chinese header names. GSC exports are
+// localized ("点击次数", not "Clicks") and a missed column yields a report full
+// of zeroes rather than an error, so every lookup carries fallbacks.
+const pick = (...needles) => {
+  // Exact match first, then substring. Otherwise "排名" matches the URL column
+  // ("排名靠前的网页") before it reaches the actual position column, and every
+  // position silently parses as 0 -- which then misclassifies every page.
+  for (const n of needles) {
+    const i = header.indexOf(n);
+    if (i > -1) return i;
+  }
+  for (const n of needles) {
+    const i = header.findIndex((h) => h.includes(n));
+    if (i > -1) return i;
+  }
+  return -1;
+};
+
+const I_KEY = pick("page", "query", "网页", "查询", "landing");
+const I_CLICK = pick("click", "点击");
+const I_IMPR = pick("impress", "展示", "曝光");
+const I_CTR = pick("ctr", "点击率");
+const I_POS = pick("position", "排名", "位置");
 
 if (I_KEY === -1 || I_CLICK === -1 || I_IMPR === -1) {
   console.error("Missing required columns. Detected header: " + JSON.stringify(header));
+  console.error(`Resolved -> key:${I_KEY} clicks:${I_CLICK} impressions:${I_IMPR} ctr:${I_CTR} pos:${I_POS}`);
   process.exit(1);
 }
+// A column index colliding with the key column means detection went wrong.
+if (I_POS === I_KEY) I_POS = -1;
 
 const num = (s) => {
   if (s == null) return 0;

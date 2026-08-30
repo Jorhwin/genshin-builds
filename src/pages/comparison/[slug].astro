@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { comparisons } from "../../data/comparisons";
 import { characters } from "../../data/characters";
+import { weaponGroups } from "../../data/gear";
+import { comparisonTitle } from "../../lib/seo";
 
 export function getStaticPaths() {
   return comparisons.map((c) => ({
@@ -11,17 +13,21 @@ export function getStaticPaths() {
 }
 
 const { comp: c } = Astro.props;
-const title = c.seoTitle;
+const title = comparisonTitle(c);
 const description = c.seoDesc;
+const kind = c.kind || "character";
 
-// Resolve a display name to an existing character slug (never guess — guessed slugs 404)
+const slugify = (s) =>
+  s.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+// Character name -> slug (never guess — guessed slugs 404)
 const byName = new Map();
 for (const ch of characters) {
   byName.set(ch.name.toLowerCase(), ch.slug);
   byName.set(ch.name.toLowerCase().replace(/\s*\(.*\)\s*/g, "").trim(), ch.slug);
   byName.set(ch.slug, ch.slug);
 }
-const resolveSlug = (name) => {
+const resolveChar = (name) => {
   if (!name) return null;
   const key = name.toLowerCase().trim();
   if (byName.has(key)) return byName.get(key);
@@ -31,8 +37,27 @@ const resolveSlug = (name) => {
   if (byName.has(guess)) return byName.get(guess);
   return null;
 };
-const slugA = resolveSlug(c.nameA);
-const slugB = resolveSlug(c.nameB);
+
+// Weapon name -> slug (only used for kind === "weapon")
+const weaponSlugMap = new Map();
+for (const g of weaponGroups) {
+  for (const w of g.weapons) {
+    const ws = slugify(w.name);
+    weaponSlugMap.set(w.name.toLowerCase(), ws);
+    weaponSlugMap.set(w.name.toLowerCase().replace(/\s*\(.*\)\s*/g, "").trim(), ws);
+  }
+}
+const resolveWeapon = (name) => {
+  if (!name) return null;
+  const key = name.toLowerCase().trim();
+  return weaponSlugMap.has(key) ? weaponSlugMap.get(key) : null;
+};
+
+const slugA = kind === "weapon" ? resolveWeapon(c.nameA) : resolveChar(c.nameA);
+const slugB = kind === "weapon" ? resolveWeapon(c.nameB) : resolveChar(c.nameB);
+const linkA = slugA ? (kind === "weapon" ? `/weapon/${slugA}/` : `/character/${slugA}/`) : null;
+const linkB = slugB ? (kind === "weapon" ? `/weapon/${slugB}/` : `/character/${slugB}/`) : null;
+
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -49,8 +74,14 @@ const faqJsonLd = JSON.stringify({
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
   <p>
-    <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
-    <span style="color: var(--text-muted); font-size: 0.9rem;">Character Comparison</span>
+    {
+      kind === "weapon" ? (
+        <span class="tag" style="background:rgba(160,64,255,0.1);color:#c48aff;border:1px solid rgba(160,64,255,0.2);">{c.element}</span>
+      ) : (
+        <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+      )
+    }
+    <span style="color: var(--text-muted); font-size: 0.9rem;">{kind === "weapon" ? "Weapon Comparison" : "Character Comparison"}</span>
   </p>
 
   <h1>{c.nameA} vs {c.nameB}</h1>
@@ -98,31 +129,31 @@ const faqJsonLd = JSON.stringify({
   <h2>Which One Should You Choose?</h2>
   <div class="card" style="margin: 16px 0;">
     <p>{c.verdict}</p>
-    <p style="margin-top: 10px;">Consider your account when deciding. Look at the weapons and artifacts you already own, the teams you already have built, and the content you struggle with most. Both {c.nameA} and {c.nameB} are strong — the right choice depends on which fills a bigger gap in your roster.</p>
+    <p style="margin-top: 10px;">Consider your account when deciding. Look at the units and weapons you already own, the teams you already have built, and the content you struggle with most. Both {c.nameA} and {c.nameB} are strong — the right choice depends on which fills a bigger gap in your roster.</p>
   </div>
 
   <h2>Frequently Asked Questions</h2>
   <div class="card" style="margin: 12px 0; padding: 14px 18px;">
     <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">Is {c.nameA} or {c.nameB} better?</h3>
-    <p style="margin: 0;">There is no universal answer — {c.nameA} wins in {c.categories.map(cat => cat.name).join(" and ").replace(/,([^,]*)$/, " and$1")} scenarios where their kit shines, while {c.nameB} is stronger in others. Use the comparison tables above to match each character's strengths to your specific needs.</p>
+    <p style="margin: 0;">There is no universal answer — {c.nameA} wins in {c.categories.map(cat => cat.name).join(" and ").replace(/,([^,]*)$/, " and$1")} scenarios where their kit shines, while {c.nameB} is stronger in others. Use the comparison tables above to match each option's strengths to your specific needs.</p>
   </div>
   <div class="card" style="margin: 12px 0; padding: 14px 18px;">
     <h3 style="margin-bottom: 6px; font-size: 1rem; color: var(--text-primary);">Which one is better for F2P players?</h3>
-    <p style="margin: 0;">Both characters are viable at C0 with their F2P weapon options. Check each character's dedicated guide for the best budget builds and teams to see which one fits your account's current roster.</p>
+    <p style="margin: 0;">Both options are viable at base constellation with their F2P alternatives. Check each option's dedicated guide for the best budget builds and teams to see which one fits your account's current roster.</p>
   </div>
 
   <div class="internal-links">
-    <h3>📂 Related Character Guides</h3>
+    <h3>📂 Related Guides</h3>
     {
-      slugA ? (
-        <a href={`/character/${slugA}/`}>📋 {c.nameA} Guide →</a>
+      linkA ? (
+        <a href={linkA}>📋 {c.nameA} Guide →</a>
       ) : (
         <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameA}</span>
       )
     }
     {
-      slugB ? (
-        <a href={`/character/${slugB}/`}>📋 {c.nameB} Guide →</a>
+      linkB ? (
+        <a href={linkB}>📋 {c.nameB} Guide →</a>
       ) : (
         <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameB}</span>
       )

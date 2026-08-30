@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { characters } from "../../data/characters";
+import { weaponGroups, artifactSets } from "../../data/gear";
+import { comparisons } from "../../data/comparisons";
+import { bestLists } from "../../data/best-lists";
+import { elements } from "../../data/elements";
+import { guides } from "../../data/guides";
+
+const slug = (s) =>
+  s.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+// Build a static search index at build time — no server, no client fetch.
+const index = [
+  ...characters.map((c) => ({
+    title: c.name,
+    url: `/character/${c.slug}/`,
+    type: "Character",
+    kw: (c.name + " " + c.role + " " + c.element + " " + c.weapon).toLowerCase(),
+  })),
+  ...weaponGroups.flatMap((g) =>
+    g.weapons.map((w) => ({
+      title: w.name,
+      url: `/weapon/${slug(w.name)}/`,
+      type: "Weapon",
+      kw: (w.name + " " + w.type + " " + w.rarity).toLowerCase(),
+    }))
+  ),
+  ...artifactSets.map((a) => ({
+    title: a.name,
+    url: `/artifact/${slug(a.name)}/`,
+    type: "Artifact",
+    kw: a.name.toLowerCase(),
+  })),
+  ...comparisons.map((c) => ({
+    title: c.nameA + " vs " + c.nameB,
+    url: `/comparison/${c.slug}/`,
+    type: c.kind === "weapon" ? "Weapon Comparison" : "Comparison",
+    kw: (c.nameA + " " + c.nameB).toLowerCase(),
+  })),
+  ...bestLists.map((b) => ({
+    title: b.title.split("—")[0].trim(),
+    url: `/best/${b.slug}/`,
+    type: "Best List",
+    kw: b.title.toLowerCase(),
+  })),
+  ...elements.map((e) => ({
+    title: "Best " + e.name + " Characters",
+    url: `/element/${e.slug}/`,
+    type: "Element",
+    kw: ("best " + e.name + " characters").toLowerCase(),
+  })),
+  ...guides.map((g) => ({
+    title: g.title,
+    url: `/guide/${g.slug}/`,
+    type: "Guide",
+    kw: g.title.toLowerCase(),
+  })),
+];
+
+const types = [...new Set(index.map((i) => i.type))];
+
+const metaTitle = "Search Genshin Impact Guides 2026 — Characters, Weapons, Artifacts";
+const metaDescription =
+  "Search every Genshin Impact build guide, weapon, artifact, comparison, and tier list on the site.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Search</h1>
+  <p class="subtitle">
+    Find any character, weapon, artifact, comparison, or guide across the whole site.
+  </p>
+
+  <input
+    id="siteSearch"
+    class="search-box"
+    type="search"
+    placeholder="Search… (e.g. Raiden, Hu Tao, Mistsplitter, Hyperbloom)"
+    autocomplete="off"
+  />
+
+  <div class="filter-row" id="typeRow">
+    <button class="filter-btn active" data-type="all">All</button>
+    {types.map((t) => <button class="filter-btn" data-type={t}>{t}</button>)}
+  </div>
+
+  <div class="version-badge">{index.length} pages indexed</div>
+
+  <ul class="character-list" id="resultList">
+    {
+      index.map((it) => (
+        <li class="result-item" data-type={it.type} data-kw={it.kw} data-title={it.title.toLowerCase()}>
+          <a href={it.url}>
+            <span class="result-type tag">{it.type}</span>
+            <span class="char-name">{it.title}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p id="noResults" style="display:none; color: var(--text-muted);">
+    No results found. Try a shorter or different term.
+  </p>
+
+  <div class="internal-links">
+    <h3>Or browse by section</h3>
+    <a href="/characters/">All Characters →</a>
+    <a href="/comparisons/">Comparisons →</a>
+    <a href="/best/">Best Lists →</a>
+    <a href="/weapons/">Weapons →</a>
+    <a href="/artifacts/">Artifacts →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .result-type {
+    background: rgba(96, 128, 255, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(96, 128, 255, 0.2);
+    flex: 0 0 auto;
+  }
+  .result-item .char-name {
+    margin-left: 4px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var input = document.getElementById("siteSearch");
+    var items = Array.prototype.slice.call(document.querySelectorAll(".result-item"));
+    var noRes = document.getElementById("noResults");
+    var currentType = "all";
+
+    function apply() {
+      var q = (input.value || "").trim().toLowerCase();
+      var shown = 0;
+      items.forEach(function (li) {
+        var hay = li.getAttribute("data-kw") + " " + li.getAttribute("data-title");
+        var okType = currentType === "all" || li.getAttribute("data-type") === currentType;
+        var okQuery = !q || hay.indexOf(q) !== -1;
+        var visible = okType && okQuery;
+        li.style.display = visible ? "" : "none";
+        if (visible) shown += 1;
+      });
+      noRes.style.display = shown === 0 ? "block" : "none";
+    }
+
+    input.addEventListener("input", apply);
+
+    document.querySelectorAll("#typeRow .filter-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("#typeRow .filter-btn").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+        currentType = btn.getAttribute("data-type");
+        apply();
+      });
+    });
+  })();
+</script>

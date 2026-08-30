@@ -2,20 +2,35 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { comparisons } from "../../data/comparisons";
 
-const metaTitle = "Genshin Impact Character Comparisons 2026 — Who Should You Pull?";
+const metaTitle = "Genshin Impact Comparisons 2026 — Characters & Weapons: Who Should You Build?";
 const metaDescription =
-  "Side-by-side Genshin Impact character comparisons: damage, teams, F2P value, ease of use, and clear pull recommendations.";
+  "Side-by-side Genshin Impact comparisons: characters and weapons ranked by damage, teams, F2P value, ease of use, and clear pull recommendations.";
+
+const charComparisons = comparisons.filter((c) => (c.kind || "character") === "character");
+const weaponComparisons = comparisons.filter((c) => c.kind === "weapon");
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
-  <h1>Character Comparisons</h1>
+  <h1>Genshin Impact Comparisons</h1>
   <p class="subtitle">
-    Head-to-head comparisons to help you decide who to pull and who to build first.
+    Head-to-head comparisons to help you decide who to pull and what to build first.
   </p>
 
+  <h2>Character Comparisons</h2>
   <div class="mini-grid">
-    {comparisons.map((c) => <a href={`/comparison/${c.slug}/`}>{c.nameA} vs {c.nameB}</a>)}
+    {charComparisons.map((c) => <a href={`/comparison/${c.slug}/`}>{c.nameA} vs {c.nameB}</a>)}
   </div>
+
+  {
+    weaponComparisons.length > 0 && (
+      <div>
+        <h2 style="margin-top: 32px;">Weapon Comparisons</h2>
+        <div class="mini-grid">
+          {weaponComparisons.map((c) => <a href={`/comparison/${c.slug}/`}>{c.nameA} vs {c.nameB}</a>)}
+        </div>
+      </div>
+    )
+  }
 
   <div class="insight-box" style="margin-top: 28px;">
     <h3>How to read these comparisons</h3>
@@ -29,6 +44,7 @@ const metaDescription =
   <div class="internal-links">
     <h3>Explore More</h3>
     <a href="/characters/">All Characters →</a>
+    <a href="/weapons/">All Weapons →</a>
     <a href="/builds/">All Build Guides →</a>
     <a href="/teams/">All Team Guides →</a>
   </div>

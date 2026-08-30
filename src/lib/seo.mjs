@@ -187,11 +187,11 @@ export function weaponTitle(w) {
 
 export function weaponDescription(w) {
   // `why` is the real differentiator (it explains the passive), so it leads and
-  // the generic tail is what gets cut when we run long.
-  return cap(
-    `${w.name} (${w.rarity} ${String(w.type || "").toLowerCase()}): ${w.why} Best on: ${w.bestFor}.`,
-    DESC_MAX
-  );
+  // the generic tail is what gets cut when we run long. A "Worth pulling?" hook
+  // is appended only when it fits, so we never truncate the "Best on" signal.
+  const base = `${w.name} (${w.rarity} ${String(w.type || "").toLowerCase()}): ${w.why} Best on: ${w.bestFor}.`;
+  const hook = ` Is ${w.name} worth pulling in 2026?`;
+  return cap(base + (base.length + hook.length <= DESC_MAX ? hook : ""), DESC_MAX);
 }
 
 /* --------------------------------------------------------------- artifacts */
@@ -209,10 +209,13 @@ export function artifactTitle(set) {
 
 export function artifactDescription(set) {
   // Lead with the caveat -- "when NOT to farm this" is the part competitors
-  // omit, and it is the reason someone clicks a farming guide.
+  // omit, and it is the reason someone clicks a farming guide. A "Worth farming?"
+  // hook is appended only when it fits, so the "Skip it if" caveat survives.
   const parts = [`${set.name} — ${set.why} Best on: ${set.bestFor}.`];
   if (set.caveat) parts.push(`Skip it if: ${set.caveat}`);
-  return cap(parts.join(" "), DESC_MAX);
+  let base = parts.join(" ");
+  const hook = ` Is ${set.name} worth farming in 2026?`;
+  return cap(base + (base.length + hook.length <= DESC_MAX ? hook : ""), DESC_MAX);
 }
 
 /* ---------------------------------------------------------------- elements */
@@ -235,6 +238,37 @@ export function elementDescription(el) {
   if (rx.length) parts.push(`Core reactions: ${rx.slice(0, 3).join(", ")}.`);
   parts.push(`Best teams, builds and who is worth your primogems.`);
   return cap(parts.join(" "), DESC_MAX);
+}
+
+/* ------------------------------------------------------------ comparisons */
+
+/**
+ * Comparison <title> in question form. Questions pull a higher CTR than
+ * declarative "X vs Y: Best Z Comparison" lines because they echo the searcher's
+ * own mental query. The 2026 suffix keeps the freshness signal.
+ */
+export function comparisonTitle(c) {
+  return firstFit(
+    [
+      `${c.nameA} vs ${c.nameB}: Which Should You Build? (2026)`,
+      `${c.nameA} vs ${c.nameB}: Which Should You Build?`,
+    ],
+    TITLE_MAX
+  );
+}
+
+/* ------------------------------------------------------------------- best */
+
+/**
+ * Best-list <title> leads with the entry count — "{n} Best X" reads as a
+ * concrete, scannable resource and out-CTRs a bare "Best X Tier List".
+ */
+export function bestTitle(list) {
+  const n = (list.items || []).length;
+  const base = String(list.title || "").split("—")[0].trim();
+  const withCount = base.replace(/^Best\s+(.+)$/i, `Best ${n} $1`);
+  const candidate = withCount || base;
+  return firstFit([candidate], TITLE_MAX) || cap(candidate, TITLE_MAX);
 }
 
 /* --------------------------------------------------------------- utilities */

@@ -3,55 +3,124 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 
 const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
+const weapons = [...new Set(characters.map((c) => c.weapon))].sort();
+const roles = [...new Set(characters.map((c) => c.role))].sort();
+const tiers = ["S", "A", "B"];
 const metaTitle = "All Genshin Impact Characters — Build Guides & Tier List 2026";
 const metaDescription =
-  "Browse all Genshin Impact characters with build guides, best weapons, artifact sets, teams, and rotations. Filter by element and tier.";
+  "Browse all Genshin Impact characters with build guides, best weapons, artifact sets, teams, and rotations. Filter by element, weapon type, role, and tier.";
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
   <h1>All Genshin Impact Characters</h1>
   <p class="subtitle">
     Every character with a dedicated build guide, team guide, and rotation breakdown.
+    Filter by element, weapon type, role, or tier — or search by name.
   </p>
 
-  <div class="filter-row">
-    <a class="filter-btn active" href="/characters/">All ({characters.length})</a>
-    {
-      elements.map((el) => (
-        <a class="filter-btn" href={`/characters/#${el.toLowerCase()}`}>
-          {el} ({characters.filter((c) => c.element === el).length})
-        </a>
-      ))
-    }
+  <input
+    id="charSearch"
+    class="search-box"
+    type="search"
+    placeholder="Search a character… (e.g. Raiden, Hu Tao, Nahida)"
+    autocomplete="off"
+  />
+
+  <div class="filter-row" data-group="element">
+    <button class="filter-btn active" data-group="element" data-value="all">All Elements</button>
+    {elements.map((el) => <button class="filter-btn" data-group="element" data-value={el}>{el}</button>)}
   </div>
 
-  {
-    elements.map((el) => (
-      <section id={el.toLowerCase()} style="margin-top: 28px;">
-        <h2>{el} Characters</h2>
-        <ul class="character-list">
-          {characters
-            .filter((c) => c.element === el)
-            .map((c) => (
-              <li>
-                <a href={`/character/${c.slug}/`}>
+  <div class="filter-row" data-group="weapon">
+    <button class="filter-btn active" data-group="weapon" data-value="all">All Weapons</button>
+    {weapons.map((w) => <button class="filter-btn" data-group="weapon" data-value={w}>{w}</button>)}
+  </div>
+
+  <div class="filter-row" data-group="role">
+    <button class="filter-btn active" data-group="role" data-value="all">All Roles</button>
+    {roles.map((r) => <button class="filter-btn" data-group="role" data-value={r}>{r}</button>)}
+  </div>
+
+  <div class="filter-row" data-group="tier">
+    <button class="filter-btn active" data-group="tier" data-value="all">All Tiers</button>
+    {tiers.map((t) => <button class="filter-btn" data-group="tier" data-value={t}>{t} Tier</button>)}
+  </div>
+
+  <div class="version-badge">{characters.length} characters</div>
+
+  <ul class="character-list" id="charList">
+    {
+      characters.map((c) => (
+        <li
+          class="char-item"
+          data-name={c.name.toLowerCase()}
+          data-element={c.element}
+          data-weapon={c.weapon}
+          data-role={c.role}
+          data-tier={c.tier}
+        >
+          <a href={`/character/${c.slug}/`}>
             <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
-                  <span class={"tag tag-" + c.tier}>{c.tier}</span>
-                  <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
-                  <span class="char-name">{c.name}</span>
-                  <span class="desc">{c.role}</span>
-                </a>
-              </li>
-            ))}
-        </ul>
-      </section>
-    ))
-  }
+            <span class={"tag tag-" + c.tier}>{c.tier}</span>
+            <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+            <span class="char-name">{c.name}</span>
+            <span class="desc">{c.role} · {c.weapon}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p id="noResults" style="display:none; color: var(--text-muted);">
+    No characters match your filters.
+  </p>
 
   <div class="internal-links">
     <h3>Explore More</h3>
     <a href="/builds/">All Build Guides →</a>
     <a href="/teams/">All Team Guides →</a>
     <a href="/comparisons/">Character Comparisons →</a>
+    <a href="/search/">Site Search →</a>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var input = document.getElementById("charSearch");
+    var items = Array.prototype.slice.call(document.querySelectorAll(".char-item"));
+    var noRes = document.getElementById("noResults");
+    var filters = { element: "all", weapon: "all", role: "all", tier: "all" };
+
+    function apply() {
+      var q = (input.value || "").trim().toLowerCase();
+      var shown = 0;
+      items.forEach(function (li) {
+        var ok =
+          (filters.element === "all" || li.getAttribute("data-element") === filters.element) &&
+          (filters.weapon === "all" || li.getAttribute("data-weapon") === filters.weapon) &&
+          (filters.role === "all" || li.getAttribute("data-role") === filters.role) &&
+          (filters.tier === "all" || li.getAttribute("data-tier") === filters.tier) &&
+          (!q || li.getAttribute("data-name").indexOf(q) !== -1);
+        li.style.display = ok ? "" : "none";
+        if (ok) shown += 1;
+      });
+      noRes.style.display = shown === 0 ? "block" : "none";
+    }
+
+    input.addEventListener("input", apply);
+
+    document.querySelectorAll(".filter-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var group = btn.getAttribute("data-group");
+        var value = btn.getAttribute("data-value");
+        // Deactivate siblings in the same group, activate this one.
+        document
+          .querySelectorAll('.filter-btn[data-group="' + group + '"]')
+          .forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        filters[group] = value;
+        apply();
+      });
+    });
+  })();
+</script>
