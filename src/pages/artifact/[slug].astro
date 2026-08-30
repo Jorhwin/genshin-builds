@@ -92,6 +92,25 @@ const faqJsonLd = JSON.stringify({
   <h1>{set.name} — Best Characters in 2026</h1>
   <p class="subtitle">{set.why}</p>
 
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Pieces</div>
+      <div class="stat-value">4-Piece Set</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Best On</div>
+      <div class="stat-value">{bestFor.length} character{bestFor.length === 1 ? "" : "s"}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Similar Sets</div>
+      <div class="stat-value">{siblings.length} more</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Category</div>
+      <div class="stat-value">Artifact</div>
+    </div>
+  </div>
+
   <div class="insight-box">
     <h3>Before you farm this set</h3>
     <p>

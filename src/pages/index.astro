@@ -5,9 +5,12 @@ import { comparisons } from "../data/comparisons";
 import { guides } from "../data/guides";
 import { analyses } from "../data/analyses";
 import { bestLists } from "../data/best-lists";
+import { weaponGroups, artifactSets } from "../data/gear";
 import { updatedLabel } from "../lib/seo";
 
 const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
+const weaponCount = weaponGroups.reduce((n, g) => n + g.weapons.length, 0);
+const artifactCount = artifactSets.length;
 const sTier = characters.filter((c) => c.tier === "S");
 const metaTitle = "Genshin Impact Best Build Guides 2026 — All Characters";
 const metaDescription =
@@ -15,11 +18,18 @@ const metaDescription =
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
-  <h1>Genshin Impact Build Guides</h1>
-  <p class="subtitle">
-    Best weapons, artifact sets, stat priorities, team compositions, and rotations for every
-    Genshin Impact character. Filter by element or search by name.
-  </p>
+  <div class="hero">
+    <h1 class="hero-title">Genshin Impact Build Guides</h1>
+    <p class="subtitle">
+      Best weapons, artifact sets, stat priorities, team compositions, and rotations for every
+      Genshin Impact character. Filter by element or search by name.
+    </p>
+    <div class="hero-badges">
+      <div class="hero-badge"><span class="num">{characters.length}</span><span class="lbl">Characters</span></div>
+      <div class="hero-badge"><span class="num">{weaponCount}</span><span class="lbl">Weapons</span></div>
+      <div class="hero-badge"><span class="num">{artifactCount}</span><span class="lbl">Artifacts</span></div>
+    </div>
+  </div>
 
   <input
     id="charSearch"

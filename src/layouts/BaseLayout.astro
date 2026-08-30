@@ -68,26 +68,28 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
     <link rel="sitemap" href="/sitemap.xml" />
     <style>
       :root {
-        --bg-primary: #0a0a12;
-        --bg-secondary: #12121e;
-        --bg-card: #1a1a2e;
-        --bg-card-hover: #222240;
-        --border: #2a2a44;
-        --text-primary: #f0f0f5;
-        --text-secondary: #9898b8;
-        --text-muted: #6a6a88;
-        --accent: #6080ff;
-        --accent-glow: rgba(96, 128, 255, 0.15);
-        --pyro: #ff6020;
-        --hydro: #2080ff;
-        --dendro: #40c040;
-        --anemo: #60e0e0;
-        --electro: #a040ff;
-        --geo: #e0a040;
-        --cryo: #80c0ff;
-        --tier-s: #ffd700;
-        --tier-a: #c0c0c0;
-        --tier-b: #cd7f32;
+        --bg-primary: #0b0d16;
+        --bg-secondary: #11131f;
+        --bg-card: #151826;
+        --bg-card-hover: #1c2030;
+        --border: #262a3d;
+        --text-primary: #f2f3f8;
+        --text-secondary: #a0a3bd;
+        --text-muted: #6b6e88;
+        --text-tertiary: #54566e;
+        --accent: #818cf8;
+        --accent-2: #a78bfa;
+        --accent-glow: rgba(129, 140, 248, 0.18);
+        --pyro: #ff6b35;
+        --hydro: #38a3ff;
+        --dendro: #4cc957;
+        --anemo: #5fe0e0;
+        --electro: #b15cff;
+        --geo: #e8b04a;
+        --cryo: #8fcaff;
+        --tier-s: #ffd24a;
+        --tier-a: #c8ccd8;
+        --tier-b: #d68a4a;
       }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -148,11 +150,52 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
         color: var(--text-secondary);
         text-decoration: none;
         font-size: 0.85rem;
-        margin-left: 16px;
-        transition: color 0.2s;
+        margin-left: 4px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        transition: all 0.2s;
       }
 
-      .header-nav a:hover { color: var(--accent); }
+      .header-nav a:hover { color: var(--text-primary); background: rgba(129, 140, 248, 0.1); }
+
+      .hero { margin-bottom: 4px; }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1.12;
+        background: linear-gradient(135deg, #ffffff 35%, var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 18px 0 26px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 16px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .hero-badge .num { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+      .hero-badge .lbl {
+        font-size: 0.74rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
 
       h1 {
         font-size: 2rem;
@@ -193,7 +236,7 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
         transition: color 0.2s;
         text-decoration: none;
       }
-      a:hover { color: #90b0ff; }
+      a:hover { color: #a5b4fc; }
 
       .tag {
         display: inline-block;
@@ -320,14 +363,15 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
       .internal-links a {
         display: block;
-        padding: 8px 12px;
+        padding: 9px 12px;
         margin: 0 -12px;
-        border-radius: 6px;
-        transition: background 0.2s;
+        border-radius: 8px;
+        color: var(--text-secondary);
+        transition: background 0.2s, color 0.2s;
         font-weight: 500;
       }
 
-      .internal-links a:hover { background: rgba(96, 128, 255, 0.06); }
+      .internal-links a:hover { background: rgba(129, 140, 248, 0.06); color: var(--accent); }
 
       .avatar {
         flex: 0 0 34px;
@@ -354,8 +398,8 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
       .character-list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+        gap: 14px;
         list-style: none;
         padding: 0;
         margin: 12px 0;
@@ -365,30 +409,43 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
       .character-list a {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
-        padding: 12px 16px;
+        gap: 8px;
+        padding: 18px 14px;
         background: var(--bg-card);
         border: 1px solid var(--border);
-        border-radius: 10px;
-        transition: all 0.2s;
+        border-radius: 14px;
+        transition: all 0.22s ease;
         color: var(--text-primary);
-        font-weight: 500;
+        text-align: center;
         height: 100%;
       }
 
       .character-list a:hover {
         background: var(--bg-card-hover);
-        border-color: rgba(96, 128, 255, 0.2);
-        transform: translateY(-2px);
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .character-list .avatar {
+        flex: 0 0 auto;
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+      }
+
+      .character-list .char-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text-primary);
       }
 
       .character-list .desc {
-        color: var(--text-muted);
-        font-size: 0.82rem;
+        color: var(--text-tertiary);
+        font-size: 0.76rem;
         font-weight: 400;
-        margin-left: auto;
-        text-align: right;
       }
 
       .mini-grid {
@@ -417,19 +474,24 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
       .search-box {
         width: 100%;
-        padding: 12px 16px;
-        background: var(--bg-card);
+        padding: 13px 18px;
+        background: var(--bg-secondary);
         border: 1px solid var(--border);
-        border-radius: 10px;
+        border-radius: 12px;
         color: var(--text-primary);
         font-size: 0.95rem;
         font-family: inherit;
         margin: 12px 0 20px;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+        transition: border-color 0.2s, box-shadow 0.2s;
       }
+
+      .search-box::placeholder { color: var(--text-muted); }
 
       .search-box:focus {
         outline: none;
-        border-color: rgba(96, 128, 255, 0.4);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow), inset 0 1px 2px rgba(0, 0, 0, 0.35);
       }
 
       .filter-row {
@@ -440,19 +502,24 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
       }
 
       .filter-btn {
-        padding: 6px 14px;
+        padding: 7px 16px;
         background: var(--bg-card);
         border: 1px solid var(--border);
-        border-radius: 20px;
+        border-radius: 999px;
         color: var(--text-secondary);
         font-size: 0.8rem;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.2s;
         font-family: inherit;
       }
 
-      .filter-btn:hover { border-color: rgba(96, 128, 255, 0.3); color: var(--text-primary); }
-      .filter-btn.active { background: rgba(96, 128, 255, 0.15); border-color: var(--accent); color: var(--text-primary); }
+      .filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+      .filter-btn.active {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border-color: transparent;
+        color: #fff;
+      }
 
       footer {
         border-top: 1px solid var(--border);
@@ -467,10 +534,11 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
 
       @media (max-width: 640px) {
         .stat-grid { grid-template-columns: 1fr; }
-        .character-list { grid-template-columns: 1fr; }
-        h1 { font-size: 1.5rem; }
+        .character-list { grid-template-columns: 1fr 1fr; }
+        h1 { font-size: 1.6rem; }
+        .hero-title { font-size: 1.9rem; }
         .character-list .desc { display: none; }
-        .header-nav a { margin-left: 10px; font-size: 0.78rem; }
+        .header-nav a { margin-left: 0; font-size: 0.76rem; padding: 5px 7px; }
       }
     </style>
   </head>

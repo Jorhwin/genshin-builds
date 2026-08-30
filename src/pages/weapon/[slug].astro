@@ -115,6 +115,14 @@ const faqJsonLd = JSON.stringify({
       <div class="stat-label">Rarity</div>
       <div class="stat-value">{w.rarity}</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-label">Best On</div>
+      <div class="stat-value">{bestFor.length} character{bestFor.length === 1 ? "" : "s"}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Alternatives</div>
+      <div class="stat-value">{siblings.length} similar</div>
+    </div>
   </div>
 
   <h2>Best Characters for {w.name} in 2026</h2>
