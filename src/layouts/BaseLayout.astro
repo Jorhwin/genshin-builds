@@ -445,6 +445,31 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
         color: var(--text-primary);
       }
 
+      .character-list .char-tags {
+        display: flex;
+        gap: 6px;
+        margin-top: 2px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .character-list .char-tags .tag {
+        font-size: 0.68rem;
+        padding: 2px 10px;
+      }
+
+      .character-list .avatar {
+        box-shadow: 0 0 0 2px var(--border);
+      }
+
+      .character-list a.char-pyro { border-top: 2px solid var(--pyro); }
+      .character-list a.char-hydro { border-top: 2px solid var(--hydro); }
+      .character-list a.char-dendro { border-top: 2px solid var(--dendro); }
+      .character-list a.char-anemo { border-top: 2px solid var(--anemo); }
+      .character-list a.char-electro { border-top: 2px solid var(--electro); }
+      .character-list a.char-geo { border-top: 2px solid var(--geo); }
+      .character-list a.char-cryo { border-top: 2px solid var(--cryo); }
+
       .character-list .desc {
         color: var(--text-tertiary);
         font-size: 0.76rem;

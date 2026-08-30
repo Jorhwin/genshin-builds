@@ -59,10 +59,12 @@ const metaDescription =
           data-role={c.role}
           data-tier={c.tier}
         >
-          <a href={`/character/${c.slug}/`}>
+          <a href={`/character/${c.slug}/`} class={"char-card char-" + c.element.toLowerCase()}>
             <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
-            <span class={"tag tag-" + c.tier}>{c.tier}</span>
-            <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+            <span class="char-tags">
+              <span class={"tag tag-" + c.tier}>{c.tier}</span>
+              <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
+            </span>
             <span class="char-name">{c.name}</span>
             <span class="desc">{c.role} · {c.weapon}</span>
           </a>
