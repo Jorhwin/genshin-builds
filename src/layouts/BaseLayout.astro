@@ -50,6 +50,9 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <meta http-equiv="content-language" content="en" />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
     <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
     {noindex && <meta name="robots" content="noindex, follow" />}
 
