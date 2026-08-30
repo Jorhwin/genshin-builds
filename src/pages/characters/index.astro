@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ElementAvatar from "../../components/ElementAvatar.astro";
 import { characters } from "../../data/characters";
 
 const elements = ["Pyro", "Hydro", "Dendro", "Anemo", "Electro", "Geo", "Cryo"];
@@ -60,7 +61,7 @@ const metaDescription =
           data-tier={c.tier}
         >
           <a href={`/character/${c.slug}/`} class={"char-card char-" + c.element.toLowerCase()}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
+            <ElementAvatar element={c.element} name={c.name} />
             <span class="char-tags">
               <span class={"tag tag-" + c.tier}>{c.tier}</span>
               <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>

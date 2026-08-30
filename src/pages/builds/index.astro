@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ElementAvatar from "../../components/ElementAvatar.astro";
 import { characters } from "../../data/characters";
 
 const metaTitle = "Genshin Impact Best Builds 2026 — Weapons, Artifacts & Stats";
@@ -19,7 +20,7 @@ const metaDescription =
       characters.map((c) => (
         <li>
           <a href={`/build/${c.slug}/`}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
+            <ElementAvatar element={c.element} name={c.name} />
             <span class={"tag tag-" + c.tier}>{c.tier}</span>
             <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
             <span class="char-name">{c.name}</span>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ElementAvatar from "../components/ElementAvatar.astro";
 import { characters } from "../data/characters";
 import { comparisons } from "../data/comparisons";
 import { guides } from "../data/guides";
@@ -57,7 +58,7 @@ const metaDescription =
           data-name={c.name.toLowerCase()}
         >
           <a href={`/character/${c.slug}/`}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
+            <ElementAvatar element={c.element} name={c.name} />
             <span class={"tag tag-" + c.tier}>{c.tier}</span>
             <span class={"tag tag-" + c.element.toLowerCase()}>{c.element}</span>
             <span class="char-name">{c.name}</span>
@@ -75,13 +76,13 @@ const metaDescription =
   <h2>Popular Build Guides</h2>
   <div class="mini-grid">
     {sTier.slice(0, 12).map((c) => <a href={`/build/${c.slug}/`}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>{c.name} — Best Build</a>)}
+            <ElementAvatar element={c.element} name={c.name} />{c.name} — Best Build</a>)}
   </div>
 
   <h2>Popular Team Guides</h2>
   <div class="mini-grid">
     {sTier.slice(0, 12).map((c) => <a href={`/team/${c.slug}/`}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>{c.name} — Best Team</a>)}
+            <ElementAvatar element={c.element} name={c.name} />{c.name} — Best Team</a>)}
   </div>
 
   <h2>Best Characters &amp; Teams</h2>

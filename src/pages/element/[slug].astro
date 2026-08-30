@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ElementAvatar from "../../components/ElementAvatar.astro";
 import { elements } from "../../data/elements";
 import { characters } from "../../data/characters";
 
@@ -92,7 +93,7 @@ const faqJsonLd = JSON.stringify({
       [...sTier, ...aTier, ...bTier].map((c) => (
         <li>
           <a href={`/character/${c.slug}/`}>
-            <span class={"avatar avatar-" + c.element.toLowerCase()}>{c.name.charAt(0)}</span>
+            <ElementAvatar element={c.element} name={c.name} />
             <span class={"tag tag-" + c.tier}>{c.tier}</span>
             <span class="char-name">{c.name}</span>
             <span class="desc">{c.role}</span>
