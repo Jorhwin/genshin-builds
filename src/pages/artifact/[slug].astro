@@ -82,11 +82,24 @@ const faqJsonLd = JSON.stringify({
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 });
+
+const productJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: set.name,
+  description: description,
+  category: "Genshin Impact Artifact Set",
+  brand: { "@type": "Brand", name: "HoYoverse" },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: "Pieces", value: "4-Piece" },
+  ],
+});
 ---
 
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={articleJsonLd}></script>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={productJsonLd}></script>
 
   <p><span class="tag tag-S" style="background:#40a06033;color:#40c060;">Artifact Set</span></p>
   <h1>{set.name} — Best Characters in 2026</h1>

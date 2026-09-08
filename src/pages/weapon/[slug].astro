@@ -93,11 +93,25 @@ const faqJsonLd = JSON.stringify({
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 });
+
+const productJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: w.name,
+  description: description,
+  category: "Genshin Impact " + w.type + " Weapon",
+  brand: { "@type": "Brand", name: "HoYoverse" },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: "Rarity", value: w.rarity },
+    { "@type": "PropertyValue", name: "Weapon Type", value: w.type },
+  ],
+});
 ---
 
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={articleJsonLd}></script>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={productJsonLd}></script>
 
   <p>
     <span class="tag tag-S">{w.rarity}</span>
