@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { buildExtendedGuides } from "../../data/extended-guides-build";
+import buildVariants from "../../data/build-variants.json";
 import { buildTitle, buildDescription, updatedLabel, roleLabel, article, shortPhrase, score } from "../../lib/seo";
 
 export function getStaticPaths() {
@@ -89,6 +90,23 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
     <li><strong>Main Stats:</strong> {c.mainStats}</li>
   </ul>
   <p>Getting the right main stats is the most important step — a correct main stat with bad substats will always outperform the wrong main stat. Once your main stats are correct, focus on improving substat rolls to optimize {c.name}'s damage further.</p>
+
+  {buildVariants[c.slug] && buildVariants[c.slug].variants && buildVariants[c.slug].variants.length > 0 && (
+    <div class="variants-block">
+      <h2>Build Variants</h2>
+      <p class="variants-intro">One character can fill multiple roles depending on weapon, artifact, and stat investment. These are the strongest {c.name} build directions for different content.</p>
+      {buildVariants[c.slug].variants.map((v) => (
+        <div class="variant-card">
+          <h3>{v.name}</h3>
+          {v.weapon && (<div class="variant-units"><strong>Weapon:</strong> {v.weapon}</div>)}
+          {v.artifact && (<div class="variant-units"><strong>Artifacts:</strong> {v.artifact}</div>)}
+          {v.mainstats && (<div class="variant-units"><strong>Main Stats:</strong> {v.mainstats}</div>)}
+          <p class="variant-why">{v.why}</p>
+          {v.replace && (<div class="variant-meta"><span class="variant-replace"><strong>Swap with:</strong> {v.replace}</span></div>)}
+        </div>
+      ))}
+    </div>
+  )}
 
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>

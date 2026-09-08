@@ -1,0 +1,22 @@
+{
+  "yae-miko": {
+    "variants": [
+      {
+        "name": "Aggravate Build",
+        "weapon": "Kagura's Verity / A Thousand Floating Dreams",
+        "artifact": "Golden Troupe 4pc (or Gilded Dreams 4pc)",
+        "mainstats": "ATK% or EM / Electro DMG / CRIT Rate or CRIT DMG",
+        "why": "Golden Troupe boosts totem Skill DMG +70% off-field; EM Sands fuels Aggravate trigger. Kagura best-in-slot for Skill scaling.",
+        "replace": "The Widsith for Kagura (4-star), 2pc Golden Troupe + 2pc Gilded Dreams for 4pc, Skyward Atlas for ATFD"
+      },
+      {
+        "name": "Hyperbloom Trigger",
+        "weapon": "The Widsith / Hakushin Ring",
+        "artifact": "Gilded Dreams 4pc (EM focus)",
+        "mainstats": "Elemental Mastery / Elemental Mastery / CRIT or EM",
+        "why": "Yae detonates Bloom cores; Hyperbloom scales with trigger EM, so full EM build maximizes seed damage.",
+        "replace": "Flowing Purity (craftable F2P) for Widsith, 2pc EM + 2pc EM for Gilded, Mappa Mare for Hakushin Ring"
+      }
+    ]
+  }
+}

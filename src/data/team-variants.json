@@ -1,0 +1,255 @@
+{
+  "neuvillette": {
+    "variants": [
+      {
+        "name": "Premium Hypercarry",
+        "units": "Neuvillette + Furina + Kazuha + Zhongli",
+        "why": "Furina HP-drain fuels Fanfare DMG buff and self-heals his Marechaussee stacks; Kazuha swirls Hydro for VV RES shred + DMG bonus; Zhongli shield + universal RES shred gives interruption immunity for an uninterrupted beam.",
+        "scenario": "single-target Abyss, bosses, comfort",
+        "replace": "Xilonen for Kazuha (Geo DEF shred + heal vs VV grouping), Baizhu for Zhongli (heal + IR vs shield)"
+      },
+      {
+        "name": "F2P Electro-Charged",
+        "units": "Neuvillette + Xingqiu + Sucrose + Diona",
+        "why": "Xingqiu off-field Hydro + Sucrose swirl VV Hydro shred enable constant Electro-Charged; Diona shield prevents interruption. All 4-star except Neuvillette, ~35-45% weaker than premium.",
+        "scenario": "budget Floor 12, multi-target",
+        "replace": "Layla for Diona (better shield, no heal), Fischl for Xingqiu (Electro app), Barbara for Diona (free heal)"
+      }
+    ]
+  },
+  "clorinde": {
+    "variants": [
+      {
+        "name": "Premium Aggravate",
+        "units": "Clorinde + Nahida + Fischl + Kazuha",
+        "why": "Nahida keeps enemies under Quicken and shares EM; Fischl A4 adds off-field Electro on every reaction; Kazuha VV Electro shred + grouping amplifies her rapid gunshot Aggravates.",
+        "scenario": "single-target Abyss, best general DPS",
+        "replace": "Zhongli for Kazuha (shield + RES shred vs grouping), Sucrose for Kazuha (budget VV), Beidou for Fischl (AoE)"
+      },
+      {
+        "name": "Premium Quickbloom",
+        "units": "Clorinde + Nahida + Furina + Baizhu",
+        "why": "Nahida Dendro + Furina off-field Hydro spawn Bloom cores; Clorinde triggers Aggravate + Hyperbloom; Baizhu heals to stack Fanfare and gives interruption resistance.",
+        "scenario": "single + multi-target, comfort",
+        "replace": "Yelan/Xingqiu for Furina (more Hydro dmg, needs other healer), Zhongli for Baizhu (shield vs heal), Jean for Baizhu (heal + VV)"
+      },
+      {
+        "name": "F2P Aggravate",
+        "units": "Clorinde + Dendro Traveler + Fischl + Sucrose",
+        "why": "Dendro Traveler (free) applies Quicken; Fischl off-field Electro; Sucrose VV Electro shred + EM share. Accessible, slightly less uptime than Nahida.",
+        "scenario": "budget Aggravate",
+        "replace": "Collei for Dendro Traveler (better app), Kazuha for Sucrose (premium shred), Yaoyao/Kirara for Sucrose (shield/heal)"
+      },
+      {
+        "name": "Overload (Chevreuse)",
+        "units": "Clorinde + Chevreuse + Fischl + Xiangling",
+        "why": "Chevreuse buffs Pyro+Electro in a 2-element core; Fischl + Xiangling off-field enable Overload with no reaction conflict, strong and 4-star friendly.",
+        "scenario": "AoE, 4-star rosters",
+        "replace": "Thoma for Xiangling (shield), Beidou for Fischl (AoE), Bennett for Chevreuse (ATK, drops OV buff)"
+      }
+    ]
+  },
+  "arlecchino": {
+    "variants": [
+      {
+        "name": "Premium Melt",
+        "units": "Arlecchino + Citlali + Xilonen + Bennett",
+        "why": "Citlali Cryo shield + Melt/Frozen RES shred sets up Melt; Xilonen Cinder City RES shred + heal; Bennett massive ATK buff. Highest front-loaded Pyro burst.",
+        "scenario": "bosses, single-target Abyss",
+        "replace": "Kazuha for Xilonen (grouping + VV vs DEF shred), Sucrose for Xilonen (budget shred), Zhongli for Citlali (shield, drops Cryo)"
+      },
+      {
+        "name": "Premium Vaporize",
+        "units": "Arlecchino + Furina + Yelan + Xilonen",
+        "why": "Double Hydro (Yelan+Furina) gives strong off-field application + Furina Fanfare; Xilonen RES shred + heal; lenient aura management for consistent Vape.",
+        "scenario": "sustained Vape, comfort",
+        "replace": "Bennett for Xilonen (ATK buff vs shred), Xiangling for Yelan (budget Hydro? no Pyro), Zhongli for Xilonen (shield)"
+      },
+      {
+        "name": "F2P Vaporize",
+        "units": "Arlecchino + Bennett + Xingqiu + Sucrose",
+        "why": "Xingqiu off-field Hydro for Vaporize; Bennett ATK buff + heal (Arlecchino can't self-heal, but Burst reset covers it); Sucrose VV Hydro shred. Fully 4-star except Arlecchino.",
+        "scenario": "budget Vape, Floor 12",
+        "replace": "Yelan for Xingqiu (premium Hydro), Kazuha for Sucrose (grouping), Xiangling for Xingqiu (Mono-Pyro, no Vape)"
+      },
+      {
+        "name": "F2P Overload",
+        "units": "Arlecchino + Fischl + Chevreuse + Bennett",
+        "why": "Chevreuse 2-element Pyro/Electro buff; Fischl off-field Electro; Bennett ATK. All-core 4-star, strong vs groups, also a 7.0 Stygian matchup.",
+        "scenario": "AoE, pure F2P",
+        "replace": "Thoma for Bennett (shield, drops buff), Xiangling for Fischl (Pyro OV), Rosaria/Diona for Cryo Melt variant"
+      }
+    ]
+  },
+  "keqing": {
+    "variants": [
+      {
+        "name": "Aggravate Premium",
+        "units": "Keqing + Nahida + Fischl + Kazuha",
+        "why": "Nahida Quicken + EM share; Fischl A4 adds off-field Electro Aggravate procs; Kazuha VV Electro shred + grouping. Her definitive best team in 2026.",
+        "scenario": "single-target Abyss, all-round",
+        "replace": "Sucrose for Kazuha (budget VV), Yae Miko for Fischl (more Electro), Baizhu for Kazuha (shield + heal)"
+      },
+      {
+        "name": "Aggravate Comfort",
+        "units": "Keqing + Nahida + Fischl + Baizhu",
+        "why": "Same Aggravate core but Baizhu replaces Anemo: gives shield + heal + extra Dendro, trading some damage for interruption immunity and sustain.",
+        "scenario": "survivability, no Kazuha",
+        "replace": "Yaoyao for Baizhu (free heal), Zhongli for Baizhu (shield + RES shred), Kirara for Baizhu (shield)"
+      },
+      {
+        "name": "F2P Aggravate",
+        "units": "Keqing + Dendro Traveler + Fischl + Sucrose",
+        "why": "Dendro Traveler (free) applies Quicken; Fischl off-field Electro; Sucrose VV Electro shred + EM share. Fully F2P, slightly spotty Dendro uptime.",
+        "scenario": "budget Aggravate",
+        "replace": "Collei for Dendro Traveler (better app), Kazuha for Sucrose (premium), Beidou for Fischl (AoE)"
+      }
+    ]
+  },
+  "navia": {
+    "variants": [
+      {
+        "name": "Premium Crystallize",
+        "units": "Navia + Furina + Zhongli + Bennett",
+        "why": "Furina off-field Hydro fuels Crystallize + Fanfare DMG buff; Zhongli shield + Tenacity ATK buff + RES shred; Bennett ATK buff + heal. Safe, high ceiling.",
+        "scenario": "single-target Abyss, comfort",
+        "replace": "Xilonen for Zhongli (heal + Cinder City shred vs shield), Chiori for Zhongli (off-field Geo, C1 best), Layla for Zhongli (budget shield)"
+      },
+      {
+        "name": "Premium Geo Core",
+        "units": "Navia + Xilonen + Chiori + Furina",
+        "why": "Xilonen heal + RES shred + Cinder City; Chiori off-field Geo DMG + more Crystallize shards (C1 ideal); Furina Fanfare. Top-rated 2026 comp (needs C1/C2 investment).",
+        "scenario": "premium Geo, highest ceiling",
+        "replace": "Zhongli for Chiori (shield vs Geo dmg), Bennett for Furina (ATK, drops buff), Albedo for Chiori (comfort Geo)"
+      },
+      {
+        "name": "Double Pyro & Geo",
+        "units": "Navia + Bennett + Xiangling + Albedo",
+        "why": "Pyro + Geo resonance; Xiangling off-field Pyro for Crystallize; Albedo off-field Geo shards; Bennett ATK + heal. Restrictive but big personal damage.",
+        "scenario": "Geo/Pyro resonance, sustain",
+        "replace": "Zhongli for Albedo (shield + RES shred), Ningguang for Albedo (free Geo), Chiori for Albedo (C1 better)"
+      },
+      {
+        "name": "F2P Crystallize",
+        "units": "Navia + Xiangling + Bennett + Ningguang",
+        "why": "Xiangling + Bennett (free, staple) off-field Pyro for Crystallize; Ningguang free off-field Geo shards. All 4-star except Navia, clears Abyss comfortably.",
+        "scenario": "budget, all 4-star",
+        "replace": "Geo Traveler for Ningguang (free Geo), Fischl for Xiangling (Electro Crystallize), Kachina for Ningguang (Scroll holder)"
+      }
+    ]
+  },
+  "eula": {
+    "variants": [
+      {
+        "name": "Premium Superconduct",
+        "units": "Eula + Raiden + Rosaria + Bennett",
+        "why": "Raiden provides Superconduct + ER battery; Rosaria gives CRIT/phys RES shred (C6), Bennett ATK buff. Best single-target Burst nuke.",
+        "scenario": "single-target boss / Abyss",
+        "replace": "Zhongli for Bennett (shield + Tenacity ATK buff), Mika for Rosaria (phys DMG + atk SPD)"
+      },
+      {
+        "name": "Premium Physical",
+        "units": "Eula + Mika + Rosaria + Bennett",
+        "why": "Mika's atk SPD + phys DMG buff maximizes Lightfall Sword stacks; Rosaria shred + Bennett ATK. Highest personal damage ceiling.",
+        "scenario": "single-target / whale Investment",
+        "replace": "Raiden for Mika (battery), Zhongli for Bennett (shield)"
+      },
+      {
+        "name": "F2P Option",
+        "units": "Eula + Fischl + Diona + Kaeya",
+        "why": "Fischl off-field Electro enables Superconduct; Diona shield/heal + Cryo Resonance, Kaeya battery. Fully free-to-play friendly.",
+        "scenario": "budget / overworld",
+        "replace": "Rosaria for Kaeya (battery+CRIT), Mika for Diona (heal+atk SPD), Beidou for Fischl"
+      }
+    ]
+  },
+  "diluc": {
+    "variants": [
+      {
+        "name": "Premium Melt Plunge",
+        "units": "Diluc + Xianyun + Citlali + Bennett",
+        "why": "Xianyun enables plunge spam; Melt 2.0x on Pyro plunge with Citlali Cryo; Bennett ATK+heal. Highest ceiling (300k+ plunges).",
+        "scenario": "single-target boss / Abyss",
+        "replace": "Ganyu/Rosaria for Citlali (Cryo Melt), Furina for Bennett (Vaporize plunge variant)"
+      },
+      {
+        "name": "Premium Vaporize Plunge",
+        "units": "Diluc + Xianyun + Furina + Bennett",
+        "why": "Furina's Fanfare DMG% amp + Xianyun plunge buffs; Vaporize 1.5x. Strong AoE and comfort.",
+        "scenario": "multi-target / Abyss",
+        "replace": "Citlali for Furina (Melt variant), Yelan for Furina (sub-DPS)"
+      },
+      {
+        "name": "Classic Vaporize F2P",
+        "units": "Diluc + Xingqiu + Kazuha + Bennett",
+        "why": "Xingqiu rain Vaporizes every swing; Kazuha VV Pyro shred + group; Bennett ATK. Reliable since launch.",
+        "scenario": "all-round / early Abyss",
+        "replace": "Yelan for Xingqiu (more DMG), Zhongli/Sucrose for Kazuha (shield/VV), Xiangling for Diluc-flex Mono Pyro"
+      },
+      {
+        "name": "F2P Melt",
+        "units": "Diluc + Kaeya + Sucrose + Noelle",
+        "why": "Kaeya Cryo triggers Melt; Sucrose EM-share/group; Noelle shield+heal. Functional budget team.",
+        "scenario": "budget / overworld",
+        "replace": "Rosaria for Kaeya, Diona for Noelle, Traveler(Geo) for Sucrose"
+      }
+    ]
+  },
+  "yae-miko": {
+    "variants": [
+      {
+        "name": "Aggravate",
+        "units": "Yae Miko + Nahida + Fischl + Zhongli",
+        "why": "Nahida EM drives Aggravate; Yae + Fischl off-field Electro; Zhongli shield + Archaic Petra DMG amp. Self-sustaining Quicken loop.",
+        "scenario": "single & multi-target / Abyss",
+        "replace": "Baizhu for Zhongli (heal+interrupt resist), Kazuha for Zhongli (VV Electro shred), Raiden for Fischl (battery)"
+      },
+      {
+        "name": "Hyperbloom",
+        "units": "Yae Miko + Kokomi + Yelan + Nahida",
+        "why": "Yae's totems trigger Hyperbloom on Kokomi/Yelan Bloom cores; Nahida Dendro+EM share. Homing seeds, strong multi-target.",
+        "scenario": "multi-target / AoE",
+        "replace": "Xingqiu for Yelan (more Hydro cores), Baizhu for Kokomi (heal), Furina for Yelan (DMG amp)"
+      },
+      {
+        "name": "Electro-Charged (Taser)",
+        "units": "Yae Miko + Fischl + Yelan + Kazuha",
+        "why": "Persistent Electro-Charged storm; Kazuha groups + VV shred; Yelan/Xingqiu Hydro. High AoE uptime.",
+        "scenario": "multi-target / overworld",
+        "replace": "Raiden for Fischl (battery), Xingqiu for Yelan, Sucrose for Kazuha"
+      }
+    ]
+  },
+  "tighnari": {
+    "variants": [
+      {
+        "name": "Spread Aggravate (Premium)",
+        "units": "Tighnari + Nahida + Fischl + Zhongli",
+        "why": "Nahida sustains Dendro + EM; Fischl off-field Electro for Spread; Zhongli shield + 20% RES shred. Core Quicken comp.",
+        "scenario": "single & multi / Abyss",
+        "replace": "Yae Miko for Fischl (AoE Electro), Kazuha for Zhongli (VV Electro shred), Baizhu/Kirara for Zhongli (heal/shield)"
+      },
+      {
+        "name": "Aggravate w/ Yae",
+        "units": "Tighnari + Yae Miko + Nahida + Zhongli",
+        "why": "Yae's totem interval syncs with Tighnari's charged-shot rhythm; Nahida EM, Zhongli safety. High team damage ceiling.",
+        "scenario": "multi-target / Abyss",
+        "replace": "Fischl for Yae (faster setup), Kazuha for Zhongli, Kuki for Zhongli (heal+EM)"
+      },
+      {
+        "name": "F2P Spread",
+        "units": "Tighnari + Fischl + Collei + Kirara",
+        "why": "Double Dendro Resonance EM; Fischl Spread Electro; Kirara shield. Free-to-play friendly, clears Abyss.",
+        "scenario": "budget / early Abyss",
+        "replace": "Dendro Traveler for Collei, Lisa for Fischl, Yaoyao for Kirara"
+      },
+      {
+        "name": "Hyperbloom",
+        "units": "Tighnari + Nahida + Xingqiu + Kuki Shinobu",
+        "why": "Quicken for Spread + Kuki Electro detonates Dendro cores into Hyperbloom. Flexible AoE.",
+        "scenario": "multi-target",
+        "replace": "Yelan for Xingqiu, Baizhu for Kuki, Kokomi for Xingqiu"
+      }
+    ]
+  }
+}

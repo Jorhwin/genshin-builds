@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { teamExtendedGuides } from "../../data/extended-guides-team";
+import teamVariants from "../../data/team-variants.json";
 import { teamTitle, teamDescription, updatedLabel, roleLabel, article, shortPhrase } from "../../lib/seo";
 
 export function getStaticPaths() {
@@ -84,6 +85,24 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
 
   <h2>Best F2P {c.name} Team</h2>
   <p><strong>{c.f2pTeam}</strong></p>
+
+  {teamVariants[c.slug] && teamVariants[c.slug].variants && teamVariants[c.slug].variants.length > 0 && (
+    <div class="variants-block">
+      <h2>Team Variants &amp; Replacements</h2>
+      <p class="variants-intro">Different content needs different team shapes. Below are the strongest {c.name} compositions for specific scenarios, plus who to slot in if you are missing a core unit.</p>
+      {teamVariants[c.slug].variants.map((v) => (
+        <div class="variant-card">
+          <h3>{v.name}</h3>
+          <div class="variant-units"><strong>Members:</strong> {v.units}</div>
+          <p class="variant-why">{v.why}</p>
+          <div class="variant-meta">
+            <span class="variant-scenario"><strong>Best for:</strong> {v.scenario}</span>
+            {v.replace && (<span class="variant-replace"><strong>Swap with:</strong> {v.replace}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
 
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
