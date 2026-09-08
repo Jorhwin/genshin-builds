@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
 import { buildExtendedGuides } from "../../data/extended-guides-build";
 import buildVariants from "../../data/build-variants.json";
+import GearLinks from "../../components/GearLinks.astro";
+import { linkWeapons, linkArtifacts } from "../../lib/gear-links.mjs";
 import { buildTitle, buildDescription, updatedLabel, roleLabel, article, shortPhrase, score } from "../../lib/seo";
 
 export function getStaticPaths() {
@@ -48,6 +50,24 @@ const faqJsonLd = JSON.stringify({
 });
 
 const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"about":{"@type":"Thing","name":c.name}});
+
+// Resolve gear prose into internal links so build pages feed PageRank into the
+// /weapon/ and /artifact/ pages (which previously had zero inbound links here).
+const bestWeaponSegments = linkWeapons(c.bestWeapon);
+const f2pWeaponSegments = linkWeapons(c.f2pWeapon);
+const artifactSegments = linkArtifacts(c.bestArtifacts);
+const seenGear = new Set();
+const gearQuickLinks = [
+  ...bestWeaponSegments.map((s) => ({ ...s, base: "/weapon/", kind: "Weapon" })),
+  ...f2pWeaponSegments.map((s) => ({ ...s, base: "/weapon/", kind: "Weapon" })),
+  ...artifactSegments.map((s) => ({ ...s, base: "/artifact/", kind: "Artifact set" })),
+].filter((s) => {
+  if (!s.slug) return false;
+  const key = s.base + s.slug;
+  if (seenGear.has(key)) return false;
+  seenGear.add(key);
+  return true;
+});
 ---
 
 <BaseLayout title={title} description={description} noindex={!buildExtendedGuides[c.slug]}>
@@ -76,13 +96,13 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
   <div class="version-badge">{updatedLabel()}</div>
 
   <h2>Best Weapon for {c.name} in 2026</h2>
-  <p><strong>{c.bestWeapon}</strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics. It provides the optimal stat balance — whether that is ER for burst uptime, CRIT for raw damage, or EM for reaction teams.</p>
+  <p><strong><GearLinks segments={bestWeaponSegments} base="/weapon/" /></strong> is the best-in-slot weapon for {c.name}. This weapon maximizes their damage output by synergizing with {c.element} damage and their kit mechanics. It provides the optimal stat balance — whether that is ER for burst uptime, CRIT for raw damage, or EM for reaction teams.</p>
 
   <h3>F2P Weapon Option</h3>
-  <p>{c.f2pWeapon} is a strong alternative that performs well without spending primogems on the weapon banner. It provides competitive damage especially at refinement 5. For budget players, this weapon lets {c.name} clear most content without sacrificing too much damage — the gap between {c.f2pWeapon} and {c.bestWeapon} is usually manageable in endgame content.</p>
+  <p><GearLinks segments={f2pWeaponSegments} base="/weapon/" /> is a strong alternative that performs well without spending primogems on the weapon banner. It provides competitive damage especially at refinement 5. For budget players, this weapon lets {c.name} clear most content without sacrificing too much damage — the gap between {c.f2pWeapon} and {c.bestWeapon} is usually manageable in endgame content.</p>
 
   <h2>Best Artifact Set for {c.name} in 2026</h2>
-  <p>{c.bestArtifacts} is the recommended set. This set provides the best balance of damage and utility for {c.name} in most team compositions. The 4-piece set bonus works directly with their kit to amplify damage, while the 2-piece bonus covers their stat requirements early on.</p>
+  <p><GearLinks segments={artifactSegments} base="/artifact/" /> is the recommended set. This set provides the best balance of damage and utility for {c.name} in most team compositions. The 4-piece set bonus works directly with their kit to amplify damage, while the 2-piece bonus covers their stat requirements early on.</p>
 
   <h2>Stats Priority</h2>
   <ul>
@@ -129,6 +149,15 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
       <p style="margin: 0;">{f.a}</p>
     </div>
   ))}
+
+  {gearQuickLinks.length > 0 && (
+    <div class="internal-links">
+      <h3>🔧 Gear Deep Dives</h3>
+      {gearQuickLinks.map((s) => (
+        <a href={`${s.base}${s.slug}/`}>{s.canonical} — {s.kind} guide →</a>
+      ))}
+    </div>
+  )}
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>

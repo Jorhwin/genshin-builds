@@ -294,6 +294,11 @@ const breadcrumbJsonLd = JSON.stringify(buildBreadcrumb(Astro.url.pathname));
       .variant-meta strong { color: var(--text-secondary); }
       .variant-scenario, .variant-replace { background: rgba(96, 128, 255, 0.08); padding: 4px 10px; border-radius: 6px; }
 
+      /* Inline gear links inside build prose */
+      .gear-link { text-decoration: none; border-bottom: 1px dashed rgba(96, 128, 255, 0.5); }
+      .gear-link:hover { border-bottom-style: solid; }
+      .gear-sep { color: var(--text-muted); }
+
       .stat-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;

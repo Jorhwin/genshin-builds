@@ -1,0 +1,20 @@
+---
+// Renders resolved gear segments, linking the ones that have a dedicated page
+// and leaving the rest as plain text.
+//
+// segments: output of linkWeapons() / linkArtifacts() from lib/gear-links.mjs
+// base:     "/weapon/" or "/artifact/"
+const { segments = [], base = "/weapon/", sep = " / " } = Astro.props;
+---
+{
+  segments.map((s, i) => (
+    <Fragment>
+      {i > 0 && <span class="gear-sep">{sep}</span>}
+      {s.slug ? (
+        <a href={`${base}${s.slug}/`} class="gear-link">{s.text}</a>
+      ) : (
+        <span>{s.text}</span>
+      )}
+    </Fragment>
+  ))
+}
