@@ -251,5 +251,108 @@
         "replace": "Yelan for Xingqiu, Baizhu for Kuki, Kokomi for Xingqiu"
       }
     ]
+  },
+  "mona": {
+    "variants": [
+      {
+        "name": "Premium Freeze (Morgana)",
+        "units": "Mona + Ayaka + Kazuha + Diona",
+        "why": "Mona's Omen debuff amplifies team damage; frozen enemies keep the bubble from popping, extending the ~60% buff through Ayaka's burst window while Kazuha shreds RES with VV.",
+        "scenario": "single-target Abyss, boss",
+        "replace": "Shenhe for Diona, Ganyu for Ayaka, Venti for Kazuha"
+      },
+      {
+        "name": "Vaporize (Hu Tao)",
+        "units": "Mona + Hu Tao + Yelan + Zhongli",
+        "why": "Double-Hydro Vaporize; Mona's Omen lands on Hu Tao's biggest charged attack and Hydro resonance boosts her HP, with Zhongli shielding the nuke window.",
+        "scenario": "single-target boss, Abyss",
+        "replace": "Xingqiu for Yelan, Furina for Yelan, Citlali for Zhongli"
+      },
+      {
+        "name": "Electro-Charged",
+        "units": "Mona + Raiden Shogun + Fischl + Kazuha",
+        "why": "Off-field Hydro plus Omen behind an Electro carry; Swirl spreads the reaction and Kazuha buffs EM while shredding Electro RES for sustained AoE damage.",
+        "scenario": "AoE, open world",
+        "replace": "Yae Miko for Raiden, Sucrose for Kazuha, Xingqiu for Mona"
+      },
+      {
+        "name": "F2P Vaporize",
+        "units": "Mona + Xiangling + Bennett + Sucrose",
+        "why": "Fully 4-star Vaporize core; Mona Omen and Bennett ATK buff amplify Xiangling's Pyronado, Sucrose VV shred and EM-share boost the reactions.",
+        "scenario": "AoE, Abyss, early-game",
+        "replace": "Yanfei for Xiangling, Kazuha for Sucrose, Xingqiu for Mona"
+      }
+    ]
+  },
+  "dehya": {
+    "variants": [
+      {
+        "name": "Burgeon (Dendro Cores)",
+        "units": "Dehya + Nahida + Xingqiu + Baizhu",
+        "why": "Dehya's field ticks every 2.5s trigger Burgeon on Dendro cores at a slow pace that avoids Burning, while her damage mitigation covers the team's self-damage from the explosions.",
+        "scenario": "AoE, Dendro-immune floors",
+        "replace": "Kokomi for Baizhu, Yelan for Xingqiu, Dendro Traveler for Nahida"
+      },
+      {
+        "name": "Pyro Support (Mono Pyro)",
+        "units": "Dehya + Arlecchino + Bennett + Kazuha",
+        "why": "Pyro resonance plus Dehya's field cuts incoming damage and grants interruption resistance, keeping Arlecchino's combo intact while Kazuha groups and shreds.",
+        "scenario": "single-target, Abyss",
+        "replace": "Mavuika for Arlecchino, Sucrose for Kazuha, Xiangling for Dehya"
+      },
+      {
+        "name": "Burn-Melt (Ganyu)",
+        "units": "Dehya + Ganyu + Nahida + Bennett",
+        "why": "Dehya's field prevents interruption so Ganyu aims safely; Nahida's Burning sustains a Pyro aura letting Ganyu trigger consistent Melt, with Bennett buffing ATK.",
+        "scenario": "single-target, open world",
+        "replace": "Ayaka for Ganyu, Yaoyao for Nahida, Shenhe for Bennett"
+      },
+      {
+        "name": "F2P Mono Pyro",
+        "units": "Dehya + Xiangling + Bennett + Sucrose",
+        "why": "Budget Mono-Pyro flex; Dehya tanks and applies off-field Pyro while Xiangling's Pyronado and Bennett's buffs carry damage, Sucrose adds VV shred.",
+        "scenario": "AoE, open world, early-game",
+        "replace": "Kazuha for Sucrose, Yanfei for Xiangling, Thoma for Dehya"
+      }
+    ]
+  },
+  "xiangling": {
+    "variants": [
+      {
+        "name": "Raiden National",
+        "units": "Xiangling + Raiden Shogun + Xingqiu + Bennett",
+        "why": "The classic National core; Xiangling's Pyronado Vaporizes off Xingqiu's Hydro while Bennett batteries her 80-cost burst and Raiden refunds energy for seamless rotations.",
+        "scenario": "AoE, Abyss staple",
+        "replace": "Yelan for Xingqiu, Chongyun for Raiden, C6 Sucrose for Kazuha"
+      },
+      {
+        "name": "Chevreuse Overload",
+        "units": "Xiangling + Raiden Shogun + Chevreuse + Kujou Sara",
+        "why": "Pyro-Electro Overload with Chevreuse healing and funneling particles to Xiangling; Raiden on-field triggers the reaction while Sara boosts ATK.",
+        "scenario": "AoE, Abyss",
+        "replace": "Fischl for Raiden, Xiangyun for Sara, Mavuika for Raiden"
+      },
+      {
+        "name": "Melt (Wriothesley)",
+        "units": "Xiangling + Wriothesley + Citlali + Bennett",
+        "why": "Xiangling supplies the Pyro aura so Wriothesley's Cryo attacks Melt; Citlali shields and holds Scroll to buff both Pyro and Cryo damage.",
+        "scenario": "single-target, Abyss",
+        "replace": "Ganyu for Wriothesley, Xilonen for Citlali, Rosaria for Bennett"
+      },
+      {
+        "name": "Childe International",
+        "units": "Xiangling + Tartaglia + Kazuha + Bennett",
+        "why": "Xiangling's persistent Pyro lets Childe Vaporize reliably; Kazuha (C2) groups, shreds and amplifies Vape DMG while Bennett buffs ATK and heals.",
+        "scenario": "AoE, Abyss",
+        "replace": "Ayaka for Tartaglia, Yelan for Xingqiu, Sucrose for Kazuha"
+      },
+      {
+        "name": "F2P Vaporize",
+        "units": "Xiangling + Sucrose + Xingqiu + Bennett",
+        "why": "Fully 4-star Vaporize team; Sucrose C6 EM-share and VV shred amplify Xiangling's Pyronado Vaporize, Bennett batteries burst uptime.",
+        "scenario": "AoE, early-game, Abyss",
+        "replace": "Kaeya for Sucrose, Yanfei for Xiangling, Kazuha for Sucrose"
+      }
+    ]
   }
 }

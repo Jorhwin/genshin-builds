@@ -24,6 +24,9 @@ const pages = [
   { loc: "/artifacts/", priority: "0.8", changefreq: "monthly" },
   { loc: "/element/", priority: "0.8", changefreq: "monthly" },
   { loc: "/changelog/", priority: "0.6", changefreq: "monthly" },
+  { loc: "/tier-list/", priority: "0.9", changefreq: "weekly" },
+  { loc: "/codes/", priority: "0.9", changefreq: "weekly" },
+  { loc: "/reroll/", priority: "0.7", changefreq: "monthly" },
 ];
 
 for (const c of characters) {

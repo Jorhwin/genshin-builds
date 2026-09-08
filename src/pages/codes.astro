@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Cross-source verified active codes as of 2026-09-08 (HoYoverse official +
+// 2+ independent trackers agreeing). Codes expire without notice — redeem now.
+const codes = [
+  { code: "MySnezhnayaCareer", reward: "160 Primogems, 20,000 Mora, 3 Hero's Wit", urgent: true },
+  { code: "2BJ64QRZ7RT8", reward: "60 Primogems, 5 Adventurer's Experience", urgent: false },
+  { code: "Y1INABQB6DEX", reward: "60 Primogems, 5 Adventurer's Experience", urgent: false },
+  { code: "BALLETCOLLAB", reward: "30 Primogems, 10,000 Mora, 3 Hero's Wit, 3 Mystic Enhancement Ore", urgent: false },
+  { code: "GENSHINGIFT", reward: "50 Primogems, 3 Hero's Wit (recurring — may show already redeemed)", urgent: false },
+  { code: "YOAL3V36XHS7", reward: "10,000 Mora, 10 Adventurer's Exp, 5 Fine Ore, 5 Jueyun Chili Chicken, 5 Stir-Fried Fish Noodles", urgent: false },
+];
+const metaTitle = "Genshin Impact Codes 2026 — Active & How to Redeem";
+const metaDescription =
+  "All active Genshin Impact redeem codes for 2026 with Primogem rewards and step-by-step redemption. Verified September 8, 2026 — codes expire fast, redeem now.";
+const verified = "September 8, 2026";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Genshin Impact Codes 2026</h1>
+  <p class="subtitle">
+    Free Primogems, Mora and upgrade materials. Every code below was cross-checked against HoYoverse and
+    multiple trackers on {verified}. They expire without warning — redeem them as soon as you can.
+  </p>
+
+  <div class="version-badge">Last verified: {verified} · codes expire without notice</div>
+
+  <h2>Active codes</h2>
+  <div class="code-table">
+    {
+      codes.map((c) => (
+        <div class={`code-row${c.urgent ? " urgent" : ""}`}>
+          <code class="code-val">{c.code}</code>
+          <span class="code-reward">{c.reward}</span>
+          <a class="code-redeem" href={`https://genshin.hoyoverse.com/en/gift?code=${c.code}`} target="_blank" rel="noopener">
+            Redeem →
+          </a>
+        </div>
+      ))
+    }
+  </div>
+  <p class="note">
+    A few trackers also list <code>DUGODWKRHAKDNJ</code> as active — sources disagree, so try it; if it
+    fails, it has expired. Each code works once per account and is case-sensitive.
+  </p>
+
+  <h2>How to redeem (web — fastest)</h2>
+  <ol class="steps">
+    <li>Reach <strong>Adventure Rank 10</strong> on the account (required to redeem).</li>
+    <li>Open the official gift page: <a href="https://genshin.hoyoverse.com/en/gift" target="_blank" rel="noopener">genshin.hoyoverse.com/en/gift</a>.</li>
+    <li>Log in, pick your server, and enter your in-game nickname.</li>
+    <li>Paste a code above (or click <em>Redeem →</em>) and confirm. Rewards land in your in-game mailbox.</li>
+  </ol>
+
+  <h2>Redeem in-game</h2>
+  <p>
+    Open the Paimon menu → <strong>Settings → Account → Redeem Code</strong>. Type the code and press
+    Exchange, then claim from your mailbox.
+  </p>
+
+  <h2>Where to find new codes</h2>
+  <ul>
+    <li><strong>Version livestreams:</strong> the pre-update Special Program drops three codes that usually expire within ~24 hours — set a reminder.</li>
+    <li><strong>Official channels:</strong> @GenshinImpact on X/Twitter, Facebook, Discord, and the in-game mail.</li>
+    <li><strong>Anniversaries &amp; milestones:</strong> HoYoverse hands out codes for events and player-count celebrations.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="qa">
+    <div class="card">
+      <h3>Why did a code say "already redeemed"?</h3>
+      <p>Either you claimed it before, or it is a recurring code like GENSHINGIFT that an older account already used. It is not a fake code.</p>
+    </div>
+    <div class="card">
+      <h3>Do codes work on PlayStation?</h3>
+      <p>Yes — redeem them on the web gift page with the same HoYoverse ID linked to your PSN; rewards go to your mailbox in-game.</p>
+    </div>
+    <div class="card">
+      <h3>How often should I check back?</h3>
+      <p>After every livestream and patch. Bookmark this page — it is re-verified regularly and only lists codes confirmed working.</p>
+    </div>
+  </div>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/tier-list/">Full Tier List →</a>
+    <a href="/best/">Best Characters Ranked →</a>
+    <a href="/characters/">All Character Guides →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .code-table {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .code-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--border, rgba(128, 128, 128, 0.2));
+    border-radius: 10px;
+    background: var(--bg-card, #15161c);
+  }
+  .code-row.urgent {
+    border-color: rgba(255, 96, 32, 0.5);
+  }
+  .code-val {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--accent, #6c8fff);
+    letter-spacing: 0.03em;
+  }
+  .code-reward {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+  .code-redeem {
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--accent, #6c8fff);
+  }
+  .note {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .steps {
+    padding-left: 22px;
+    line-height: 1.9;
+  }
+  .qa { display: grid; gap: 12px; margin-top: 14px; }
+  @media (max-width: 680px) {
+    .code-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>

@@ -166,6 +166,11 @@ const faqJsonLd = JSON.stringify({
     <p>{c.f2pTeam}</p>
   </div>
 
+  <p style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+    <a href={`/team/${c.slug}/`} style="font-weight:600; color:var(--accent);">↳ Full {c.name} team guide — all comps, F2P options &amp; slot replacements →</a>
+    <a href={`/build/${c.slug}/`} style="font-weight:600; color:var(--accent);">↳ {c.name} best weapon &amp; artifact ranking →</a>
+  </p>
+
   <h2>Rotation Guide</h2>
   <p>{c.rotation}</p>
 

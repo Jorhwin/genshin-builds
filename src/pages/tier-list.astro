@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { characters } from "../data/characters";
+import { updatedLabel } from "../lib/seo";
+
+const tiers = ["S", "A", "B"];
+const byTier = tiers.map((t) => ({
+  tier: t,
+  chars: characters.filter((c) => c.tier === t),
+}));
+const tierBlurb = {
+  S: "Top-tier units that define the current meta. Strong in multiple team types, high damage or utility ceilings, and usually worth pulling when they rerun.",
+  A: "Excellent characters that perform great with investment or in specific teams. Slightly more niche or demanding than S tier, but never a dead pull.",
+  B: "Situational or older units. Still usable, often as enablers, F2P bridges, or for roster completion rather than as primary carries.",
+};
+const metaTitle = "Genshin Impact Tier List 2026 — All 95 Characters Ranked";
+const metaDescription =
+  "All 95 Genshin Impact characters ranked by tier for 2026 (S/A/B). Best DPS, supports and F2P picks with role and element, updated for the 7.x meta.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Genshin Impact Tier List 2026</h1>
+  <p class="subtitle">
+    Every one of the {characters.length} characters on gameup.lol, ranked by overall meta strength for the
+    current 7.x Snezhnaya version. Tap any name for the full weapon, artifact and team guide.
+  </p>
+
+  <div class="insight-box">
+    <h3>⚡ How this tier list is built</h3>
+    <p>
+      Tiers reflect a character's damage or utility ceiling, team flexibility, and how much investment they
+      need to feel good — judged against KQM theorycrafting and broad community consensus for the 7.x meta.
+      A lower-tier unit is not "bad"; it is just more situational or demanding than the ones above it.
+    </p>
+  </div>
+
+  <div class="version-badge">{updatedLabel()} · {characters.length} characters</div>
+
+  {
+    byTier.map(({ tier, chars }) => (
+      <section class="tier-section">
+        <h2>
+          <span class={`tag tag-${tier}`}>Tier {tier}</span>
+          <span class="tier-count">{chars.length} characters</span>
+        </h2>
+        <p class="tier-blurb">{tierBlurb[tier]}</p>
+        <div class="tier-grid">
+          {chars.map((c) => (
+            <a class="tier-card" href={`/character/${c.slug}/`}>
+              <span class={`tag tag-${c.element.toLowerCase()}`}>{c.element}</span>
+              <span class="tier-name">{c.name}</span>
+              <span class="tier-role">{c.role}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="qa">
+    <div class="card">
+      <h3>Does a lower tier mean the character is unusable?</h3>
+      <p>
+        No. Tiers rank ceiling and flexibility, not fun or viability. Many B-tier units clear all of the game's
+        content with the right team, and several are best-in-class enablers for the characters above them.
+      </p>
+    </div>
+    <div class="card">
+      <h3>How often is this list updated?</h3>
+      <p>
+        With every major version and notable balance shift. New 5-stars are placed after their kits are
+        understood, and older units move when the meta around them changes.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Should I pull based on tier alone?</h3>
+      <p>
+        Pull for the teams you enjoy and the units that enable your roster. A character one tier below your
+        favorite pick is usually a better pull than a higher-tier one you will never use.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Where do I find the actual builds?</h3>
+      <p>
+        Every name above links to a full guide with best weapon, artifact set, main stats, team comps and
+        rotation. You can also browse the curated <a href="/best/">best lists</a> and all
+        <a href="/characters/">character guides</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/best/">Best Ranked Lists →</a>
+    <a href="/characters/">All Character Guides →</a>
+    <a href="/teams/">All Team Guides →</a>
+    <a href="/comparisons/">Character Comparisons →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .tier-section {
+    margin-top: 34px;
+  }
+  .tier-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tier-count {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .tier-blurb {
+    color: var(--text-muted);
+    margin: 8px 0 16px;
+    max-width: 70ch;
+  }
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .tier-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, rgba(128, 128, 128, 0.2));
+    border-radius: 10px;
+    background: var(--bg-card, #15161c);
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .tier-card:hover {
+    border-color: rgba(96, 128, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  .tier-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .tier-role {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+  .qa {
+    margin-top: 16px;
+    display: grid;
+    gap: 12px;
+  }
+</style>

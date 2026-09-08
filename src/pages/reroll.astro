@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { updatedLabel } from "../lib/seo";
+
+const metaTitle = "Genshin Impact Reroll Guide 2026 — How & When to Reroll";
+const metaDescription =
+  "Should you reroll your Genshin Impact account in 2026? Step-by-step reroll method, best 5-star starters to aim for, platforms, and the real risks before you wipe.";
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <h1>Genshin Impact Reroll Guide 2026</h1>
+  <p class="subtitle">
+    Rerolling means creating a fresh account, wishing on the beginner banner, and starting over if you do not
+    get the unit you want. Here is when it is worth it, exactly how to do it, and where it usually backfires.
+  </p>
+
+  <div class="insight-box">
+    <h3>⚡ The short answer</h3>
+    <p>
+      Genshin is one of the <strong>worst</strong> games to reroll. Progress to your first wish takes 30–60
+      minutes, the beginner banner is a small fixed pool, and most accounts eventually get every character
+      anyway. Reroll only if you are brand new and specifically want one strong DPS to carry your early game.
+    </p>
+  </div>
+
+  <div class="version-badge">{updatedLabel()}</div>
+
+  <h2>What is rerolling?</h2>
+  <p>
+    You make a new HoYoverse account, play the opening of the game until you unlock Wishes, spend the free
+    Primogems on the <strong>Beginner Banner (Wanderlust Invocation)</strong>, and check the result. If the
+    5-star is one you want, you keep the account. If not, you delete it and repeat. The goal is a head-start
+    account with a premium unit before you invest real time.
+  </p>
+
+  <h2>When rerolling is (and isn't) worth it</h2>
+  <div class="two-col">
+    <div class="card good">
+      <h3>Worth it if…</h3>
+      <ul>
+        <li>You have never played and want a strong carry from day one.</li>
+        <li>You only care about one specific 5-star and nothing else.</li>
+        <li>You are patient — this is a repetitive, slow process.</li>
+      </ul>
+    </div>
+    <div class="card bad">
+      <h3>Skip it if…</h3>
+      <ul>
+        <li>You already have progress — you lose all it forever.</li>
+        <li>You play on PlayStation (accounts are tied to PSN, hard to wipe).</li>
+        <li>You want a specific <em>new</em> character — they are never on the beginner banner.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>How to reroll — step by step</h2>
+  <ol class="steps">
+    <li><strong>Create an account.</strong> Use the official launcher, mobile app, or a fresh email. Do not link a PSN yet.</li>
+    <li><strong>Rush the tutorial.</strong> Play until you reach the first city and unlock the Wish menu (Adventure Rank ~5).</li>
+    <li><strong>Collect free Primogems.</strong> Claim the mail, finish the opening quests, and use the starter Intertwined/Acquaint Fate you are given.</li>
+    <li><strong>Wish on the Beginner Banner.</strong> It offers a discounted 20-wish guarantee for a 5-star from a fixed pool.</li>
+    <li><strong>Decide.</strong> Got your target? Link your email and keep it. Missed? Delete the account and start over.</li>
+    <li><strong>Lock it in.</strong> Once happy, link a real email, set a password, and only then consider binding PSN or socials.</li>
+  </ol>
+
+  <h2>Best starters to aim for</h2>
+  <p>
+    The beginner banner pools from the standard 5-star roster, so aim for a unit that carries early content
+    without much team support. Reliable picks include a strong on-field DPS such as <a href="/character/kujou-sara/">Keqing</a>,
+    <a href="/character/tartaglia/">Tartaglia</a>, or <a href="/character/jean/">Jean</a> (who also heals),
+    plus any 5-star catalyst or polearm carry. Avoid rerolling purely for supports — they need a team to shine.
+  </p>
+
+  <h2>Platform notes</h2>
+  <ul>
+    <li><strong>PC / Android / iOS:</strong> Easiest. Accounts live on your HoYoverse ID; wiping means making a new ID.</li>
+    <li><strong>PlayStation:</strong> Not recommended. PSN linking binds the account and wiping is impractical.</li>
+    <li><strong>Emulators:</strong> Common for farming multiple attempts, but check the game's terms of service first.</li>
+  </ul>
+
+  <h2>The real risks</h2>
+  <p>
+    Rerolling burns hours for a single 5-star you will eventually own anyway through standard wishes and
+    pity. You also forfeit any event progress, friends, and Primogems already earned. For most players,
+    keeping one account and wishing smartly beats chasing a perfect start.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="qa">
+    <div class="card">
+      <h3>Can I reroll for the newest limited character?</h3>
+      <p>No. Limited 5-stars only appear on event banners, never the beginner banner. Rerolling cannot target them.</p>
+    </div>
+    <div class="card">
+      <h3>Is rerolling against the rules?</h3>
+      <p>Making new accounts is allowed, but automating it or abusing emulators can violate the terms of service. Do it manually.</p>
+    </div>
+    <div class="card">
+      <h3>How long does one reroll attempt take?</h3>
+      <p>Roughly 30–60 minutes to reach the first wish, then seconds to evaluate. Budget several attempts.</p>
+    </div>
+  </div>
+
+  <div class="internal-links">
+    <h3>Explore More</h3>
+    <a href="/tier-list/">Full Tier List →</a>
+    <a href="/best/">Best Characters Ranked →</a>
+    <a href="/characters/">All Character Guides →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .card.good { border-color: rgba(80, 200, 120, 0.35); }
+  .card.bad { border-color: rgba(255, 96, 32, 0.35); }
+  .steps {
+    padding-left: 22px;
+    line-height: 1.9;
+  }
+  .steps li { margin-bottom: 8px; }
+  .qa { display: grid; gap: 12px; margin-top: 14px; }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
