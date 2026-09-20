@@ -172,6 +172,20 @@ const faqJsonLd = JSON.stringify({
         <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameB} team</span>
       )
     }
+    {
+      kind !== "weapon" && slugA ? (
+        <a href={`/build/${slugA}/`}>🛠️ {c.nameA} Build →</a>
+      ) : (
+        <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameA} build</span>
+      )
+    }
+    {
+      kind !== "weapon" && slugB ? (
+        <a href={`/build/${slugB}/`}>🛠️ {c.nameB} Build →</a>
+      ) : (
+        <span style="display:block;padding:8px 12px;color:var(--text-muted);">{c.nameB} build</span>
+      )
+    }
     <a href="/characters/">🏠 All Characters</a>
     <a href="/comparisons/">📊 All Comparisons →</a>
   </div>

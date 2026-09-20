@@ -16,6 +16,33 @@
 
 ---
 
+## 🔥 第 0 周（账号预热 — 新号必需，否则等于白发）
+
+> 你刚用 Google OAuth 注册的新号。Reddit / Fandom 对新号发外链有强反垃圾机制：
+> 直接丢链接 → 被 AutoMod 自动移除 / **影子封禁（shadowban，自己看得到、别人看不到）**，白费功夫。
+> **必须先"养号" 1–2 周，再发任何链接。**
+
+### Reddit 预热（最关键）
+- [ ] 设密码：Google OAuth 登录的号可能没有密码，部分发帖功能受限 → Settings → 设密码（可选但建议）
+- [ ] 确认邮箱已验证：Settings 里核对（Google OAuth 通常已验证）
+- [ ] 开启 2FA（可选，降风控）
+- [ ] **纯评论养号 1–2 周**：在 r/GenshinImpact、r/Genshin_Impact、各角色 sub 下真诚回帖/讨论，**不夹任何链接**
+- [ ] 目标：评论 karma ≥ 50、账号年龄 ≥ 7 天，之后再发链接才稳
+- [ ] 发链接首选 **Weekly Questions Megathread**（问答串最不容易被删），避免独立新帖
+
+### Fandom 预热
+- [ ] 确认邮箱已验证
+- [ ] 做 1–2 个小编辑（如补一句词条描述）拿到 **autoconfirmed**（注册+验证邮箱+通常几天的账号年龄）
+- [ ] 先读目标 wiki 的 External links / 编辑政策（Genshin Impact Wiki @ fandom.com）
+- [ ] 外链只放 **User blog / Discussions 区**，不要直接改主词条正文（会被 bot 回退）
+
+### 预热完成（三项出口标准全打勾）后再说"开干"
+- 把养号进度告诉我（karma 数 / 账号天数 / Fandom 是否 autoconfirmed），我核对达标后，按「第 1 周」卡给你最终文案，你复制粘贴即可（**Method A**）。
+- 或你本机浏览器已登录、养号达标后愿让我用 agent-browser 代点（**需你本人在场过 Google 二次验证**），走 Method B。
+- **无论 A/B，账号未达标前我不会启动任何发链接动作；之前那次强制重启 Chrome 接管的尝试也已暂停。**
+
+---
+
 ## 第 1 周（零风险起步）
 
 - [ ] **R1** Reddit 方案 A — 在 r/GenshinImpact **Weekly Questions Megathread** 搜 `Neuvillette team` 类问题，贴文案 **N1**（落点 `/team/neuvillette/`）
