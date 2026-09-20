@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { weaponGroups } from "../../data/gear";
 import { weaponTips } from "../../data/weapon-tips";
 import { characters } from "../../data/characters";
+import { comparisons } from "../../data/comparisons";
 
 const slugify = (s) =>
   s
@@ -49,6 +50,14 @@ const resolveChar = (n) => {
 const bestFor = w.bestFor.split(",").map((s) => s.trim()).filter(Boolean);
 const siblings = allWeapons.filter((x) => x.type === w.type && x.name !== w.name);
 const tip = weaponTips[w.name] || "";
+
+// Weapon-vs-weapon comparison pages that feature this weapon. Adds a second
+// inbound source (weapon + character pages) for those comparison pages and
+// turns weapon impressions into clickable comparison links.
+const relatedWeaponComparisons = comparisons.filter(
+  (x) => x.kind === "weapon" && (x.nameA === w.name || x.nameB === w.name)
+);
+const rivalWeaponOf = (x) => (x.nameA === w.name ? x.nameB : x.nameA);
 
 const articleJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -195,4 +204,15 @@ const productJsonLd = JSON.stringify({
     <a href="/characters/">All Characters →</a>
     <a href="/best/">Best Characters &amp; Teams →</a>
   </div>
+
+  {relatedWeaponComparisons.length > 0 && (
+    <div class="internal-links">
+      <h3>{w.name} vs Other Weapons</h3>
+      {
+        relatedWeaponComparisons.map((x) => (
+          <a href={`/comparison/${x.slug}/`}>{w.name} vs {rivalWeaponOf(x)}</a>
+        ))
+      }
+    </div>
+  )}
 </BaseLayout>

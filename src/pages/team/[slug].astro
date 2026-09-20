@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { characters } from "../../data/characters";
+import { comparisons } from "../../data/comparisons";
 import { teamExtendedGuides } from "../../data/extended-guides-team";
 import teamVariants from "../../data/team-variants.json";
 import { teamTitle, teamDescription, updatedLabel, roleLabel, article, shortPhrase } from "../../lib/seo";
@@ -18,14 +19,23 @@ const { character: c } = Astro.props;
 const title = teamTitle(c);
 const description = teamDescription(c);
 
+// Head-to-head pages this character appears in. Mirrors the character page's
+// "vs Other Characters" block so comparison pages get a second inbound source
+// (character + team pages, both one-per-character) — the same flywheel pattern
+// that lifted weapon/artifact pages after P1-5.
+const relatedComparisons = comparisons.filter(
+  (x) => x.nameA.toLowerCase() === c.name.toLowerCase() || x.nameB.toLowerCase() === c.name.toLowerCase()
+);
+const rivalOf = (x) => (x.nameA.toLowerCase() === c.name.toLowerCase() ? x.nameB : x.nameA);
+
 const faq = [
   {
-    q: `What is the best team for ${c.name}?`,
-    a: `The strongest ${c.name} team is ${shortPhrase(c.strongTeam, 60)}. ${c.teamRole}`
+    q: `What is the best team for ${c.name} in 2026?`,
+    a: `The strongest ${c.name} team in 2026 is ${shortPhrase(c.strongTeam, 60)}. ${c.teamRole}`
   },
   {
-    q: `What is a good F2P team for ${c.name}?`,
-    a: `For players without premium units, ${c.f2pTeam} is an excellent budget option. This team uses mostly 4-star characters while maintaining strong performance, making it accessible for most accounts.`
+    q: `What is the best F2P team for ${c.name} in 2026?`,
+    a: `For players without premium units, ${c.f2pTeam} is an excellent budget option for ${c.name} in 2026. This team uses mostly 4-star characters while maintaining strong performance, making it accessible for most accounts.`
   },
   {
     q: `How should I play the ${c.name} rotation?`,
@@ -123,6 +133,17 @@ const articleJsonLd = JSON.stringify({"@context":"https://schema.org","@type":"A
       <p style="margin: 0;">{f.a}</p>
     </div>
   ))}
+
+  {relatedComparisons.length > 0 && (
+    <div class="internal-links">
+      <h3>{c.name} vs Other Characters</h3>
+      {
+        relatedComparisons.map((x) => (
+          <a href={`/comparison/${x.slug}/`}>{c.name} vs {rivalOf(x)}</a>
+        ))
+      }
+    </div>
+  )}
 
   <div class="internal-links">
     <h3>📂 More {c.name} Guides</h3>
